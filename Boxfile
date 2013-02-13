@@ -5,7 +5,7 @@ web1:
     - gd 
     - curl
   shared_writable_dirs: 
-    - /system/cms/cache
-    - /system/cms/logs
-    - /uploads
+    - /system/cms/cache/
+    - /system/cms/logs/
+    - /uploads/
 	
