@@ -1,7 +1,1 @@
-web1: 
-  name: pyrocms
-  php_extensions: 
-    - mysql 
-    - gd 
-    - curl
 	
