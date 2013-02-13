@@ -1,3 +1,4 @@
+--- 
 db1: 
   name: pyrocms_db
   type: mysql
@@ -9,5 +10,6 @@ web1:
     - /system/cms/cache/
     - /system/cms/logs/
     - /uploads/
+
 	
 	
