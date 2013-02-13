@@ -1,9 +1,10 @@
 --- 
 web1: 
-  name: pyrocms
-  document_root: public
+  name: designcms	
   php_extensions: 
     - mysql
+    - gd
+    - curl
   shared_writable_dirs: 
     - /system/cms/cache/
     - /system/cms/logs/
