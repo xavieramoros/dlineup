@@ -5,11 +5,11 @@ db1:
 web1: 
   name: pyrocms
   php_extensions: 
-    - "mysql - gd - curl"
+    - "mysql 
+    - gd 
+    - curl"
   shared_writable_dirs: 
-    - /system/cms/cache/
-    - /system/cms/logs/
-    - /uploads/
-
-	
+    - /system/cms/cache
+    - /system/cms/logs
+    - /uploads
 	
