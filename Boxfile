@@ -1,7 +1,3 @@
---- 
-db1: 
-  name: pyrocms_db
-  type: mysql
 web1: 
   name: pyrocms
   php_extensions: 
