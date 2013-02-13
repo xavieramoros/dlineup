@@ -1,13 +1,13 @@
-web1: #component type & number
-  name: pyrocms #component settings 
-  shared_writable_dirs: 
-    - /system/cms/cache/ 
-	- /system/cms/logs/ 
-	- /uploads/ 
-  php_extensions: - mysql - gd - curl 
-
-db1: #component type & number 
-  name: pyrocms_db #component settings
+db1: 
+  name: pyrocms_db
   type: mysql
+web1: 
+  name: pyrocms
+  php_extensions: 
+    - "mysql - gd - curl"
+  shared_writable_dirs: 
+    - /system/cms/cache/
+    - /system/cms/logs/
+    - /uploads/
 	
 	
