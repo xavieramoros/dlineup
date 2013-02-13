@@ -4,8 +4,4 @@ web1:
     - mysql 
     - gd 
     - curl
-  shared_writable_dirs: 
-    #- /system/cms/cache/
-    #- /system/cms/logs/
-    #- /uploads/
 	
