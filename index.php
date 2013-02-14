@@ -52,6 +52,8 @@ define('ENVIRONMENT', (isset($_SERVER['PYRO_ENV']) ? $_SERVER['PYRO_ENV'] : PYRO
  */
 
 	error_reporting(E_ALL);
+	
+	var_dump(ENVIRONMENT);
 
 	switch (ENVIRONMENT)
 	{
@@ -61,10 +63,28 @@ define('ENVIRONMENT', (isset($_SERVER['PYRO_ENV']) ? $_SERVER['PYRO_ENV'] : PYRO
 
 		case PYRO_STAGING:
 		case PYRO_PRODUCTION:
+			echo('ENVIRONMENT = PYRO_PRODUCTION');
+
 			//ini_set('display_errors', false);
 			ini_set('display_errors', true); //FIXME
 
 		break;
+
+		case production:
+			echo('ENVIRONMENT = production');
+			//ini_set('display_errors', false);
+			ini_set('display_errors', true); //FIXME
+
+		break;
+		
+		case 'PYRO_PRODUCTION':
+			echo('ENVIRONMENT = string PYRO_PRODUCTION');
+
+			//ini_set('display_errors', false);
+			ini_set('display_errors', true); //FIXME
+
+		break;
+
 
 		default:
 			exit('The environment is not set correctly. ENVIRONMENT = '.ENVIRONMENT.'.');
