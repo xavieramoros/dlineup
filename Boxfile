@@ -1,6 +1,6 @@
 --- 
 web1: 
-  name: designcms		
+  name: pyrocms		
   php_extensions: 
     - mysql
     - gd
