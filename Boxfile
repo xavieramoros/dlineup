@@ -1,6 +1,5 @@
 web1: 
   name: pyrocms
-  document_root: www		
   php_extensions: 
     - mysql
     - gd
@@ -9,21 +8,9 @@ web1:
   shared_writable_dirs: 
     - /system/cms/cache/
     - /system/cms/logs/
+    
 web2: 
   name: pyrocms2
-  document_root: public		
-  php_extensions: 
-    - mysql
-    - gd
-    - curl
-    
-  shared_writable_dirs: 
-    - /system/cms/cache/
-    - /system/cms/logs/
-
-web3: 
-  name: pyrocms3
-  document_root: app		
   php_extensions: 
     - mysql
     - gd
