@@ -43,7 +43,8 @@ define('PYRO_PRODUCTION', 'production');
 //define('ENVIRONMENT', (isset($_SERVER['PYRO_ENV']) ? $_SERVER['PYRO_ENV'] : PYRO_DEVELOPMENT));
 
 //hack to make sure we are on production
-define('ENVIRONMENT', (isset($_SERVER['PYRO_ENV']) ? $_SERVER['PYRO_ENV'] : PYRO_PRODUCTION));
+//FIXME
+define('ENVIRONMENT', 'production');
 
 /*
  *---------------------------------------------------------------
@@ -64,7 +65,9 @@ define('ENVIRONMENT', (isset($_SERVER['PYRO_ENV']) ? $_SERVER['PYRO_ENV'] : PYRO
 
 		case PYRO_STAGING:
 		case PYRO_PRODUCTION:
-			ini_set('display_errors', false);
+			//ini_set('display_errors', false);
+			ini_set('display_errors', true); //FIXME
+
 		break;
 
 		default:
