@@ -5,10 +5,6 @@ web1:
     - mysql
     - gd
     - curl
-    - mcrypt
-    - mysqli
-    - mysql
-    - mbstring  
     
   shared_writable_dirs: 
     - /system/cms/cache/
