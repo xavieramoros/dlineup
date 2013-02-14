@@ -1,10 +1,15 @@
 --- 
 web1: 
-  name: designcms	
+  name: designcms		
   php_extensions: 
     - mysql
     - gd
     - curl
+    - mcrypt
+    - mysqli
+    - mysql
+    - mbstring  
+    
   shared_writable_dirs: 
     - /system/cms/cache/
     - /system/cms/logs/
