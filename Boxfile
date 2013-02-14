@@ -1,7 +1,7 @@
 --- 
 web1: 
   name: pyrocms
-  document_root: public		
+  document_root: www		
   php_extensions: 
     - mysql
     - gd
