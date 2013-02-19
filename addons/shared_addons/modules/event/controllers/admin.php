@@ -11,7 +11,7 @@ class Admin extends Admin_Controller
 	 *
 	 * @var string
 	 */
-	protected $section = 'posts';
+	protected $section = 'events';  //IMPORTANT! Was needed to display the "add event" button.
 
 	/**
 	 * Array that contains the validation rules

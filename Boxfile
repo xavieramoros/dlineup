@@ -8,6 +8,7 @@ web1:
   shared_writable_dirs: 
     - /system/cms/cache/
     - /system/cms/logs/
+    - /assets/cache/
     
 web2: 
   name: pyrocms2

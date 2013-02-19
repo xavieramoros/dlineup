@@ -32,7 +32,7 @@ class Module_Event	 extends Module {
 			),
 
 			'sections' => array(
-			    'posts' => array(  //			    'events' => array(
+			    'events' => array(  //			    'events' => array(
 				    'name' => 'event:posts_title',
 				    'uri' => 'admin/event',
 				    'shortcuts' => array(
@@ -86,7 +86,8 @@ class Module_Event	 extends Module {
 				'comments_enabled' => array('type' => 'INT', 'constraint' => 1, 'default' => 1),
 				'status' => array('type' => 'ENUM', 'constraint' => array('draft', 'live'), 'default' => 'draft'),
 				'type' => array('type' => 'SET', 'constraint' => array('html', 'markdown', 'wysiwyg-advanced', 'wysiwyg-simple')),
-                'preview_hash' => array('type' => 'CHAR', 'constraint' => 32,'default'=>''),
+                'preview_hash' => array('type' => 'CHAR', 'constraint' => 32,'default'=>'')
+                ,
 			),
 		);
 
@@ -95,7 +96,11 @@ class Module_Event	 extends Module {
 
 	public function uninstall()
 	{
-		// This is a core module, lets keep it around.
+		$this->dbforge->drop_table('event_categories');
+		$this->dbforge->drop_table('event');
+	
+		$this->db->delete('settings', array('module' => 'event'));
+
 		return true;
 	}
 

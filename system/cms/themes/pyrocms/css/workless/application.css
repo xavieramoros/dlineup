@@ -338,6 +338,11 @@ section#content ul li {
 	width: 100%;
 }
 
+#event-content-tab {
+	width: 100%;
+}
+
+
 section.title {
   	width: 100%;
 	min-height: 25px;

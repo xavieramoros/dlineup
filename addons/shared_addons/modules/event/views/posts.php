@@ -7,6 +7,7 @@
 <?php endif; ?>
 
 <?php if ( ! empty($event)): ?>
+
 <?php foreach ($event as $post): ?>
 	<div class="post">
 		<!-- Post heading -->

@@ -62,6 +62,7 @@ class Admin_Controller extends MY_Controller {
 		ci()->theme_options = $this->pyrocache->model('theme_m', 'get_values_by', array(array('theme' => ADMIN_THEME) ));
 	
 		// Active Admin Section (might be null, but who cares)
+		
 		$this->template->active_section = $this->section;
 		
 		Events::trigger('admin_controller');
