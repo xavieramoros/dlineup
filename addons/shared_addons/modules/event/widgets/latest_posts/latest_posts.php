@@ -2,7 +2,7 @@
 
 /**
  *
- * Show Latest blog in your site with a widget. 
+ * Show Latest event in your site with a widget. 
  * 
  * Intended for use on cms pages. Usage : 
  * on a CMS page add:
@@ -29,13 +29,13 @@ class Widget_Latest_posts extends Widgets
             'id'         => 'Post Terbaru',
         );
         public $description = array(
-            'en'     => 'Display latest blog posts with a widget',
+            'en'     => 'Display latest event posts with a widget',
             'br'     => 'Mostra uma lista de navegação para abrir os últimos artigos publicados no Blog',
             'pt'     => 'Mostra uma lista de navegação para abrir os últimos artigos publicados no Blog',
             'el'     => 'Προβάλει τις πιο πρόσφατες αναρτήσεις στο ιστολόγιό σας',
-            'fr'     => 'Permet d\'afficher la liste des derniers posts du blog dans un Widget',
+            'fr'     => 'Permet d\'afficher la liste des derniers posts du event dans un Widget',
             'ru'     => 'Выводит список последних записей блога внутри виджета',
-            'id'     => 'Menampilkan posting blog terbaru menggunakan widget',
+            'id'     => 'Menampilkan posting event terbaru menggunakan widget',
         );
         public $author  = 'Erik Berman';
         public $website = 'http://www.nukleo.fr';
@@ -60,17 +60,17 @@ class Widget_Latest_posts extends Widgets
 
         public function run($options)
         {
-                // load the blog module's model
-                class_exists('Blog_m') OR $this->load->model('blog/blog_m');
+                // load the event module's model
+                class_exists('Blog_m') OR $this->load->model('event/event_m');
 
                 // sets default number of posts to be shown
                 empty($options['limit']) AND $options['limit'] = 5;
 
-                // retrieve the records using the blog module's model
-                $blog_widget = $this->blog_m->limit($options['limit'])->get_many_by(array('status' => 'live'));
+                // retrieve the records using the event module's model
+                $event_widget = $this->event_m->limit($options['limit'])->get_many_by(array('status' => 'live'));
 
                 // returns the variables to be used within the widget's view
-                return array('blog_widget' => $blog_widget);
+                return array('event_widget' => $event_widget);
         }
 
 }

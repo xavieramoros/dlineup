@@ -1,7 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['event:post']                 = 'Post';
-$lang['event:posts']                   = 'Posts';
+$lang['event:posted_label']                   = 'Posted';
+
+
+$lang['event:post']                 = 'Event';
+$lang['event:posts']                   = 'Events';
 
 // labels
 $lang['event:posted_label']                   = 'Posted';
@@ -26,8 +29,8 @@ $lang['event:new_category_label']             = 'Add a category';
 $lang['event:subscripe_to_rss_label']         = 'Subscribe to RSS';
 $lang['event:all_posts_label']             = 'All posts';
 $lang['event:posts_of_category_suffix']    = ' posts';
-$lang['event:rss_name_suffix']                = ' Blog';
-$lang['event:rss_category_suffix']            = ' Blog';
+$lang['event:rss_name_suffix']                = ' Event';
+$lang['event:rss_category_suffix']            = ' Event';
 $lang['event:author_name_label']              = 'Author name';
 $lang['event:read_more_label']                = 'Read More&nbsp;&raquo;';
 $lang['event:created_hour']                   = 'Created on Hour';
@@ -35,13 +38,13 @@ $lang['event:created_minute']                 = 'Created on Minute';
 $lang['event:comments_enabled_label']         = 'Comments Enabled';
 
 // titles
-$lang['event:create_title']                   = 'Add Post';
-$lang['event:edit_title']                     = 'Edit post "%s"';
+$lang['event:create_title']                   = 'Add Event';
+$lang['event:edit_title']                     = 'Edit event "%s"';
 $lang['event:archive_title']                 = 'Archive';
-$lang['event:posts_title']					= 'Posts';
-$lang['event:rss_posts_title']				= 'Blog posts for %s';
-$lang['event:event_title']					= 'Blog';
-$lang['event:list_title']					= 'List Posts';
+$lang['event:posts_title']					= 'Event';
+$lang['event:rss_posts_title']				= 'Event posts for %s';
+$lang['event:event_title']					= 'Event';
+$lang['event:list_title']					= 'List Events';
 
 // messages
 $lang['event:no_posts']                    = 'There are no posts.';

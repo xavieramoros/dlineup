@@ -1,13 +1,13 @@
-<?php if ($blog) : ?>
+<?php if ($event) : ?>
 	<table border="0" class="table-list">
 		<thead>
 			<tr>
 				<th width="20"><?php echo form_checkbox(array('name' => 'action_to_all', 'class' => 'check-all')); ?></th>
-				<th><?php echo lang('blog:post_label'); ?></th>
-				<th class="collapse"><?php echo lang('blog:category_label'); ?></th>
-				<th class="collapse"><?php echo lang('blog:date_label'); ?></th>
-				<th class="collapse"><?php echo lang('blog:written_by_label'); ?></th>
-				<th><?php echo lang('blog:status_label'); ?></th>
+				<th><?php echo lang('event:post_label'); ?></th>
+				<th class="collapse"><?php echo lang('event:category_label'); ?></th>
+				<th class="collapse"><?php echo lang('event:date_label'); ?></th>
+				<th class="collapse"><?php echo lang('event:written_by_label'); ?></th>
+				<th><?php echo lang('event:status_label'); ?></th>
 				<th width="180"></th>
 			</tr>
 		</thead>
@@ -19,7 +19,7 @@
 			</tr>
 		</tfoot>
 		<tbody>
-			<?php foreach ($blog as $post) : ?>
+			<?php foreach ($event as $post) : ?>
 				<tr>
 					<td><?php echo form_checkbox('action_to[]', $post->id); ?></td>
 					<td><?php echo $post->title; ?></td>
@@ -29,24 +29,24 @@
 					<?php if (isset($post->display_name)): ?>
 						<?php echo anchor('user/' . $post->author_id, $post->display_name, 'target="_blank"'); ?>
 					<?php else: ?>
-						<?php echo lang('blog:author_unknown'); ?>
+						<?php echo lang('event:author_unknown'); ?>
 					<?php endif; ?>
 					</td>
-					<td><?php echo lang('blog:'.$post->status.'_label'); ?></td>
+					<td><?php echo lang('event:'.$post->status.'_label'); ?></td>
 					<td>
 
                         <?php if($post->status=='live') : ?>
-                            <?php echo anchor('blog/' . date('Y/m',$post->created_on). '/'. $post->slug, lang('global:view'), 'class="btn green" target="_blank"');?>
+                            <?php echo anchor('event/' . date('Y/m',$post->created_on). '/'. $post->slug, lang('global:view'), 'class="btn green" target="_blank"');?>
                         <?php else: ?>
-                            <?php echo anchor('blog/preview/' . $post->preview_hash, lang('global:preview'), 'class="btn green" target="_blank"');?>
+                            <?php echo anchor('event/preview/' . $post->preview_hash, lang('global:preview'), 'class="btn green" target="_blank"');?>
                         <?php endif; ?>
-						<?php echo anchor('admin/blog/edit/' . $post->id, lang('global:edit'), 'class="btn orange edit"'); ?>
-						<?php echo anchor('admin/blog/delete/' . $post->id, lang('global:delete'), array('class'=>'confirm btn red delete')); ?>
+						<?php echo anchor('admin/event/edit/' . $post->id, lang('global:edit'), 'class="btn orange edit"'); ?>
+						<?php echo anchor('admin/event/delete/' . $post->id, lang('global:delete'), array('class'=>'confirm btn red delete')); ?>
 					</td>
 				</tr>
 			<?php endforeach; ?>
 		</tbody>
 	</table>
 <?php else: ?>
-	<div class="no_data"><?php echo lang('blog:currently_no_posts'); ?></div>
+	<div class="no_data"><?php echo lang('event:currently_no_posts'); ?></div>
 <?php endif; ?>

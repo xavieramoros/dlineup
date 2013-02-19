@@ -32,22 +32,23 @@ class Module_Event	 extends Module {
 			),
 
 			'sections' => array(
-			    'events' => array(
+			    'posts' => array(  //			    'events' => array(
 				    'name' => 'event:posts_title',
 				    'uri' => 'admin/event',
 				    'shortcuts' => array(
 						array(
-					 	   'name' => 'event:create_title',
+						   'name' => 'event:create_title',	//'name' => 'event:create_title',
 						    'uri' => 'admin/event/create',
 						    'class' => 'add'
 						),
 					),
 				),
+
 				'categories' => array(
 				    'name' => 'cat_list_title',
 				    'uri' => 'admin/event/categories',
 				    'shortcuts' => array(
-						array(
+				    	array(
 						    'name' => 'cat_create_title',
 						    'uri' => 'admin/event/categories/create',
 						    'class' => 'add'
@@ -95,7 +96,7 @@ class Module_Event	 extends Module {
 	public function uninstall()
 	{
 		// This is a core module, lets keep it around.
-		return false;
+		return true;
 	}
 
 	public function upgrade($old_version)

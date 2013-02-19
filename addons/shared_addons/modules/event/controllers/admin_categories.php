@@ -40,9 +40,9 @@ class Admin_Categories extends Admin_Controller {
 	{
 		parent::__construct();
 		
-		$this->load->model('blog_categories_m');
+		$this->load->model('event_categories_m');
 		$this->lang->load('categories');
-		$this->lang->load('blog');
+		$this->lang->load('event');
 		
 		// Load the validation library along with the rules
 		$this->load->library('form_validation');
@@ -59,11 +59,11 @@ class Admin_Categories extends Admin_Controller {
 		$this->pyrocache->delete_all('modules_m');
 		
 		// Create pagination links
-		$total_rows = $this->blog_categories_m->count_all();
-		$pagination = create_pagination('admin/blog/categories/index', $total_rows, NULL, 5);
+		$total_rows = $this->event_categories_m->count_all();
+		$pagination = create_pagination('admin/event/categories/index', $total_rows, NULL, 5);
 			
 		// Using this data, get the relevant results
-		$categories = $this->blog_categories_m->order_by('title')->limit($pagination['limit'])->get_all();
+		$categories = $this->event_categories_m->order_by('title')->limit($pagination['limit'])->get_all();
 
 		$this->template
 			->title($this->module_details['name'], lang('cat_list_title'))
@@ -82,10 +82,10 @@ class Admin_Categories extends Admin_Controller {
 		// Validate the data
 		if ($this->form_validation->run())
 		{
-			if ($id = $this->blog_categories_m->insert($_POST))
+			if ($id = $this->event_categories_m->insert($_POST))
 			{
-				// Fire an event. A new blog category has been created.
-				Events::trigger('blog_category_created', $id);
+				// Fire an event. A new event category has been created.
+				Events::trigger('event_category_created', $id);
 
 				$this->session->set_flashdata('success', sprintf( lang('cat_add_success'), $this->input->post('title')) );
 			}
@@ -94,7 +94,7 @@ class Admin_Categories extends Admin_Controller {
 				$this->session->set_flashdata('error', lang('cat_add_error'));
 			}
 			
-			redirect('admin/blog/categories');
+			redirect('admin/event/categories');
 		}
 
 		$category = new stdClass();
@@ -120,24 +120,24 @@ class Admin_Categories extends Admin_Controller {
 	public function edit($id = 0)
 	{	
 		// Get the category
-		$category = $this->blog_categories_m->get($id);
+		$category = $this->event_categories_m->get($id);
 		
 		// ID specified?
-		$category or redirect('admin/blog/categories/index');
+		$category or redirect('admin/event/categories/index');
 
 		$this->form_validation->set_rules('id', 'ID', 'trim|required|is_numeric');
 		
 		// Validate the results
 		if ($this->form_validation->run())
 		{		
-			$this->blog_categories_m->update($id, $_POST)
+			$this->event_categories_m->update($id, $_POST)
 				? $this->session->set_flashdata('success', sprintf( lang('cat_edit_success'), $this->input->post('title')) )
 				: $this->session->set_flashdata('error', lang('cat_edit_error'));
 			
-			// Fire an event. A blog category is being updated.
-			Events::trigger('blog_category_updated', $id);
+			// Fire an event. A event category is being updated.
+			Events::trigger('event_category_updated', $id);
 			
-			redirect('admin/blog/categories/index');
+			redirect('admin/event/categories/index');
 		}
 		
 		// Loop through each rule
@@ -173,7 +173,7 @@ class Admin_Categories extends Admin_Controller {
 			$deleted_ids = array();
 			foreach ($id_array as $id)
 			{
-				if ($this->blog_categories_m->delete($id))
+				if ($this->event_categories_m->delete($id))
 				{
 					$deleted++;
 					$deleted_ids[] = $id;
@@ -191,14 +191,14 @@ class Admin_Categories extends Admin_Controller {
 			}
 			
 			// Fire an event. One or more categories have been deleted.
-			Events::trigger('blog_category_deleted', $deleted_ids);
+			Events::trigger('event_category_deleted', $deleted_ids);
 		}		
 		else
 		{
 			$this->session->set_flashdata('error', lang('cat_no_select_error'));
 		}
 		
-		redirect('admin/blog/categories/index');
+		redirect('admin/event/categories/index');
 	}
 		
 	/**
@@ -210,7 +210,7 @@ class Admin_Categories extends Admin_Controller {
 	public function _check_title($title = '')
 	{
 		$id = $this->input->post('id');
-		if ($this->blog_categories_m->check_title($title,$id))
+		if ($this->event_categories_m->check_title($title,$id))
 		{
 			$this->form_validation->set_message('_check_title', sprintf(lang('cat_already_exist_error'), $title));
 			return FALSE;
@@ -240,7 +240,7 @@ class Admin_Categories extends Admin_Controller {
 		
 		if ($this->form_validation->run())
 		{
-			$id = $this->blog_categories_m->insert_ajax($this->input->post());
+			$id = $this->event_categories_m->insert_ajax($this->input->post());
 			
 			if ($id > 0)
 			{

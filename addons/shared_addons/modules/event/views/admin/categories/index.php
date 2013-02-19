@@ -6,7 +6,7 @@
 	
 	<?php if ($categories): ?>
 
-		<?php echo form_open('admin/blog/categories/delete'); ?>
+		<?php echo form_open('admin/event/categories/delete'); ?>
 
 		<table border="0" class="table-list">
 			<thead>
@@ -31,8 +31,8 @@
 					<td><?php echo $category->title; ?></td>
 					<td><?php echo $category->slug; ?></td>
 					<td class="align-center buttons buttons-small">
-						<?php echo anchor('admin/blog/categories/edit/'.$category->id, lang('global:edit'), 'class="button edit"'); ?>
-						<?php echo anchor('admin/blog/categories/delete/'.$category->id, lang('global:delete'), 'class="confirm button delete"') ;?>
+						<?php echo anchor('admin/event/categories/edit/'.$category->id, lang('global:edit'), 'class="button edit"'); ?>
+						<?php echo anchor('admin/event/categories/delete/'.$category->id, lang('global:delete'), 'class="confirm button delete"') ;?>
 					</td>
 				</tr>
 				<?php endforeach; ?>

@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Show a list of blog categories.
+ * Show a list of event categories.
  * 
  * @author		PyroCMS Dev Team
  * @author		Stephen Cozart
@@ -20,7 +20,7 @@ class Widget_Blog_categories extends Widgets
             'id'         => 'Kateori Blog',
         );
         public $description = array(
-            'en'     => 'Show a list of blog categories',
+            'en'     => 'Show a list of event categories',
             'br'     => 'Mostra uma lista de navegação com as categorias do Blog',
             'pt'     => 'Mostra uma lista de navegação com as categorias do Blog',
             'el'     => 'Προβάλει την λίστα των κατηγοριών του ιστολογίου σας',
@@ -34,9 +34,9 @@ class Widget_Blog_categories extends Widgets
 
         public function run()
         {
-                $this->load->model('blog/blog_categories_m');
+                $this->load->model('event/event_categories_m');
 
-                $categories = $this->blog_categories_m->order_by('title')->get_all();
+                $categories = $this->event_categories_m->order_by('title')->get_all();
 
                 return array('categories' => $categories);
         }

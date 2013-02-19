@@ -34,11 +34,11 @@ class Widget_Archive extends Widgets
 
         public function run($options)
         {
-                $this->load->model('blog/blog_m');
-                $this->lang->load('blog/blog');
+                $this->load->model('event/event_m');
+                $this->lang->load('event/event');
 
                 return array(
-                    'archive_months' => $this->blog_m->get_archive_months()
+                    'archive_months' => $this->event_m->get_archive_months()
                 );
         }
 
