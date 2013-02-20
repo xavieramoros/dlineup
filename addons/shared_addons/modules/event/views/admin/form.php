@@ -38,6 +38,33 @@
 				<div class="input"><?php echo form_dropdown('status', array('draft' => lang('event:draft_label'), 'live' => lang('event:live_label')), $post->status) ?></div>
 			</li>
 			
+			<!--Added by Xavi-->
+			
+			<li class="date-meta">
+				<label><?php echo lang('event:event_date_label'); ?> <span>*</span></label>
+				
+				<div class="input datetime_input">
+					<?php echo form_input('start_date', date('Y-m-d', $post->created_on), 'maxlength="10" id="datepicker" class="text width-20"'); ?> &nbsp;
+<!--
+					<?php echo form_dropdown('created_on_hour', $hours, date('H', $post->created_on)) ?> : 
+					<?php echo form_dropdown('created_on_minute', $minutes, date('i', ltrim($post->created_on, '0'))) ?>
+-->
+				</div>
+			</li>
+			
+			<li>
+				<label for="title"><?php echo lang('event:price'); ?></label>
+				<div class="input"><?php echo form_input('price', htmlspecialchars_decode($post->title), 'maxlength="100" id="price"'); ?></div>				
+			</li>
+
+			<li>
+				<label for="title"><?php echo lang('event:location'); ?></label>
+				<div class="input"><?php echo form_input('location', htmlspecialchars_decode($post->title), 'maxlength="100" id="location"'); ?></div>				
+			</li>
+			
+			<!--End of Added by Xavi-->
+			
+						
 			<li>
 				<label for="intro"><?php echo lang('event:intro_label'); ?></label>
 				<br style="clear: both;" />

@@ -12,8 +12,9 @@ $lang['event:written_by_label']				= 'Written by'; #translate
 $lang['event:author_unknown']				= 'Unknown'; #translate
 $lang['event:post_label'] 					= 'Post';
 $lang['event:date_label'] 					= 'Fecha';
+$lang['event:event_date_label'] 			= 'Fecha del evento';
 $lang['event:time_label'] 					= 'Hora';
-$lang['event:status_label'] 					= 'Estado';
+$lang['event:status_label'] 				= 'Estado';
 $lang['event:content_label'] 				= 'Contenido';
 $lang['event:options_label'] 				= 'Opciones';
 $lang['event:intro_label'] 					= 'Introducción';
@@ -32,6 +33,9 @@ $lang['event:read_more_label'] 				= 'Leer más &raquo;';
 $lang['event:created_hour']                 	= 'Hora (Hora)';
 $lang['event:created_minute']				= 'Hora (Minutos)';
 $lang['event:comments_enabled_label']         = 'Comentarios Habilitados';
+$lang['event:price']        				  = 'Precio';
+$lang['event:location']        				  = 'Location';
+
 
 // titles
 $lang['event:create_title'] 					= 'Crear un artículo';

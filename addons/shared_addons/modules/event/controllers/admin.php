@@ -82,8 +82,25 @@ class Admin extends Admin_Controller
             'field' => 'preview_hash',
             'label' => '',
             'rules' => 'trim'
-        )
-	);
+        ),
+        //add new fields
+   		array(
+			'field' => 'start_date',
+			'label' => 'lang:event:start_date',
+			'rules' => 'trim|required'
+		),
+		array(
+			'field' => 'price',
+			'label' => 'lang:event:price',
+			'rules' => 'trim'
+		),
+		array(
+			'field' => 'location',
+			'label' => 'lang:event:location',
+			'rules' => 'trim'
+		),
+        
+    );
 
 	/**
 	 * The constructor
@@ -161,6 +178,10 @@ class Admin extends Admin_Controller
 	{
 		$this->form_validation->set_rules($this->validation_rules);
 
+		//create timestamp value from Date:
+		$start_date = strtotime(sprintf('%s', $this->input->post('start_date')));
+
+
 		if ($this->input->post('created_on'))
 		{
 			$created_on = strtotime(sprintf('%s %s:%s', $this->input->post('created_on'), $this->input->post('created_on_hour'), $this->input->post('created_on_minute')));
@@ -195,7 +216,10 @@ class Admin extends Admin_Controller
 				'author_id'			=> $this->current_user->id,
 				'type'				=> $this->input->post('type'),
 				'parsed'			=> ($this->input->post('type') == 'markdown') ? parse_markdown($this->input->post('body')) : '',
-                'preview_hash'      => $hash
+                'preview_hash'      => $hash,
+   				'start_date'		=> $start_date,
+				'price'				=> $this->input->post('price'),
+				'location'			=> $this->input->post('location'),
 			)))
 			{
 				$this->pyrocache->delete_all('event_m');

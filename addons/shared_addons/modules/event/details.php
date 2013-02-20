@@ -86,8 +86,12 @@ class Module_Event	 extends Module {
 				'comments_enabled' => array('type' => 'INT', 'constraint' => 1, 'default' => 1),
 				'status' => array('type' => 'ENUM', 'constraint' => array('draft', 'live'), 'default' => 'draft'),
 				'type' => array('type' => 'SET', 'constraint' => array('html', 'markdown', 'wysiwyg-advanced', 'wysiwyg-simple')),
-                'preview_hash' => array('type' => 'CHAR', 'constraint' => 32,'default'=>'')
-                ,
+                'preview_hash' => array('type' => 'CHAR', 'constraint' => 32,'default'=>''),
+                //added by Xavi.
+                'location'=> array('type' => 'TEXT'),
+                'start_date'=> array('type' => 'INT', 'constraint' => 11),
+                'price	'=> array('type' => 'TEXT'),
+                
 			),
 		);
 

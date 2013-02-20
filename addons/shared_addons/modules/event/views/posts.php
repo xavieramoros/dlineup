@@ -11,14 +11,16 @@
 <?php foreach ($event as $post): ?>
 	<div class="post">
 		<!-- Post heading -->
-		<h3><?php echo  anchor('event/'.date('Y/m/', $post->created_on).$post->slug, $post->title); ?></h3>
+		<div class="date event_date">
+<!-- 			<?php echo lang('event:posted_label');?>:  -->
+			<span><?php echo format_date($post->start_date, 'd.m'); ?></span>
+		</div>
+		
+		<div class="event_title">
+			<h3><?php echo  anchor('event/'.date('Y/m/', $post->created_on).$post->slug, $post->title); ?></h3>
+		</div>
 		
 		<div class="meta">
-			<div class="date">
-				<?php echo lang('event:posted_label');?>: 
-				<span><?php echo format_date($post->created_on); ?></span>
-			</div>
-			
 			<?php if ($post->category_slug): ?>
 			<div class="category">
 				<?php echo lang('event:category_label');?>: 
@@ -34,6 +36,7 @@
 			</div>
 			<?php endif; ?>
 		</div>
+		
 		<div class="intro">
 			<?php echo $post->intro; ?>
 		</div>

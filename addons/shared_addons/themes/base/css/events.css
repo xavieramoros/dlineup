@@ -1,0 +1,29 @@
+.event_body{
+	font-size:100%;
+    line-height:18px;
+}
+
+.event_sidebar{
+background-color: #D8D8D8;
+}
+
+.event_date{
+padding:4% 0 0 0;
+float:left;
+width:30%;
+height:30%;
+display: inline-block;
+
+font-size:3.5em;
+font-weight: 500;
+}
+
+.event_title{
+width:70%;
+overflow: hidden;
+display: inline-block;
+}
+
+.post{
+	border: 1px solid rgba(0, 0, 0, 0.2);
+}

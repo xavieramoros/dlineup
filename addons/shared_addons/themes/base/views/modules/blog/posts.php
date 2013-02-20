@@ -1,6 +1,7 @@
 {{ theme:partial name="aside" }}
 
 <?php if ( ! empty($blog) ): ?>
+
 	<?php foreach ($blog as $post) : ?>
 	
 		<article class="post">
@@ -12,7 +13,7 @@
 					About <?php $now = time(); $posted = date($post->created_on); echo timespan($posted, $now); ?> ago.
 				</span>
 			</div>
-			
+
 			<hr>
 			
 			<div class="post_intro">

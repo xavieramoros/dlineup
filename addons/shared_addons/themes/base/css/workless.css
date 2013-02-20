@@ -1337,7 +1337,10 @@ Posts.
 	padding: 5px 15px 15px 15px;
 	margin: 0 15px 15px 0;
 	outline: 3px solid rgba(0, 0, 0, 0.03);
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	border: 1px solid rgba(0, 0, 0, 1);
+
+	/*border: 1px solid rgba(0, 0, 0, 0.2);
+*/
 }
 
 .post h5, .post h5 a {

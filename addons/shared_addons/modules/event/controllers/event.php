@@ -25,6 +25,7 @@ class Event extends Public_Controller
 	public function index()
 	{
 		$pagination = create_pagination('event/page', $this->event_m->count_by(array('status' => 'live')), NULL, 3);
+
 		$_event = $this->event_m->limit($pagination['limit'])
 			->get_many_by(array('status' => 'live'));
 

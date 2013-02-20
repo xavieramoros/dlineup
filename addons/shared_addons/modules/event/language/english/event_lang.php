@@ -16,6 +16,7 @@ $lang['event:tagged_label']					= 'Tagged';
 $lang['event:category_label']                 = 'Category';
 $lang['event:post_label']                     = 'Post';
 $lang['event:date_label']                     = 'Date';
+$lang['event:event_date_label']               = 'Event Date';
 $lang['event:date_at']                        = 'at';
 $lang['event:time_label']                     = 'Time';
 $lang['event:status_label']                   = 'Status';
@@ -36,6 +37,9 @@ $lang['event:read_more_label']                = 'Read More&nbsp;&raquo;';
 $lang['event:created_hour']                   = 'Created on Hour';
 $lang['event:created_minute']                 = 'Created on Minute';
 $lang['event:comments_enabled_label']         = 'Comments Enabled';
+$lang['event:price']        				  = 'Price';
+$lang['event:location']        				  = 'Location';
+
 
 // titles
 $lang['event:create_title']                   = 'Add Event';

@@ -37,8 +37,8 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-
-$route['default_controller']                = 'pages';
+$route['default_controller'] 				= 'event';
+//$route['default_controller']                = 'pages';
 $route['404_override']                      = 'pages';
 
 $route['admin/help/([a-zA-Z0-9_-]+)']       = 'admin/help/$1';
