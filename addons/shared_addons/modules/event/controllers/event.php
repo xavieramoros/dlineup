@@ -16,18 +16,28 @@ class Event extends Public_Controller
 		$this->load->library(array('keywords/keywords'));
 		$this->lang->load('event');
 	}
-
+	
 	/**
-	 * Shows the event index
+	 * Shows the current events: events that will happen 
 	 *
 	 * event/page/x also routes here
 	 */
-	public function index()
+	 public function index()
 	{
 		$pagination = create_pagination('event/page', $this->event_m->count_by(array('status' => 'live')), NULL, 3);
 
+		//we get current month:
+		$numericMonth = date("n"); // 1 through 12 (no leading zero)		
+		
+		//we get current day
+		$current_day = date("d");
+		
+		//we get current year:
+ 		$year = date("Y"); // 2011
+		//$shortYear = date("y"); // 11
+
 		$_event = $this->event_m->limit($pagination['limit'])
-			->get_many_by(array('status' => 'live'));
+			->get_many_by(array('status' => 'live', 'month' => $numericMonth, 'year' => $year, 'day'=> $current_day)); 
 
 		// Set meta description based on post titles
 		$meta = $this->_posts_metadata($_event);
@@ -67,6 +77,7 @@ class Event extends Public_Controller
 		)), NULL, 4);
 
 		// Get the current page of event posts
+		
 		$event = $this->event_m->limit($pagination['limit'])->get_many_by(array(
 			'category' => $slug,
 			'status' => 'live'

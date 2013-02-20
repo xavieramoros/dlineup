@@ -1,3 +1,4 @@
-/system/cms/cache/
-/system/cms/logs/
+system/cms/cache/
+system/cms/logs/
 
+*.spc

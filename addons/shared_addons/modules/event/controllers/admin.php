@@ -147,7 +147,8 @@ class Admin extends Admin_Controller
 		if ($this->input->post('f_keywords')) 	$base_where['keywords'] = $this->input->post('f_keywords');
 
 		// Create pagination links
-		$total_rows = $this->event_m->count_by($base_where);
+		$total_rows = $this->event_m->count_by($base_where,array('status' => 'live', 'month' => '2'));
+		
 		$pagination = create_pagination('admin/event/index', $total_rows);
 
 		// Using this data, get the relevant results
@@ -178,9 +179,11 @@ class Admin extends Admin_Controller
 	{
 		$this->form_validation->set_rules($this->validation_rules);
 
+		//xavi
 		//create timestamp value from Date:
 		$start_date = strtotime(sprintf('%s', $this->input->post('start_date')));
 
+		
 
 		if ($this->input->post('created_on'))
 		{

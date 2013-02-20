@@ -55,14 +55,19 @@ class Event_m extends MY_Model
 				$this->db->where('event_categories.slug', $params['category']);
 		}
 
+		if (!empty($params['day']))
+		{
+			$this->db->where('DAY(FROM_UNIXTIME(start_date)) >=', $params['day']);
+		}
+
 		if (!empty($params['month']))
 		{
-			$this->db->where('MONTH(FROM_UNIXTIME(created_on))', $params['month']);
+			$this->db->where('MONTH(FROM_UNIXTIME(start_date)) >=', $params['month']);
 		}
 
 		if (!empty($params['year']))
 		{
-			$this->db->where('YEAR(FROM_UNIXTIME(created_on))', $params['year']);
+			$this->db->where('YEAR(FROM_UNIXTIME(start_date)) >=', $params['year']);
 		}
 
 		if ( ! empty($params['keywords']))
@@ -142,15 +147,23 @@ class Event_m extends MY_Model
 			else
 				$this->db->where('event_categories.slug', $params['category']);
 		}
-
+		//added by Xavi.
+		/*
+		if (!empty($params['day']))
+		{
+			$this->db->where('DAY(FROM_UNIXTIME(start_date))', $params['day']);
+		}
+		//end of Added by Xavi.
+		*/
+		
 		if (!empty($params['month']))
 		{
-			$this->db->where('MONTH(FROM_UNIXTIME(created_on))', $params['month']);
+			$query=$this->db->where('MONTH(FROM_UNIXTIME(start_date))', $params['month']);
 		}
 
 		if (!empty($params['year']))
 		{
-			$this->db->where('YEAR(FROM_UNIXTIME(created_on))', $params['year']);
+			$this->db->where('YEAR(FROM_UNIXTIME(start_date))', $params['year']);
 		}
 
 		if ( ! empty($params['keywords']))
@@ -176,6 +189,7 @@ class Event_m extends MY_Model
 		{
 			$this->db->where('status', 'live');
 		}
+		
 
 		return $this->db->count_all_results('event');
 	}
