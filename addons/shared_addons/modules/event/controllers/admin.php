@@ -99,7 +99,27 @@ class Admin extends Admin_Controller
 			'label' => 'lang:event:location',
 			'rules' => 'trim'
 		),
-        
+		array(
+			'field' => 'address',
+			'label' => 'lang:event:address',
+			'rules' => 'trim'
+		),
+		array(
+			'field' => 'organizer',
+			'label' => 'lang:event:organizer',
+			'rules' => 'trim'
+		),
+		array(
+			'field' => 'link',
+			'label' => 'lang:event:event_link',
+			'rules' => 'trim|prep_url|required'
+		),
+		array(
+			'field' => 'language',
+			'label' => 'lang:event:event_language',
+			'rules' => 'trim'
+		)
+
     );
 
 	/**
@@ -182,8 +202,6 @@ class Admin extends Admin_Controller
 		//xavi
 		//create timestamp value from Date:
 		$start_date = strtotime(sprintf('%s', $this->input->post('start_date')));
-
-		
 
 		if ($this->input->post('created_on'))
 		{

@@ -38,7 +38,11 @@ $lang['event:created_hour']                   = 'Created on Hour';
 $lang['event:created_minute']                 = 'Created on Minute';
 $lang['event:comments_enabled_label']         = 'Comments Enabled';
 $lang['event:price']        				  = 'Price';
-$lang['event:location']        				  = 'Location';
+$lang['event:location']        				= 'Location';
+$lang['event:organizer']        			= 'Organizer';
+$lang['event:address']        				= 'Address';
+$lang['event:event_link']        			= 'Link';
+$lang['event:event_language']        	    = 'Language';
 
 
 // titles

@@ -32,9 +32,14 @@ $lang['event:author_name_label'] 			= 'Nombre del autor';
 $lang['event:read_more_label'] 				= 'Leer más &raquo;';
 $lang['event:created_hour']                 	= 'Hora (Hora)';
 $lang['event:created_minute']				= 'Hora (Minutos)';
-$lang['event:comments_enabled_label']         = 'Comentarios Habilitados';
-$lang['event:price']        				  = 'Precio';
-$lang['event:location']        				  = 'Location';
+$lang['event:comments_enabled_label']       = 'Comentarios Habilitados';
+$lang['event:price']        				= 'Precio';
+$lang['event:location']        				  = 'Lugar';
+$lang['event:organizer']        			  = 'Organizador';
+$lang['event:address']        				  = 'Dirección';
+$lang['event:event_link']        			  = 'Link';
+$lang['event:event_language']        	    = 'Idioma';
+
 
 
 // titles
