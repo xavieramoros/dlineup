@@ -99,13 +99,26 @@ class Event_m extends MY_Model
 		{
 			$this->db->where('created_on <=', now());
 		}
+		//Xavi: remove older posts
+		//we get current day, month and year:
+		$current_day = date("d");
+		$numericMonth = date("n"); // 1 through 12 (no leading zero)		
+ 		$year = date("Y"); // 2011
+			
+		$array = array('DAY(FROM_UNIXTIME(start_date)) >= ' => $current_day, 'MONTH(FROM_UNIXTIME(start_date)) >= ' => $numericMonth, 'YEAR(FROM_UNIXTIME(start_date)) >= ' => $year);
+		$this->db->where($array);
+	
+		//if we have a lower day or month from next year, it won«t get selected. So adding extra condition:
+		$this->db->or_where('start_date >=', now());  
 
 		// Limit the results based on 1 number or 2 (2nd is offset)
 		if (isset($params['limit']) && is_array($params['limit']))
 			$this->db->limit($params['limit'][0], $params['limit'][1]);
 		elseif (isset($params['limit']))
 			$this->db->limit($params['limit']);
-
+		
+		//order results from newer to older	
+		$this->db->order_by("start_date", "desc");	
 		return $this->get_all();
 	}
 	
@@ -148,13 +161,13 @@ class Event_m extends MY_Model
 				$this->db->where('event_categories.slug', $params['category']);
 		}
 		//added by Xavi.
-		/*
+		
 		if (!empty($params['day']))
 		{
 			$this->db->where('DAY(FROM_UNIXTIME(start_date))', $params['day']);
 		}
 		//end of Added by Xavi.
-		*/
+		
 		
 		if (!empty($params['month']))
 		{

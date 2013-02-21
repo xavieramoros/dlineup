@@ -26,18 +26,8 @@ class Event extends Public_Controller
 	{
 		$pagination = create_pagination('event/page', $this->event_m->count_by(array('status' => 'live')), NULL, 3);
 
-		//we get current month:
-		$numericMonth = date("n"); // 1 through 12 (no leading zero)		
-		
-		//we get current day
-		$current_day = date("d");
-		
-		//we get current year:
- 		$year = date("Y"); // 2011
-		//$shortYear = date("y"); // 11
-
 		$_event = $this->event_m->limit($pagination['limit'])
-			->get_many_by(array('status' => 'live', 'month' => $numericMonth, 'year' => $year, 'day'=> $current_day)); 
+			->get_many_by(array('status' => 'live')); 
 
 		// Set meta description based on post titles
 		$meta = $this->_posts_metadata($_event);
