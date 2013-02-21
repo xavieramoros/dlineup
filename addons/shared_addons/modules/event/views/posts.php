@@ -9,7 +9,7 @@
 <?php if ( ! empty($event)): ?>
 
 <?php foreach ($event as $post): ?>
-	<div class="post">
+	<div class="post event">
 		<!-- Post heading -->
 		<div class="date event_date">
 <!-- 			<?php echo lang('event:posted_label');?>:  -->

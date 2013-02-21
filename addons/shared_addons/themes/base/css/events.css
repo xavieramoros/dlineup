@@ -24,6 +24,9 @@ overflow: hidden;
 display: inline-block;
 }
 
-.post{
+.event{
+	max-height: 220px;
 	border: 1px solid rgba(0, 0, 0, 0.2);
+	overflow: hidden;
 }
+
