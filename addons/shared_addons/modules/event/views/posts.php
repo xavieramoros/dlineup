@@ -17,7 +17,8 @@
 		</div>
 		
 		<div class="event_title">
-			<h3><?php echo  anchor('event/'.date('Y/m/', $post->created_on).$post->slug, $post->title); ?></h3>
+			<!--<h3><?php echo  anchor('event/'.date('Y/m/', $post->created_on).$post->slug, $post->title); ?></h3>-->
+			<h3><a href="<?php echo($post->link)?>"><?php echo($post->title);?></a>
 		</div>
 		
 		<div class="meta">
@@ -37,6 +38,44 @@
 			<?php endif; ?>
 		</div>
 		
+		<div class="info-tags-box">
+		
+			<?php if ($post->location){
+				echo '<div class="info-tag" id="info-tag-location">';
+				echo lang('event:location').": ";
+				echo $post->location;
+				echo '</div>';
+			} ?>
+			
+			<?php if ($post->language){
+				echo '<div class="info-tag" id="info-tag-language">';
+				echo lang('event:event_language').": ";
+				echo $post->language;
+				echo '</div>';
+			} ?>
+
+			<?php if ($post->price){
+				echo '<div class="info-tag" id="info-tag-price">';
+				echo lang('event:price').": ";
+				echo $post->price;
+				echo '</div>';
+			} ?>
+
+			<?php if ($post->organizer){
+				echo '<div class="info-tag" id="info-tag-organizer">';
+				echo lang('event:organizer').": ";
+				echo $post->organizer;
+				echo '</div>';
+			} ?>
+
+			<?php if ($post->address){
+				echo '<div class="info-tag" id="info-tag-address">';
+				echo lang('event:address').": ";
+				echo $post->address;
+				echo '</div>';
+			} ?>
+		</div>
+
 		<div class="intro">
 			<?php echo $post->intro; ?>
 		</div>

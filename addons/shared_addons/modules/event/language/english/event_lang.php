@@ -36,6 +36,7 @@ $lang['event:read_more_label']                = 'Read More&nbsp;&raquo;';
 $lang['event:created_hour']                   = 'Created on Hour';
 $lang['event:created_minute']                 = 'Created on Minute';
 $lang['event:comments_enabled_label']         = 'Comments Enabled';
+
 $lang['event:price']        				  = 'Price';
 $lang['event:location']        				= 'Location';
 $lang['event:organizer']        			= 'Organizer';

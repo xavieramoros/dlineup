@@ -4,24 +4,23 @@
 }
 
 .event_sidebar{
-background-color: #D8D8D8;
+	background-color: #D8D8D8;
 }
 
 .event_date{
-padding:4% 0 0 0;
-float:left;
-width:30%;
-height:30%;
-display: inline-block;
-
-font-size:3.5em;
-font-weight: 500;
+	padding:4% 0 0 0;
+	float:left;
+	width:30%;
+	height:30%;
+	display: inline-block;
+	font-size:3.5em;
+	font-weight: 500;
 }
 
 .event_title{
-width:70%;
-overflow: hidden;
-display: inline-block;
+	width:70%;
+	overflow: hidden;
+	display: inline-block;
 }
 
 .event{
@@ -30,3 +29,29 @@ display: inline-block;
 	overflow: hidden;
 }
 
+.info-tag{
+	color:white;
+	line-height: 2em;
+	margin: 0.2%;
+	padding: 0.5% 1% 0.5% 1%;
+	border: 1px solid rgba(0, 0, 0, 0.8);
+	display: inline;
+	clear:both;
+	
+}
+
+#info-tag-location{
+	background-color: #df3b3b;	
+}
+#info-tag-language{
+	background-color:#29d43d;
+}
+#info-tag-price{
+	background-color:#1fd753;
+}
+#info-tag-organizer{
+	background-color:#1b8cee;
+}
+#info-tag-address{
+	background-color:#be1db9;
+}
