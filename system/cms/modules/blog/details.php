@@ -113,7 +113,6 @@ class Module_Blog extends Module {
 				'intro' => array('type' => 'TEXT'),
 				'body' => array('type' => 'TEXT'),
 				'parsed' => array('type' => 'TEXT'),
-				'keywords' => array('type' => 'VARCHAR', 'constraint' => 32, 'default' => ''),
 				'author_id' => array('type' => 'INT', 'constraint' => 11, 'default' => 0),
 				'created_on' => array('type' => 'INT', 'constraint' => 11),
 				'updated_on' => array('type' => 'INT', 'constraint' => 11, 'default' => 0),

@@ -321,13 +321,15 @@ class Field_datetime
 		$current_day = (isset($_POST[$data['form_slug'].'_day'])) ? $_POST[$data['form_slug'].'_day'] : $date['day'];
 		$current_year = (isset($_POST[$data['form_slug'].'_year'])) ? $_POST[$data['form_slug'].'_year'] : $date['year'];
 	
-		if ($input_type == 'datepicker')
+		if ($input_type == 'datepicker' || $input_type == 'datepicker2' || $input_type == 'datepicker3')
 		{
 			// -------------------------------------
 			// jQuery Datepicker
 			// -------------------------------------
 
-			$dp_mods = array('dateFormat: "yy-mm-dd"');
+			//$dp_mods = array('dateFormat: "yy-mm-dd"');
+			$dp_mods = array('dateFormat: "dd-mm-yy"');
+
 		
 			$current_year = date('Y');
 			

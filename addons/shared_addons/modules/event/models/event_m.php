@@ -118,7 +118,7 @@ class Event_m extends MY_Model
 			$this->db->limit($params['limit']);
 		
 		//order results from newer to older	
-		$this->db->order_by("start_date", "desc");	
+		$this->db->order_by("start_date", "asc");	
 		return $this->get_all();
 	}
 	

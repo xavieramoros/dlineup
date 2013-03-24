@@ -40,6 +40,14 @@ $lang['event:address']        				  = 'Dirección';
 $lang['event:event_link']        			  = 'Link';
 $lang['event:event_language']        	    = 'Idioma';
 
+$lang['event:start_date_label']        		= 'Fecha Inicio';
+$lang['event:start_hour']                   = 'Hora de inicio';
+$lang['event:start_minute']                 = 'Minuto de inicio';
+
+$lang['event:end_date_label']        	   = 'Fecha fin';
+$lang['event:end_hour']                   = 'Hora de fin';
+$lang['event:end_minute']                 = 'Minuto de fin';
+
 
 
 // titles

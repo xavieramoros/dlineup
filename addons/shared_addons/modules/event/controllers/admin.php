@@ -89,6 +89,30 @@ class Admin extends Admin_Controller
 			'label' => 'lang:event:start_date',
 			'rules' => 'trim|required'
 		),
+		/*
+		array(
+			'field' => 'starts_on_hour',
+			'rules' => 'trim|numeric|required'
+		),
+		
+		array(
+			'field' => 'starts_on_minute',
+			'rules' => 'trim|numeric|required'
+		),
+		*/
+   		array(
+			'field' => 'end_date',
+			'label' => 'lang:event:end_date',
+			'rules' => 'trim'
+		),
+		array(
+			'field' => 'ends_on_hour',
+			'rules' => 'trim|numeric'
+		),
+		array(
+			'field' => 'ends_on_minute',
+			'rules' => 'trim|numeric'
+		),
 		array(
 			'field' => 'price',
 			'label' => 'lang:event:price',
@@ -119,7 +143,6 @@ class Admin extends Admin_Controller
 			'label' => 'lang:event:event_language',
 			'rules' => 'trim'
 		)
-
     );
 
 	/**
@@ -135,10 +158,25 @@ class Admin extends Admin_Controller
 		$this->load->library(array('keywords/keywords', 'form_validation'));
 
 		// Date ranges for select boxes
+		
 		$this->template
 			->set('hours', array_combine($hours = range(0, 23), $hours))
 			->set('minutes', array_combine($minutes = range(0, 59), $minutes))
 		;
+		
+		/*
+		// Date ranges for start date
+		$this->template
+			->set('start_hours', array_combine($start_hours = range(0, 23), $start_hours))
+			->set('start_minutes', array_combine($start_minutes = range(0, 59), $start_minutes))
+		;
+
+		// Date ranges for end date
+		$this->template
+			->set('end_hours', array_combine($end_hours = range(0, 23), $end_hours))
+			->set('end_minutes', array_combine($end_minutes = range(0, 59), $end_minutes))
+		;
+		*/
 
 		$_categories = array();
 		if ($categories = $this->event_categories_m->order_by('title')->get_all())
@@ -201,7 +239,28 @@ class Admin extends Admin_Controller
 
 		//xavi
 		//create timestamp value from Date:
-		$start_date = strtotime(sprintf('%s', $this->input->post('start_date')));
+		if ($this->input->post('start_date'))
+		{
+			//echo("retrieved_start_date:".$this->input->post('start_date'));
+			//echo("retrieved_start_date after sprint:".sprintf('%s', $this->input->post('start_date')));
+			
+			$start_date = strtotime(sprintf('%s', $this->input->post('start_date')));
+			//$start_date = strtotime("2013-03-25");
+			//echo("unix_start_date:".$start_date);
+		}
+		else
+		{
+			$start_date = now();
+		}	
+		
+		if ($this->input->post('end_date'))
+		{
+			$end_date = strtotime(sprintf('%s', $this->input->post('end_date')));
+		}
+		else
+		{
+			$end_date = now();
+		}	
 
 		if ($this->input->post('created_on'))
 		{
@@ -238,9 +297,22 @@ class Admin extends Admin_Controller
 				'type'				=> $this->input->post('type'),
 				'parsed'			=> ($this->input->post('type') == 'markdown') ? parse_markdown($this->input->post('body')) : '',
                 'preview_hash'      => $hash,
-   				'start_date'		=> $start_date,
+				//added by xavi
 				'price'				=> $this->input->post('price'),
 				'location'			=> $this->input->post('location'),
+				'address'			=> $this->input->post('address'),
+				'location'			=> $this->input->post('location'),
+
+                //already added before, need to convert to right format
+                //'start_date'		=> $this->input->post('start_date'),
+                //'end_date'			=> $this->input->post('end_date'),
+                'start_date'		=> $start_date,
+                'end_date'			=> $end_date,
+				'organizer'			=> $this->input->post('organizer'),
+				'price'				=> $this->input->post('price'),
+				'link'				=> $this->input->post('link'),
+ 				'language'			=> $this->input->post('language'),
+			
 			)))
 			{
 				$this->pyrocache->delete_all('event_m');
@@ -273,6 +345,9 @@ class Admin extends Admin_Controller
 				$post->$field['field'] = set_value($field['field']);
 			}
 			$post->created_on = $created_on;
+			$post->end_date = $end_date;
+			$post->start_date = $start_date;
+
 			// if it's a fresh new article lets show them the advanced editor
 			$post->type or $post->type = 'wysiwyg-advanced';
 		}
@@ -315,6 +390,27 @@ class Admin extends Admin_Controller
 		{
 			$created_on = $post->created_on;
 		}
+		
+		//xavi
+		//create timestamp value from Date:
+		if ($this->input->post('start_date'))
+		{
+			$start_date = strtotime(sprintf('%s', $this->input->post('start_date')));
+		}
+		else
+		{
+			$start_date = now();
+		}	
+		
+		if ($this->input->post('end_date'))
+		{
+			$end_date = strtotime(sprintf('%s', $this->input->post('end_date')));
+		}
+		else
+		{
+			$end_date = now();
+		}	
+		
 		
 		$this->form_validation->set_rules(array_merge($this->validation_rules, array(
 			'title' => array(
@@ -360,6 +456,23 @@ class Admin extends Admin_Controller
 				'type'				=> $this->input->post('type'),
 				'parsed'			=> ($this->input->post('type') == 'markdown') ? parse_markdown($this->input->post('body')) : '',
                 'preview_hash'      => $hash,
+                
+   				//added by xavi
+				'price'				=> $this->input->post('price'),
+				'location'			=> $this->input->post('location'),
+				'address'			=> $this->input->post('address'),
+				'location'			=> $this->input->post('location'),
+
+                //already added before, need to convert to right format
+                //'start_date'		=> $this->input->post('start_date'),
+                //'end_date'			=> $this->input->post('end_date'),
+                'start_date'		=> $start_date,
+                'end_date'			=> $end_date,
+				'organizer'			=> $this->input->post('organizer'),
+				'price'				=> $this->input->post('price'),
+				'link'				=> $this->input->post('link'),
+ 				'language'			=> $this->input->post('language'),
+
 			));
 			
 			if ($result)
@@ -396,6 +509,9 @@ class Admin extends Admin_Controller
 		}
 
 		$post->created_on = $created_on;
+		$post->end_date = $end_date;
+		$post->start_date = $start_date;
+
 		
 		$this->template
 			->title($this->module_details['name'], sprintf(lang('event:edit_title'), $post->title))

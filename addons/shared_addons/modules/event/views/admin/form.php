@@ -39,19 +39,34 @@
 			</li>
 			
 			<!--Added by Xavi-->
-			
 			<li class="date-meta">
-				<label><?php echo lang('event:event_date_label'); ?> <span>*</span></label>
+				<label><?php echo lang('event:start_date_label'); ?> <span>*</span></label>
 				
 				<div class="input datetime_input">
-					<?php echo form_input('start_date', date('Y-m-d', $post->created_on), 'maxlength="10" id="datepicker" class="text width-20"'); ?> &nbsp;
-<!--
-					<?php echo form_dropdown('created_on_hour', $hours, date('H', $post->created_on)) ?> : 
-					<?php echo form_dropdown('created_on_minute', $minutes, date('i', ltrim($post->created_on, '0'))) ?>
--->
+						<?php echo form_input('start_date', date('d-m-Y', $post->start_date), 'maxlength="10" id="datepicker2" class="text width-20"'); ?> &nbsp;
 				</div>
 			</li>
+
+			<li class="date-meta">
+				<label><?php echo lang('event:end_date_label'); ?> </label>
+				<div class="input datetime_input">
+					<?php echo form_input('end_date',date('d-m-Y', $post->end_date),'maxlength="10" id="datepicker" class="text width-20"'); ?> &nbsp;
+				</div>
+			</li>			
 			
+			<li class="time-meta">
+				<label><?php echo lang('event:start_time'); ?></label>
+				<div>
+					<?php //echo form_dropdown('starts_on_hour', $start_hours) ?> : 
+					<?php //echo form_dropdown('starts_on_minute', $start_minutes) ?>
+				</div>		
+				<label><?php echo lang('event:end_time'); ?></label>
+				<div>
+					<?php //echo form_dropdown('ends_on_hour', $end_hours) ?> : 
+					<?php //echo form_dropdown('ends_on_minute', $end_minutes) ?>
+				</div>
+			</li>
+
 			<li>
 				<label for="price"><?php echo lang('event:price'); ?></label>
 				<div class="input"><?php echo form_input('price', htmlspecialchars_decode($post->price), 'maxlength="100" id="price"'); ?></div>				
@@ -127,7 +142,7 @@
 				<label><?php echo lang('event:date_label'); ?></label>
 				
 				<div class="input datetime_input">
-				<?php echo form_input('created_on', date('Y-m-d', $post->created_on), 'maxlength="10" id="datepicker" class="text width-20"'); ?> &nbsp;
+				<?php echo form_input('created_on', date('Y-m-d', $post->created_on), 'maxlength="10" id="datepicker3" class="text width-20"'); ?> &nbsp;
 				<?php echo form_dropdown('created_on_hour', $hours, date('H', $post->created_on)) ?> : 
 				<?php echo form_dropdown('created_on_minute', $minutes, date('i', ltrim($post->created_on, '0'))) ?>
 				

@@ -87,11 +87,17 @@ class Module_Event	 extends Module {
 				'status' => array('type' => 'ENUM', 'constraint' => array('draft', 'live'), 'default' => 'draft'),
 				'type' => array('type' => 'SET', 'constraint' => array('html', 'markdown', 'wysiwyg-advanced', 'wysiwyg-simple')),
                 'preview_hash' => array('type' => 'CHAR', 'constraint' => 32,'default'=>''),
+   				'keywords' => array('type' => 'VARCHAR', 'constraint' => 32, 'default' => ''),
+
                 //added by Xavi.
-                'location'=> array('type' => 'TEXT'),
+                'location'=> array('type' => 'VARCHAR', 'constraint' => 40),
                 'start_date'=> array('type' => 'INT', 'constraint' => 11),
-                'price	'=> array('type' => 'TEXT'),
-                
+                'end_date'=> array('type' => 'INT', 'constraint' => 11),
+                'address'=> array('type' => 'VARCHAR', 'constraint' => 150),
+				'organizer'=> array('type' => 'VARCHAR', 'constraint' => 150),
+				'price'=>array('type' => 'VARCHAR', 'constraint' => 30),
+				'link'=> array('type' => 'VARCHAR', 'constraint' => 512), 
+				'language'=> array('type' => 'VARCHAR', 'constraint' => 30), 
 			),
 		);
 

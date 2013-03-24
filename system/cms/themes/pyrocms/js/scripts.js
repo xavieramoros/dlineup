@@ -97,7 +97,10 @@ jQuery(function($) {
 			});
 		});
 
-		$("#datepicker").datepicker({dateFormat: 'yy-mm-dd'});
+		$("#datepicker").datepicker({dateFormat: 'dd-mm-yy'});
+		$("#datepicker2").datepicker({dateFormat: 'dd-mm-yy'});
+		$("#datepicker3").datepicker({dateFormat: 'dd-mm-yy'});
+
 
 		// Fade in the notifications
 		$('.alert').livequery(function(){

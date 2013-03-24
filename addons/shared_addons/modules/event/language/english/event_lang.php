@@ -16,7 +16,6 @@ $lang['event:tagged_label']					= 'Tagged';
 $lang['event:category_label']                 = 'Category';
 $lang['event:post_label']                     = 'Post';
 $lang['event:date_label']                     = 'Date';
-$lang['event:event_date_label']               = 'Event Date';
 $lang['event:date_at']                        = 'at';
 $lang['event:time_label']                     = 'Time';
 $lang['event:status_label']                   = 'Status';
@@ -43,6 +42,18 @@ $lang['event:organizer']        			= 'Organizer';
 $lang['event:address']        				= 'Address';
 $lang['event:event_link']        			= 'Link';
 $lang['event:event_language']        	    = 'Language';
+
+$lang['event:event_date_label']               = 'Event Date';
+
+$lang['event:start_date_label']        		= 'Start Date';
+$lang['event:start_time']        			= 'Start Time';
+$lang['event:start_hour']                   = 'Starts on Hour';
+$lang['event:start_minute']                 = 'Starts on Minute';
+
+$lang['event:end_date_label']        	  	= 'End Date';
+$lang['event:end_time']        			= 'End Time';
+$lang['event:end_hour']                   	= 'Ends on Hour';
+$lang['event:end_minute']                 	= 'Ends on Minute';
 
 
 // titles
