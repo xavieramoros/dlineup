@@ -39,11 +39,11 @@ class Admin extends Admin_Controller
 			'label' => 'lang:global:keywords',
 			'rules' => 'trim'
 		),
-		array(
+		/*array(
 			'field' => 'intro',
 			'label' => 'lang:event:intro_label',
 			'rules' => 'trim|required'
-		),
+		),*/
 		array(
 			'field' => 'body',
 			'label' => 'lang:event:content_label',
@@ -134,7 +134,12 @@ class Admin extends Admin_Controller
 			'rules' => 'trim'
 		),
 		array(
-			'field' => 'link',
+			'field' => 'organizer_link',
+			'label' => 'lang:event:organizer_link',
+			'rules' => 'trim|prep_url'
+		),
+		array(
+			'field' => 'event_link',
 			'label' => 'lang:event:event_link',
 			'rules' => 'trim|prep_url|required'
 		),
@@ -288,7 +293,7 @@ class Admin extends Admin_Controller
 				'slug'				=> $this->input->post('slug'),
 				'category_id'		=> $this->input->post('category_id'),
 				'keywords'			=> Keywords::process($this->input->post('keywords')),
-				'intro'				=> $this->input->post('intro'),
+				//'intro'				=> $this->input->post('intro'),
 				'body'				=> $this->input->post('body'),
 				'status'			=> $this->input->post('status'),
 				'created_on'		=> $created_on,
@@ -309,8 +314,9 @@ class Admin extends Admin_Controller
                 'start_date'		=> $start_date,
                 'end_date'			=> $end_date,
 				'organizer'			=> $this->input->post('organizer'),
+				'organizer_link'	=> $this->input->post('organizer_link'),
 				'price'				=> $this->input->post('price'),
-				'link'				=> $this->input->post('link'),
+				'event_link'		=> $this->input->post('event_link'),
  				'language'			=> $this->input->post('language'),
 			
 			)))
@@ -447,7 +453,7 @@ class Admin extends Admin_Controller
 				'slug'				=> $this->input->post('slug'),
 				'category_id'		=> $this->input->post('category_id'),
 				'keywords'			=> Keywords::process($this->input->post('keywords'), $old_keywords_hash),
-				'intro'				=> $this->input->post('intro'),
+				//'intro'				=> $this->input->post('intro'),
 				'body'				=> $this->input->post('body'),
 				'status'			=> $this->input->post('status'),
 				'created_on'		=> $created_on,
@@ -469,8 +475,9 @@ class Admin extends Admin_Controller
                 'start_date'		=> $start_date,
                 'end_date'			=> $end_date,
 				'organizer'			=> $this->input->post('organizer'),
+				'organizer_link'	=> $this->input->post('organizer_link'),
 				'price'				=> $this->input->post('price'),
-				'link'				=> $this->input->post('link'),
+				'event_link'		=> $this->input->post('event_link'),
  				'language'			=> $this->input->post('language'),
 
 			));

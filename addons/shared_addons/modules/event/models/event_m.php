@@ -335,7 +335,7 @@ class Event_m extends MY_Model
 				}
 
 				$this->db->or_like('event.body', $phrase);
-				$this->db->or_like('event.intro', $phrase);
+				//$this->db->or_like('event.intro', $phrase);
 				$this->db->or_like('profiles.display_name', $phrase);
 				$counter++;
 			}

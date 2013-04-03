@@ -36,8 +36,9 @@ $lang['event:comments_enabled_label']       = 'Comentarios Habilitados';
 $lang['event:price']        				= 'Precio';
 $lang['event:location']        				  = 'Lugar';
 $lang['event:organizer']        			  = 'Organizador';
+$lang['event:organizer_link']        		= 'Link del Organizador';
 $lang['event:address']        				  = 'Dirección';
-$lang['event:event_link']        			  = 'Link';
+$lang['event:event_link']        			  = 'Link del evento';
 $lang['event:event_language']        	    = 'Idioma';
 
 $lang['event:start_date_label']        		= 'Fecha Inicio';

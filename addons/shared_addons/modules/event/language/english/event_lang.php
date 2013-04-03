@@ -40,27 +40,34 @@ $lang['event:comments_enabled_label']         = 'Comments Enabled';
 $lang['event:price']        				  = 'Price';
 $lang['event:location']        				= 'Location';
 $lang['event:organizer']        			= 'Organizer';
+$lang['event:organizer_link']        		= 'Organizer Link';
 $lang['event:address']        				= 'Address';
-$lang['event:event_link']        			= 'Link';
+$lang['event:event_link']        			= 'Event Link';
 $lang['event:event_language']        	    = 'Language';
 
-$lang['event:event_date_label']               = 'Event Date';
+//labels for frontpage:
+$lang['event:location_post']        	    = 'In';
+$lang['event:organizer_post']        	    = 'Organized by';
 
+
+
+
+$lang['event:event_date_label']             = 'Event Date';
 $lang['event:start_date_label']        		= 'Start Date';
 $lang['event:start_time']        			= 'Start Time';
 $lang['event:start_hour']                   = 'Starts on Hour';
 $lang['event:start_minute']                 = 'Starts on Minute';
 
 $lang['event:end_date_label']        	  	= 'End Date';
-$lang['event:end_time']        			= 'End Time';
+$lang['event:end_time']        				= 'End Time';
 $lang['event:end_hour']                   	= 'Ends on Hour';
 $lang['event:end_minute']                 	= 'Ends on Minute';
 
 
 // titles
-$lang['event:create_title']                   = 'Add Event';
-$lang['event:edit_title']                     = 'Edit event "%s"';
-$lang['event:archive_title']                 = 'Archive';
+$lang['event:create_title']                 = 'Add Event';
+$lang['event:edit_title']                   = 'Edit event "%s"';
+$lang['event:archive_title']                = 'Archive';
 $lang['event:posts_title']					= 'Event';
 $lang['event:rss_posts_title']				= 'Event posts for %s';
 $lang['event:event_title']					= 'Event';

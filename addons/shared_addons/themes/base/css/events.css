@@ -29,6 +29,8 @@
 	overflow: hidden;
 }
 
+
+/**
 .info-tag{
 	color:white;
 	line-height: 2em;
@@ -39,7 +41,8 @@
 	clear:both;
 	
 }
-
+*/
+/**
 #info-tag-location{
 	background-color: #df3b3b;	
 }
@@ -55,3 +58,4 @@
 #info-tag-address{
 	background-color:#be1db9;
 }
+**/

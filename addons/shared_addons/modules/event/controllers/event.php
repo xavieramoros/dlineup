@@ -277,7 +277,7 @@ class Event extends Public_Controller
         $this->session->set_flashdata(array('referrer' => $this->uri->uri_string));
 
         $this->template->title($post->title, lang('event:event_title'))
-            ->set_metadata('description', $post->intro)
+            //->set_metadata('description', $post->intro)
             ->set_metadata('keywords', implode(', ', Keywords::get_array($post->keywords)))
             ->set_breadcrumb(lang('event:event_title'), 'event');
 

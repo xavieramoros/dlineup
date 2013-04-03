@@ -27,7 +27,9 @@
 				<label for="title"><?php echo lang('global:title'); ?> <span>*</span></label>
 				<div class="input"><?php echo form_input('title', htmlspecialchars_decode($post->title), 'maxlength="100" id="title"'); ?></div>				
 			</li>
-			
+			<li>
+				<label for="link"><?php echo lang('event:event_link'); ?> <span>*</span></label>
+				<div class="input"><?php echo form_input('event_link', htmlspecialchars_decode($post->event_link), 'maxlength="100" id="event_link"'); ?></div>		</li>
 			<li>
 				<label for="slug"><?php echo lang('global:slug'); ?> <span>*</span></label>
 				<div class="input"><?php echo form_input('slug', $post->slug, 'maxlength="100" class="width-20"'); ?></div>
@@ -71,30 +73,32 @@
 				<label for="price"><?php echo lang('event:price'); ?></label>
 				<div class="input"><?php echo form_input('price', htmlspecialchars_decode($post->price), 'maxlength="100" id="price"'); ?></div>				
 			</li>
-
 			<li>
 				<label for="address"><?php echo lang('event:address'); ?></label>
-				<div class="input"><?php echo form_input('address', htmlspecialchars_decode($post->address), 'maxlength="100" id="address"'); ?></div>						</li>
+				<div class="input"><?php echo form_input('address', htmlspecialchars_decode($post->address), 'maxlength="100" id="address"'); ?></div>					</li>
 			<li>
 				<label for="location"><?php echo lang('event:location'); ?></label>
-				<div class="input"><?php echo form_input('location', htmlspecialchars_decode($post->location), 'maxlength="100" id="location"'); ?></div>						</li>
+				<div class="input"><?php echo form_input('location', htmlspecialchars_decode($post->location), 'maxlength="100" id="location"'); ?></div>				</li>
 			<li>
 				<label for="organizer"><?php echo lang('event:organizer'); ?></label>
-				<div class="input"><?php echo form_input('organizer', htmlspecialchars_decode($post->organizer), 'maxlength="100" id="organizer"'); ?></div>						</li>
+				<div class="input"><?php echo form_input('organizer', htmlspecialchars_decode($post->organizer), 'maxlength="100" id="organizer"'); ?></div>			</li>
 			<li>
-				<label for="link"><?php echo lang('event:event_link'); ?> <span>*</span></label>
-				<div class="input"><?php echo form_input('link', htmlspecialchars_decode($post->link), 'maxlength="100" id="link"'); ?></div>								</li>
+				<label for="link"><?php echo lang('event:organizer_link'); ?> </label>
+				<div class="input"><?php echo form_input('organizer_link', htmlspecialchars_decode($post->organizer_link), 'maxlength="100" id="organizer_link"'); ?></div>							</li>
+				
+
 			<li>
 				<label for="language"><?php echo lang('event:event_language'); ?></label>
-				<div class="input"><?php echo form_input('language', htmlspecialchars_decode($post->language), 'maxlength="50" id="link"'); ?></div>								</li>
+				<div class="input"><?php echo form_input('language', htmlspecialchars_decode($post->language), 'maxlength="50" id="link"'); ?></div>					</li>
 			<!--End of Added by Xavi-->
 			
-						
+			<!--			
 			<li>
 				<label for="intro"><?php echo lang('event:intro_label'); ?></label>
 				<br style="clear: both;" />
 				<?php echo form_textarea(array('id' => 'intro', 'name' => 'intro', 'value' => $post->intro, 'rows' => 5, 'class' => 'event wysiwyg-simple')); ?>
 			</li>
+			-->
 			
 			<li class="editor">
 				<label for="body"><?php echo lang('event:content_label'); ?></label>

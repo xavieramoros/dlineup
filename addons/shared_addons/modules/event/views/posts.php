@@ -18,7 +18,7 @@
 		
 		<div class="event_title">
 			<!--<h3><?php echo  anchor('event/'.date('Y/m/', $post->created_on).$post->slug, $post->title); ?></h3>-->
-			<h3><a href="<?php echo($post->link)?>"><?php echo($post->title);?></a>
+			<h3><a href="<?php echo($post->event_link)?>" target="_blank"><?php echo($post->title);?></a>
 		</div>
 		
 		<div class="meta">
@@ -42,7 +42,7 @@
 		
 			<?php if ($post->location){
 				echo '<div class="info-tag" id="info-tag-location">';
-				echo lang('event:location').": ";
+				echo lang('event:location_post').": ";
 				echo $post->location;
 				echo '</div>';
 			} ?>
@@ -76,9 +76,9 @@
 			} ?>
 		</div>
 
-		<div class="intro">
-			<?php echo $post->intro; ?>
-		</div>
+			<div class="content">
+				<?php echo $post->body; ?>
+			</div>
 	</div>
 <?php endforeach; ?>
 
