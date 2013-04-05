@@ -3,9 +3,13 @@
 	
 	<!-- content -->
 	<section id="content">
+		{{ theme:partial name="left_menu" }}
+
 		<!--{{ theme:partial name="breadcrumbs" }}-->
-		{{ theme:partial name="aside" }}
 		{{ template:body }}
+
+		{{ theme:partial name="right_menu" }}
+
 	</section>
 	<!-- /content -->
 

@@ -30,6 +30,68 @@
 }
 
 
+
+
+
+
+/* Generic browser */
+@media only screen and (min-width: 1281px) {
+	body{
+		font-family: Impact;
+	}
+
+	.container {
+		width: 1250px;
+		/*FIXME width: 1000px;*/
+		margin: auto;
+	}
+	header, #content, footer {
+		width: 1200px;
+	}
+	
+	header{
+		height:auto;
+		text-align: center;
+		margin:0;
+		padding-top: 0;
+		background-color:#E5E4E3;
+	}
+	#event_site_logo{
+		margin:0;
+	}
+
+	#event_site_logo a{
+		font-family: Impact;
+		font-size: 3em;
+		color: #676679;
+		margin:0;
+	}
+	#event_site_slogan{
+		margin:0;
+		color: #676679;
+		font-family: Georgia;
+		font-size: 1.7em;
+	}
+	.event_red_text{
+		font-family: inherit;
+		color: #C03D3C;
+	}
+	
+	.event_left_menu{
+			float:left;
+			/*display:block;*/
+	}
+	
+	.event_right_menu{
+		margin:0;
+		width: 200px;
+		float:right;
+	}
+	
+	.post{
+		display:inline-block;
+	}
+	
 /**
 .info-tag{
 	color:white;

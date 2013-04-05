@@ -107,7 +107,7 @@ class Module_Settings extends Module {
 				'title' => 'Site Name',
 				'description' => 'The name of the website for page titles and for use around the site.',
 				'type' => 'text',
-				'default' => 'Un-named Website',
+				'default' => 'D Line Up',
 				'value' => '',
 				'options' => '',
 				'is_required' => 1,

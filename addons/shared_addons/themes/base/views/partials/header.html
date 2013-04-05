@@ -90,24 +90,20 @@
 </head>
 
 <body class="{{ url:segments segment="1" default="home" }}" onload="prettyPrint()">
-	
+
 	<!-- container -->
 	<div class="container">	
 
 		<header>
-			<div id="logo">
+		
+			<h1 id="event_site_logo">
 				<a href="{{ url:base }}">
-					<h1>{{ settings:site_name }}</h1>
+						<span class="event_red_text">D</span> Line Up
 				</a>
+			</h1>
 		
-				<span class="slogan">
-					{{ settings:site_slogan }}
-				</span>
-			</div>
+			<h2 id="event_site_slogan">
+					Creativity, webs and entrepreneur events in <span class="event_red_text">Barcelona</span>
+			</h2>
 		
-			<nav id="primary">
-				<ul>
-					{{ navigation:links group="header" }}
-				</ul>
-			</nav>
 		</header>

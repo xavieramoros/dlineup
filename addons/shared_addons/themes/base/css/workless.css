@@ -1873,6 +1873,7 @@ Ensure your main styling comes before this!
 @media only screen and (min-width: 1281px) {
 	.container {
 		width: 1000px;
+		/*FIXME width: 1000px;*/
 		margin: auto;
 	}
 	

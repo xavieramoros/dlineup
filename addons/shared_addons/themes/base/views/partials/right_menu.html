@@ -1,0 +1,27 @@
+	<menu class="event_right_menu">
+		<ul>
+			{{ navigation:links group="sidebar" }}
+		</ul>
+		<!--
+		- You can modify these social links to suit. 
+		- Add your username and links, add or remove items.
+		-->
+		<nav id="primary">
+			<ul>
+				{{ navigation:links group="header" }}
+			</ul>
+		</nav>
+
+		
+		<div class="widget social">
+			<h3>Socialise</h3>
+			<ul>
+				<li><a class="tooltip-s" href="http://twitter.com/iKreativ" title="Follow on Twitter" target="_blank">{{ theme:image file="twitter.png" }}</a></li>
+				<li><a class="tooltip-s" href="#" title="Follow on Facebook" target="_blank">{{ theme:image file="facebook.png" }}</a></li>
+			</ul>
+		</div>	
+
+
+
+		{{ widgets:area slug="sidebar" }}
+	</menu>
