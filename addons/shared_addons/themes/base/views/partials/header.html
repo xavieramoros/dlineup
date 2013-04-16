@@ -26,7 +26,7 @@
 
   	<!-- CSS. No need to specify the media attribute unless specifically targeting a media type, leaving blank implies media=all -->
   	{{ theme:css file="plugins.css" }}
-	{{ theme:css file="workless.css" }}
+<!-- 	{{ theme:css file="workless.css" }} -->
   	{{ theme:css file="events.css" }}
 
   	<!-- End CSS-->
@@ -51,6 +51,7 @@
 	<!-- Add some theme option variables for styling -->
 	<style type="text/css">
 		/* Background */
+		/*
 		{{ if theme:options:background == 'black' }}
 			body { background: url({{ theme:path }}/img/bg_black.jpg) fixed repeat; }
 		{{ elseif theme:options:background == 'fabric' }}
@@ -66,7 +67,9 @@
 		{{ elseif theme:options:background == 'fabric' }}
 			body { background: url({{ theme:path }}/img/bg_fabric.jpg) fixed repeat; }
 		{{ endif }}
+		*/
 		/* Colors */
+		/*
 		{{ if theme:options:color == 'red' }}
 			.pagination ul li a:hover, .pagination ul li.active a, nav#primary ul li.current { background:#ff0000; }
 			a:hover, .single_post h5 small a:hover, nav#primary ul li a:hover { color:#ff0000; }
@@ -86,6 +89,7 @@
 			.pagination ul li a:hover, .pagination ul li.active a, nav#primary ul li.current { background:#DD1251; }
 			a:hover, .single_post h5 small a:hover, nav#primary ul li a:hover { color:#DD1251; }
 		{{ endif }}
+		*/
 	</style>
 </head>
 

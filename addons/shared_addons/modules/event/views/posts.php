@@ -9,19 +9,20 @@
 <?php if ( ! empty($event)): ?>
 
 <?php foreach ($event as $post): ?>
-	<div class="post event">
+	<div class="event_post">
 		<!-- Post heading -->
-		<div class="date event_date">
-<!-- 			<?php echo lang('event:posted_label');?>:  -->
-			<span><?php echo format_date($post->start_date, 'd.m'); ?></span>
+		<div class="event_header">
+			<div class="event_date">
+	<!-- 			<?php echo lang('event:posted_label');?>:  -->
+				<?php echo format_date($post->start_date, 'd/m'); ?>
+			</div>
+			
+			<div class="event_title">
+				<!--<h3><?php echo  anchor('event/'.date('Y/m/', $post->created_on).$post->slug, $post->title); ?></h3>-->
+				<h3><a href="<?php echo($post->event_link)?>" target="_blank"><?php echo($post->title);?></a>
+			</div>
 		</div>
-		
-		<div class="event_title">
-			<!--<h3><?php echo  anchor('event/'.date('Y/m/', $post->created_on).$post->slug, $post->title); ?></h3>-->
-			<h3><a href="<?php echo($post->event_link)?>" target="_blank"><?php echo($post->title);?></a>
-		</div>
-		
-		<div class="meta">
+		<div class="event_meta">
 			<?php if ($post->category_slug): ?>
 			<div class="category">
 				<?php echo lang('event:category_label');?>: 
@@ -37,48 +38,70 @@
 			</div>
 			<?php endif; ?>
 		</div>
+		<div class="event_body">
+			<div class="event_info">
+				<ul class="event_info_list">
+					<li class="info-tag" id="info-tag-time">
+						19:00-21:00
+					</li>	
+					<?php if ($post->location){
+	
+						echo '<li class="info-tag" id="info-tag-location">';
+						echo lang('event:location_post')." ";
+						echo '<span style="font-weight:bold;">';
+						echo $post->location;
+						echo '</span>';					
+						if (($post->address) || ($post->organizer) || ($post->language) || ($post->price) || ($post->address)){ 
+							echo ",";
+						}		
+	
+						echo '</li>';
+					} ?>
+					
+					<?php if ($post->address){
+						echo '<li class="info-tag" id="info-tag-address">';
+						echo '<span style="font-weight:bold;">';					
+						echo $post->address;
+						echo '</span>';										
+						echo '</li>';
+					} ?>
+				</ul>
+				<ul class="event_info_list">			
+					<?php if ($post->organizer){
+						echo '<li class="info-tag" id="info-tag-organizer">';
+						echo lang('event:organizer_post')." ";
+						echo '<span style="font-weight:bold;">';										
+						echo $post->organizer;
+						echo '</span>';										
+						echo '</li>';
+					} ?>
+				</ul>		
+				<ul class="event_info_list">
+					<?php if ($post->price){
+						echo '<li class="info-tag" id="info-tag-price">';
+						echo $post->price;
+						echo '</li>';
+					} ?>
+
+				
+					<?php if ($post->language){
+						echo '<li class="info-tag" id="info-tag-language">';
+						echo $post->language;
+						echo '</li>';
+					} ?>
+					
+					<li>Register <b>Here</b>
+						
+					</li>	
 		
-		<div class="info-tags-box">
-		
-			<?php if ($post->location){
-				echo '<div class="info-tag" id="info-tag-location">';
-				echo lang('event:location_post').": ";
-				echo $post->location;
-				echo '</div>';
-			} ?>
-			
-			<?php if ($post->language){
-				echo '<div class="info-tag" id="info-tag-language">';
-				echo lang('event:event_language').": ";
-				echo $post->language;
-				echo '</div>';
-			} ?>
-
-			<?php if ($post->price){
-				echo '<div class="info-tag" id="info-tag-price">';
-				echo lang('event:price').": ";
-				echo $post->price;
-				echo '</div>';
-			} ?>
-
-			<?php if ($post->organizer){
-				echo '<div class="info-tag" id="info-tag-organizer">';
-				echo lang('event:organizer').": ";
-				echo $post->organizer;
-				echo '</div>';
-			} ?>
-
-			<?php if ($post->address){
-				echo '<div class="info-tag" id="info-tag-address">';
-				echo lang('event:address').": ";
-				echo $post->address;
-				echo '</div>';
-			} ?>
-		</div>
-
-			<div class="content">
+				</ul>
+	
+			</div>
+	
+			<div class="event_content">
 				<?php echo $post->body; ?>
 			</div>
+		</div>	
 	</div>
 <?php endforeach; ?>
 

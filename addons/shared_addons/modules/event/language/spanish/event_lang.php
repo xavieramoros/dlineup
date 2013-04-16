@@ -49,6 +49,9 @@ $lang['event:end_date_label']        	   = 'Fecha fin';
 $lang['event:end_hour']                   = 'Hora de fin';
 $lang['event:end_minute']                 = 'Minuto de fin';
 
+//labels for frontpage:
+$lang['event:location_post']        	    = 'En';
+$lang['event:organizer_post']        	    = 'Organizado por';
 
 
 // titles

@@ -1,3 +1,7 @@
-	<aside class="event_left_menu">
-		
-		January //February //March //April // May //June //July // August //Septem- ber //November // December	</aside>
+	<div class="event_left_menu">
+			{{ event:dates order-by="title" limit="5" }}
+	 			<a href="{{ url }}" class="{{ slug }}">{{ title }}</a>
+	 		{{ /event:dates }}
+
+		January //February //March //April // May //June //July // August //Septem- ber //November // December	
+	</div>
