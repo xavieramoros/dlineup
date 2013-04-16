@@ -226,6 +226,7 @@ class Admin extends Admin_Controller
 			->set_partial('filters', 'admin/partials/filters')
 			->set('pagination', $pagination)
 			->set('event', $event);
+			
 
 		$this->input->is_ajax_request()
 			? $this->template->build('admin/tables/posts')

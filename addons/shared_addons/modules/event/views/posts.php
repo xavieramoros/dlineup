@@ -8,7 +8,7 @@
 
 <?php if ( ! empty($event)): ?>
 
-<?php foreach ($event as $post): ?>
+<?php foreach ($event as $key=>$post): ?>
 	<div class="event_post">
 		<!-- Post heading -->
 		<div class="event_header">
@@ -90,17 +90,23 @@
 						echo '</li>';
 					} ?>
 					
-					<li>Register <b>Here</b>
+					<li>Register <b>Here(FIXME)</b>
 						
 					</li>	
 		
 				</ul>
-	
 			</div>
-	
-			<div class="event_content">
+			<div class='event_content'>
+<!-- 			<?php echo"<div class='event_content content_index".$key."'>"?> -->
 				<?php echo $post->body; ?>
 			</div>
+			<?php 
+				if (strlen($post->body)>200){
+					echo "<input type='button' class='btn_show_content' value='+'>";
+				}
+			?>
+
+					
 		</div>	
 	</div>
 <?php endforeach; ?>
