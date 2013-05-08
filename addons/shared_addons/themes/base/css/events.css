@@ -19,6 +19,7 @@ body {
 	margin:0 auto;
 	width:100%;
 	height:auto;
+	min-height: 800px;  /*min heigt needed when there are no event*/
 }
 
 a{
@@ -75,6 +76,11 @@ h2#event_site_slogan{
 .event_left_menu{
 	display:none; /*FIXME hide months in mobile screen*/
 }
+
+#event_left_menu_months{
+	list-style: none;
+}
+
 /* Right menu (navigation)*/
 .event_right_menu ul{   /*Right menu is placec before post_container to avoid problems with floats*/
 	list-style: none;
@@ -366,7 +372,9 @@ a:hover{
 	.event_header{
 		min-height: 100px;
 	}
-	
+	.event_post_container{
+/* 		min-width: 800px; FIXME ANAAAA!!!! */
+	}
 }
 
 /* Large browser */

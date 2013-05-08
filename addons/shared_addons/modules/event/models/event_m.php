@@ -25,6 +25,7 @@ class Event_m extends MY_Model
 			->row();
 	}
 	
+	
 	public function get_by($key, $value = '')
 	{
 		$this->db
@@ -205,6 +206,22 @@ class Event_m extends MY_Model
 		
 
 		return $this->db->count_all_results('event');
+	}
+
+	public function get_last_event_date(){
+		//Function that gets the month and year of the event more far in the future. 
+		//returns timestamp of the event start_date
+		
+		$this->db->select('start_date')
+				 ->from('default_event')
+				 ->where('start_date > UNIX_TIMESTAMP(now())')
+				 ->order_by("start_date", "DESC")
+				 ->limit(1);
+		
+		$result = $this->db->get()->result_array();
+		
+		$last_event_date=reset($result[0]);
+		return $last_event_date; 
 	}
 
 	public function update($id, $input)

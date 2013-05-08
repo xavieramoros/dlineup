@@ -64,9 +64,9 @@ $lang['event:event_title'] 					= 'Noticias';
 $lang['event:list_title'] 					= 'Lista de artículos';
 
 // messages
-$lang['event:no_posts'] 						= 'No hay artículos.';
+$lang['event:no_posts'] 						= 'No hay eventos próximos.';
 $lang['event:subscripe_to_rss_desc'] 		= 'Recibe nuestros artículos inmediatamente suscribiendote a nuestros feeds RSS. Puedes hacer esto utilizando los más clientes de correo electrónico mas populares o utilizando <a href="http://reader.google.com/">Google Reader</a>.';
-$lang['event:currently_no_posts'] 			= 'No hay artículos hasta el momento.';
+$lang['event:currently_no_posts'] 			= 'De momento no hay eventos próximos.';
 $lang['event:post_add_success'] 				= 'El artículo "%s" fue agregado.';
 $lang['event:post_add_error'] 				= 'Ha ocurrido un error.';
 $lang['event:edit_success'] 					= 'El artículo "%s" fue actualizado.';

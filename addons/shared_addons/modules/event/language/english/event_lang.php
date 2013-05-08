@@ -74,9 +74,9 @@ $lang['event:event_title']					= 'Event';
 $lang['event:list_title']					= 'List Events';
 
 // messages
-$lang['event:no_posts']                    = 'There are no posts.';
+$lang['event:no_posts']                    = 'There are no coming events.';
 $lang['event:subscripe_to_rss_desc']          = 'Get posts straight away by subscribing to our RSS feed. You can do this via most popular e-mail clients, or try <a href="http://reader.google.co.uk/">Google Reader</a>.';
-$lang['event:currently_no_posts']          = 'There are no posts at the moment.';
+$lang['event:currently_no_posts']          = 'There are no coming events.';
 $lang['event:post_add_success']            = 'The post "%s" was added.';
 $lang['event:post_add_error']              = 'An error occured.';
 $lang['event:edit_success']                   = 'The post "%s" was updated.';

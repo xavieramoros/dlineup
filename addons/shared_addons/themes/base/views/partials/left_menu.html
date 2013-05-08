@@ -1,7 +1,16 @@
 	<div class="event_left_menu">
+	
+	
+<!--
+			<p>Dates:
 			{{ event:dates order-by="title" limit="5" }}
 	 			<a href="{{ url }}" class="{{ slug }}">{{ title }}</a>
 	 		{{ /event:dates }}
-
-		January //February //March //April // May //June //July // August //Septem- ber //November // December	
+			</p>
+-->
+	 		
+	 		<p>
+	 		{{ event:months_until_last_event }}
+	 		{{ /event:months_until_last_event }}
+	 		</p>
 	</div>
