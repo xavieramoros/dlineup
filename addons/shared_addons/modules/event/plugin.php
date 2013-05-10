@@ -183,7 +183,7 @@ class Plugin_Event extends Plugin
 		$current_timestamp=time();	
 		
 		$last_event_timestamp = $this->event_m->get_last_event_date();
-			
+
 	    $begin = new DateTime();
 	    $begin->setTimestamp($current_timestamp);// $start_date );
 	    
@@ -199,6 +199,7 @@ class Plugin_Event extends Plugin
 	        $array_full[$dt->format( "Y" )][] = $dt->format( "F" ); //array compelte: array(2013 => array("May","June","July","August"), 2014=> ....)
 
 	    }
+	    $array_full=array();
 
 	    $final_result="<ul id='event_left_menu_months'>";
 	    if (sizeof($array_full)==1){ //we only have one year, we only show months
@@ -219,7 +220,14 @@ class Plugin_Event extends Plugin
 				    $final_result.="</li>";
 			    }
 			}
-	    }
+	    }else{  //$array_full is empty, so use current month
+			/* in case we need to show current month even if there are not events
+			$final_result.="<li>";
+			$final_result.=date("M");
+			$final_result.="</li>";
+			*/
+		}
+
 	    $final_result.="</ul>";
 	    return $final_result;
 	}

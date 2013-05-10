@@ -210,7 +210,8 @@ class Event_m extends MY_Model
 
 	public function get_last_event_date(){
 		//Function that gets the month and year of the event more far in the future. 
-		//returns timestamp of the event start_date
+		//returns timestamp of the event start_date or current timestamp if no events are found
+		
 		
 		$this->db->select('start_date')
 				 ->from('default_event')
@@ -220,11 +221,16 @@ class Event_m extends MY_Model
 		
 		$result = $this->db->get()->result_array();
 		
-		if(is_null($result[0])){
-			$last_event_date=time();
-		}else{
-			$last_event_date=reset($result[0]);
+		$last_event_date=time();
+		
+		if(!is_null($result)){
+			if(is_array($result)){
+				if(!empty($result)){
+					$last_event_date=reset($result[0]);
+				}
+			}
 		}
+		
 		return $last_event_date; 
 	}
 
