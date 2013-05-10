@@ -242,40 +242,10 @@ class Admin extends Admin_Controller
 	{
 		$this->form_validation->set_rules($this->validation_rules);
 
-		//xavi
-		//create timestamp value from Date:
-		if ($this->input->post('start_date'))
-		{
-			//echo("retrieved_start_date:".$this->input->post('start_date'));
-			//echo("retrieved_start_date after sprint:".sprintf('%s', $this->input->post('start_date')));
-			
-			$start_date = strtotime(sprintf('%s', $this->input->post('start_date')));
-			//$start_date = strtotime("2013-03-25");
-			//echo("unix_start_date:".$start_date);
-		}
-		else
-		{
-			$start_date = now();
-		}	
+		//automatically created_on is current timestamp.
+		$created_on = now();//FIXME
 		
-		if ($this->input->post('end_date'))
-		{
-			$end_date = strtotime(sprintf('%s', $this->input->post('end_date')));
-		}
-		else
-		{
-			$end_date = now();
-		}	
-
-		if ($this->input->post('created_on'))
-		{
-			$created_on = strtotime(sprintf('%s %s:%s', $this->input->post('created_on'), $this->input->post('created_on_hour'), $this->input->post('created_on_minute')));
-		}
-
-		else
-		{
-			$created_on = now();
-		}
+		
         $hash = $this->_preview_hash();
 
 		if ($this->form_validation->run())
@@ -296,7 +266,7 @@ class Admin extends Admin_Controller
 				//'intro'				=> $this->input->post('intro'),
 				'body'				=> $this->input->post('body'),
 				'status'			=> $this->input->post('status'),
-				'created_on'		=> $created_on,
+				'created_on'		=> $created_on,  //we save the timestamp right away, no need to modify format
 				'comments_enabled'	=> $this->input->post('comments_enabled'),
 				'author_id'			=> $this->current_user->id,
 				'type'				=> $this->input->post('type'),
@@ -309,16 +279,16 @@ class Admin extends Admin_Controller
 				'location'			=> $this->input->post('location'),
 
                 //already added before, need to convert to right format
-                //'start_date'		=> $this->input->post('start_date'),
-                //'end_date'			=> $this->input->post('end_date'),
-                'start_date'		=> $start_date,
-                'end_date'			=> $end_date,
+                'start_date'		=> strtotime(sprintf('%s', $this->input->post('start_date'))),  //save date in timestamp format
+                'end_date'			=> strtotime(sprintf('%s', $this->input->post('end_date'))),
+                //'start_date'		=> $start_date,
+                //'end_date'			=> $end_date,
 				'organizer'			=> $this->input->post('organizer'),
 				'organizer_link'	=> $this->input->post('organizer_link'),
 				'price'				=> $this->input->post('price'),
 				'event_link'		=> $this->input->post('event_link'),
  				'language'			=> $this->input->post('language'),
-			
+		
 			)))
 			{
 				$this->pyrocache->delete_all('event_m');
@@ -350,9 +320,9 @@ class Admin extends Admin_Controller
 			{
 				$post->$field['field'] = set_value($field['field']);
 			}
-			$post->created_on = $created_on;
-			$post->end_date = $end_date;
-			$post->start_date = $start_date;
+			
+			$post->created_on = $created_on; //we save current timestamp in post->created_on so if there is an error submitting, we have it saved.
+			
 
 			// if it's a fresh new article lets show them the advanced editor
 			$post->type or $post->type = 'wysiwyg-advanced';
@@ -386,37 +356,19 @@ class Admin extends Admin_Controller
 
 		$post->keywords = Keywords::get_string($post->keywords);
 
-		// If we have a useful date, use it
-		if ($this->input->post('created_on'))
-		{
-			$created_on = strtotime(sprintf('%s %s:%s', $this->input->post('created_on'), $this->input->post('created_on_hour'), $this->input->post('created_on_minute')));
-		}
 
-		else
-		{
-			$created_on = $post->created_on;
-		}
+		//the $post->created_on retrieves is timestamp, make it date for display
+		//$post->created_on = date('d-m-Y', (int)$post->created_on); //
 		
-		//xavi
-		//create timestamp value from Date:
-		if ($this->input->post('start_date'))
-		{
-			$start_date = strtotime(sprintf('%s', $this->input->post('start_date')));
+		//strtotime(sprintf('%s %s:%s', $post->created_on , $this->input->post('created_on_hour'), $this->input->post('created_on_minute')));
+
+		//same for $post->start_date
+		$post->start_date = date('d-m-Y', (int)$post->start_date); //strtotime(sprintf('%s', (int)$post->start_date));
+
+		//the $post->end_date retrieves is timestamp, make it date for display: (while created_on doesn´t need conversion because the conversion is done in the form.)
+		if ($post->end_date){
+			$post->end_date = date('d-m-Y', (int)$post->end_date);//strtotime(sprintf('%s', (int)$post->end_date));
 		}
-		else
-		{
-			$start_date = now();
-		}	
-		
-		if ($this->input->post('end_date'))
-		{
-			$end_date = strtotime(sprintf('%s', $this->input->post('end_date')));
-		}
-		else
-		{
-			$end_date = now();
-		}	
-		
 		
 		$this->form_validation->set_rules(array_merge($this->validation_rules, array(
 			'title' => array(
@@ -456,7 +408,7 @@ class Admin extends Admin_Controller
 				//'intro'				=> $this->input->post('intro'),
 				'body'				=> $this->input->post('body'),
 				'status'			=> $this->input->post('status'),
-				'created_on'		=> $created_on,
+				'created_on'		=> strtotime(sprintf('%s', $this->input->post('created_on'))),
 				'comments_enabled'	=> $this->input->post('comments_enabled'),
 				'author_id'			=> $author_id,
 				'type'				=> $this->input->post('type'),
@@ -472,8 +424,8 @@ class Admin extends Admin_Controller
                 //already added before, need to convert to right format
                 //'start_date'		=> $this->input->post('start_date'),
                 //'end_date'			=> $this->input->post('end_date'),
-                'start_date'		=> $start_date,
-                'end_date'			=> $end_date,
+                'start_date'		=> strtotime(sprintf('%s', $this->input->post('start_date'))),  //save date in timestamp format
+                'end_date'			=> strtotime(sprintf('%s', $this->input->post('end_date'))),
 				'organizer'			=> $this->input->post('organizer'),
 				'organizer_link'	=> $this->input->post('organizer_link'),
 				'price'				=> $this->input->post('price'),
@@ -514,11 +466,6 @@ class Admin extends Admin_Controller
 				$post->$field['field'] = set_value($field['field']);
 			}
 		}
-
-		$post->created_on = $created_on;
-		$post->end_date = $end_date;
-		$post->start_date = $start_date;
-
 		
 		$this->template
 			->title($this->module_details['name'], sprintf(lang('event:edit_title'), $post->title))

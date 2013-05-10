@@ -11,8 +11,13 @@ $lang['event:category_label'] 				= 'Categoría';
 $lang['event:written_by_label']				= 'Written by'; #translate
 $lang['event:author_unknown']				= 'Unknown'; #translate
 $lang['event:post_label'] 					= 'Post';
-$lang['event:date_label'] 					= 'Fecha';
+
+$lang['event:date_label'] 					= 'Fecha de creacion';
 $lang['event:event_date_label'] 			= 'Fecha del evento';
+$lang['event:event_date']             		= 'Fecha del evento';  //used for form verification message
+$lang['event:start_date']        			= 'Fecha de creacion'; //used for form verification message
+
+
 $lang['event:time_label'] 					= 'Hora';
 $lang['event:status_label'] 				= 'Estado';
 $lang['event:content_label'] 				= 'Contenido';

@@ -15,7 +15,7 @@ $lang['event:keywords_label']				= 'Keywords';
 $lang['event:tagged_label']					= 'Tagged';
 $lang['event:category_label']                 = 'Category';
 $lang['event:post_label']                     = 'Post';
-$lang['event:date_label']                     = 'Date';
+$lang['event:date_label']                     = 'Creation Date';
 $lang['event:date_at']                        = 'at';
 $lang['event:time_label']                     = 'Time';
 $lang['event:status_label']                   = 'Status';
@@ -51,6 +51,8 @@ $lang['event:organizer_post']        	    = 'Organized by';
 
 
 
+$lang['event:event_date']             		= 'Event Date';  //used for form verification message
+$lang['event:start_date']        			= 'Start Date'; //used for form verification message
 
 $lang['event:event_date_label']             = 'Event Date';
 $lang['event:start_date_label']        		= 'Start Date';

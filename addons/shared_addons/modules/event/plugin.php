@@ -193,13 +193,14 @@ class Plugin_Event extends Plugin
 	
 	    $period = new DatePeriod($begin, $interval, $end);
 	
+	    $array_full=array();
+
 	    foreach ( $period as $dt ){
 	    	$array_months[]=$dt->format( "F" );						//array of months
 	    	$arra_years[]=$dt->format( "Y" ); 						//array of years
 	        $array_full[$dt->format( "Y" )][] = $dt->format( "F" ); //array compelte: array(2013 => array("May","June","July","August"), 2014=> ....)
 
 	    }
-	    $array_full=array();
 
 	    $final_result="<ul id='event_left_menu_months'>";
 	    if (sizeof($array_full)==1){ //we only have one year, we only show months
