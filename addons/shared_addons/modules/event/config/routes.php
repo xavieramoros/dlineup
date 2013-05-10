@@ -27,3 +27,4 @@ $route['(event)/rss/all.rss']			    = 'rss/index';
 $route['(event)/rss/(:any).rss']		    = 'rss/category/$2';
 // admin
 $route['event/admin/categories(/:any)?']		= 'admin_categories$1';
+
