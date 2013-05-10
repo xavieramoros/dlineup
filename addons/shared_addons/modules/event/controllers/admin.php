@@ -166,8 +166,7 @@ class Admin extends Admin_Controller
 		
 		$this->template
 			->set('hours', array_combine($hours = range(0, 23), $hours))
-			->set('minutes', array_combine($minutes = range(0, 59), $minutes))
-		;
+			->set('minutes', array_combine($minutes = range(0, 59), $minutes));
 		
 		/*
 		// Date ranges for start date

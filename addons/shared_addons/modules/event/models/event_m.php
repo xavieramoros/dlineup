@@ -220,7 +220,11 @@ class Event_m extends MY_Model
 		
 		$result = $this->db->get()->result_array();
 		
-		$last_event_date=reset($result[0]);
+		if(is_null($result[0])){
+			$last_event_date=time();
+		}else{
+			$last_event_date=reset($result[0]);
+		}
 		return $last_event_date; 
 	}
 
