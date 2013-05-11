@@ -31,7 +31,6 @@ class Admin extends Admin_Controller
 			$this->template
 				->set('messages', array('notice' => lang('cp_delete_installer_message')));
 		}
-
 		$this->template
 			->build('admin/dashboard');
 	}

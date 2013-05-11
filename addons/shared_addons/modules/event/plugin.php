@@ -2,7 +2,7 @@
 /**
  * event Plugin
  *
- * Create lists of posts
+ * Create lists of events
  * 
  * @author		PyroCMS Dev Team
  * @package		PyroCMS\Core\Modules\event\Plugins
@@ -164,8 +164,6 @@ class Plugin_Event extends Plugin
 		);
 		return $result;
 	}
-	
-
 	/*
 	 *	Function that returns list of months (and years if needed) between current date and last event in database.
 	 *	Years are shown only if we have months of two different years		
@@ -177,12 +175,15 @@ class Plugin_Event extends Plugin
 	 * @return	<ul></ul>
 	 */
 	public function months_until_last_event(){
+	
 		//we now current month:
 		$current_month = date("M");
 		$current_year = date("Y");
 		$current_timestamp=time();	
 		
 		$last_event_timestamp = $this->event_m->get_last_event_date();
+
+		//$last_event_timestamp = $this->event_m->get_last_event_date();
 
 	    $begin = new DateTime();
 	    $begin->setTimestamp($current_timestamp);// $start_date );

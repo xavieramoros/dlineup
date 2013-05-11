@@ -17,6 +17,12 @@ class Event extends Public_Controller
 		$this->lang->load('event');
 	}
 	
+	//FIXME
+/*
+	public function newsletter(){
+	    echo json_encode("Result from newsletter controller");
+	}
+*/
 	/**
 	 * Shows the current events: events that will happen 
 	 *
@@ -46,6 +52,57 @@ class Event extends Public_Controller
 			->set('pagination', $pagination)
 			->set('event', $_event)
 			->build('posts');
+	}
+
+	/**
+	 * Shows the about page	 
+	 */
+	 public function about2()
+	{
+		//$this->load->view('about');
+		// Set meta description based on post titles
+		$meta = $this->_posts_metadata($_event);
+
+		$this->template
+			->title($this->module_details['name'])
+			->set_breadcrumb(lang('event:event_title'))
+			->set_metadata('description', $meta['description'])
+			->set_metadata('keywords', $meta['keywords'])
+			->build('about');
+	}
+
+	/**
+	 * Shows the about page	 
+	 */
+	 public function yourevent()
+	{
+		//$this->load->view('about');
+		// Set meta description based on post titles
+		$meta = $this->_posts_metadata($_event);
+
+		$this->template
+			->title($this->module_details['name'])
+			->set_breadcrumb(lang('event:event_title'))
+			->set_metadata('description', $meta['description'])
+			->set_metadata('keywords', $meta['keywords'])
+			->build('your-event');
+	}
+
+	/**
+	 * Shows the about page	 
+	 */
+	 public function error()
+	{
+		//$this->load->view('about');
+		// Set meta description based on post titles
+		$meta = $this->_posts_metadata($_event);
+
+		$this->template
+			->title($this->module_details['name'])
+			->set_breadcrumb(lang('event:event_title'))
+			->set_metadata('description', $meta['description'])
+			->set_metadata('keywords', $meta['keywords'])
+			->build('error');
 	}
 
 	/**
