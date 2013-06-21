@@ -43,8 +43,9 @@ class Newsletter extends Public_Controller
         else 
         {
                        
-	        if($this->mail_chimp->listSubscribe($list_id,$post_data["email"])) {
-            	// $email is now subscribed to list with id: $list_id
+//	        if($this->mail_chimp->listSubscribe($list_id,$post_data["email"])) {
+	        if($this->mail_chimp->listSubscribe($list_id,"xaviamoros@gmail.com")) {
+             	// $email is now subscribed to list with id: $list_id
             	echo json_encode("Email added to newletter");
             }
         }        
