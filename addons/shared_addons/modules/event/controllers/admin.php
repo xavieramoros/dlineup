@@ -152,6 +152,7 @@ class Admin extends Admin_Controller
 
     var $client;
     var $cal;
+    var $authUrl;
     var $calendarConnected = false;
     var $gcalRetrieveError=false;
 	/**
@@ -190,9 +191,8 @@ class Admin extends Admin_Controller
 		
 		
 		//connect google calendar	
-		$this->calendarConnected = $this->connectGoogleCal();	
-
-
+		$this->calendarConnected = $this->connectGoogleCal();
+		
 		$_categories = array();
 		if ($categories = $this->event_categories_m->order_by('title')->get_all())
 		{
@@ -245,18 +245,12 @@ class Admin extends Admin_Controller
 			$this->template->set('gcalRetrieveError', false);
 		}
 			
-
-		//connect google calendar	
-//moved to constructor		$this->calendarConnected = $this->connectGoogleCal();	
-			
+		//set template variable to display message about Google Cal connected			
 		if($this->calendarConnected){
 			$this->template->set('gcalConnected', true);
 		}
 		else{
 			$this->template->set('gcalConnected', false);	
-			if($this->client){//if we already created the Google Cal Client (pressing the load Gcal button)
-				$this->template->set('$authUrl',$this->client->createAuthUrl());	
-			}
 		}
 
 		$this->input->is_ajax_request()
@@ -264,7 +258,7 @@ class Admin extends Admin_Controller
 			: $this->template->build('admin/index');
 
 	}
-	
+	/*
 	public function testload(){
 		$CALENDAR_ID =  "40ngalvb65qq79ufitpenp2d24@group.calendar.google.com";
 
@@ -309,7 +303,7 @@ class Admin extends Admin_Controller
 		}
 				
 	}
-	
+	*/
 	/**
 	 * Load events from Google Calendar.
 	 *
@@ -339,14 +333,7 @@ class Admin extends Admin_Controller
 		if (isset($_SESSION['token'])) {
 		  $this->client->setAccessToken($_SESSION['token']);
 		}
-		/*
-		if ($this->$client->getAccessToken()){
-			return "Connected!";			
-		}else {
-		  $authUrl = $this->$client->createAuthUrl();
-		  print "<a class='login' href='$authUrl'>Connect Me!</a>";
-		}
-		*/
+
 		if ($this->client->getAccessToken()) {
 			
 			$eventOptions = Array(
@@ -480,7 +467,7 @@ class Admin extends Admin_Controller
 	 * 
 	 * @return boolean
 	 */
-	private function connectGoogleCal(){
+	public function connectGoogleCal(){
 
         $API_KEY= "AIzaSyDtLulQmA0aI3g01XI5yOLJVSWCQZi_vsA";
 	   
@@ -495,7 +482,7 @@ class Admin extends Admin_Controller
 	    //WEB APPLICATION
 	    $CLIENT_ID = "646621919636-boro6ji9tkl64e3k8u42arrrubv9roh5.apps.googleusercontent.com";
 	    $CLIENT_SECRET = "kE-NZBHC-KyLl7cUmp_dCalc";
-	    $OAUTH2_REDIRECT_URL ="http://localhost:8888/designcms/event/auth/googleCal";
+	    $OAUTH2_REDIRECT_URL ="http://localhost:8888/designcms/admin/event/load";
 	    $DEVELOPER_KEY = "AIzaSyDtLulQmA0aI3g01XI5yOLJVSWCQZi_vsA";
 
 		$this->client = new Google_Client();
@@ -522,17 +509,11 @@ class Admin extends Admin_Controller
 		if (isset($_SESSION['token'])) {
 		  $this->client->setAccessToken($_SESSION['token']);
 		}
-		/*
-		if ($this->$client->getAccessToken()){
-			return "Connected!";			
-		}else {
-		  $authUrl = $this->$client->createAuthUrl();
-		  print "<a class='login' href='$authUrl'>Connect Me!</a>";
-		}
-		*/
+		
 		if ($this->client->getAccessToken()) {
 			return true;
 		}else{
+			$this->authUrl = $this->client->createAuthUrl();//correctly created
 			return false;
 		}		
 	}

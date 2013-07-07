@@ -54,7 +54,7 @@
 <?php if ($gcalConnected): ?>
 	<div class="no_data">Google Calendar connected!</div>
 <?php else: ?>
-	<div class="no_data">Google Calendar not Connected<a class='login' href='<?php $authUrl ?>'>Connect Me!</a></div>
+	<div class="no_data">Google Calendar not Connected <a class='login' href='<?php echo $authUrl ?>'>Connect Me!</a></div>
 <?php endif; ?>
 
 <?php if ($gcalRetrieveError): ?>
