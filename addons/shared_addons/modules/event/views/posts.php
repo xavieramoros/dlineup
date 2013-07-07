@@ -116,7 +116,8 @@
 <?php else: ?>
 	<div class="event_post">
 		<div class="event_title">
-			<h3><a><?php echo lang('event:currently_no_posts');?></a></h3>
+			<h3><a>AAAA<?php echo lang('event:currently_no_posts');?></a></h3>
 		</div>
 	</div>
 <?php endif; ?>
+

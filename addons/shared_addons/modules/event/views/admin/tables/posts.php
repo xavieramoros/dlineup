@@ -50,3 +50,13 @@
 <?php else: ?>
 	<div class="no_data"><?php echo lang('event:currently_no_posts'); ?></div>
 <?php endif; ?>
+
+<?php if ($gcalConnected): ?>
+	<div class="no_data">Google Calendar connected!</div>
+<?php else: ?>
+	<div class="no_data">Google Calendar not Connected<a class='login' href='<?php $authUrl ?>'>Connect Me!</a></div>
+<?php endif; ?>
+
+<?php if ($gcalRetrieveError): ?>
+	<div class="no_data">Error retrieving Google Calendar Events</div>
+<?php endif; ?>

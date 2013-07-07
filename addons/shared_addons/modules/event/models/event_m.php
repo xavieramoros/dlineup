@@ -25,7 +25,20 @@ class Event_m extends MY_Model
 			->row();
 	}
 	
-	
+	public function eventExists($gid){
+		//function that returns 1 if event already in database, 0 if not. Using the unique gcalid.
+		$this->db->where('event.id',$gid)
+			 ->limit(1);
+		$result = $this->db->count_all_results('event');
+		
+		if ($result!=0){
+			return true;
+		}else{
+			return false;
+		}
+			
+	}
+		
 	public function get_by($key, $value = '')
 	{
 		$this->db

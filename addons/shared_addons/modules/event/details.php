@@ -41,6 +41,12 @@ class Module_Event	 extends Module {
 						    'uri' => 'admin/event/create',
 						    'class' => 'add'
 						),
+						array(
+						   'name' => 'event:load_gcal',	//'name' => 'event:create_title',
+						    'uri' => 'admin/event/load',
+						    'class' => 'add'
+						),
+
 					),
 				),
 
@@ -71,7 +77,7 @@ class Module_Event	 extends Module {
 				'title' => array('type' => 'VARCHAR', 'constraint' => 100, 'null' => false, 'unique' => true),
 			),
 			'event' => array(
-				'id' => array('type' => 'INT', 'constraint' => 11, 'auto_increment' => true, 'primary' => true),
+				'id' => array('type' => 'VARCHAR', 'constraint' => 26, 'unique' => true, 'primary'=>true),
 				'title' => array('type' => 'VARCHAR', 'constraint' => 100, 'null' => false, 'unique' => true),
 				'slug' => array('type' => 'VARCHAR', 'constraint' => 100, 'null' => false),
 				'category_id' => array('type' => 'INT', 'constraint' => 11, 'key' => true),
@@ -93,12 +99,12 @@ class Module_Event	 extends Module {
                 'location'=> array('type' => 'VARCHAR', 'constraint' => 40),
                 'start_date'=> array('type' => 'INT', 'constraint' => 11),
                 'end_date'=> array('type' => 'INT', 'constraint' => 11),
-                'address'=> array('type' => 'VARCHAR', 'constraint' => 150),
-				'organizer'=> array('type' => 'VARCHAR', 'constraint' => 150),
-				'organizer_link'=> array('type' => 'VARCHAR', 'constraint' => 512), 
-				'price'=>array('type' => 'VARCHAR', 'constraint' => 30),
-				'event_link'=> array('type' => 'VARCHAR', 'constraint' => 512), 
-				'language'=> array('type' => 'VARCHAR', 'constraint' => 30), 
+                'address'=> array('type' => 'VARCHAR', 'constraint' => 150,'default' => ''),
+				'organizer'=> array('type' => 'VARCHAR', 'constraint' => 150,'default' => ''),
+				'organizer_link'=> array('type' => 'VARCHAR', 'constraint' => 512,'default' => ''), 
+				'price'=>array('type' => 'VARCHAR', 'constraint' => 30,'default' => ''),
+				'event_link'=> array('type' => 'VARCHAR', 'constraint' => 512,'default' => ''), 
+				'language'=> array('type' => 'VARCHAR', 'constraint' => 30,'default' => ''), 
 			),
 		);
 

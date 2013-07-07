@@ -60,7 +60,8 @@ $lang['event:organizer_post']        	    = 'Organizado por';
 
 
 // titles
-$lang['event:create_title'] 					= 'Crear un artículo';
+$lang['event:create_title'] 			    = 'Crear un artículo';
+$lang['event:load_gcal']                 	= 'Cargar GCal';
 $lang['event:edit_title'] 					= 'Editar artículo "%s"';
 $lang['event:archive_title'] 				= 'Archivo';
 $lang['event:posts_title'] 					= 'Artículos';

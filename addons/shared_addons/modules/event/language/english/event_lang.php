@@ -68,6 +68,7 @@ $lang['event:end_minute']                 	= 'Ends on Minute';
 
 // titles
 $lang['event:create_title']                 = 'Add Event';
+$lang['event:load_gcal']                 	= 'Load GCal';
 $lang['event:edit_title']                   = 'Edit event "%s"';
 $lang['event:archive_title']                = 'Archive';
 $lang['event:posts_title']					= 'Event';

@@ -16,6 +16,6 @@
 			<?php $this->load->view('admin/partials/buttons', array('buttons' => array('delete', 'publish'))); ?>
 		</div>
 
-	<?php echo form_close(); ?>
+		<?php echo form_close(); ?>
 
 </section>

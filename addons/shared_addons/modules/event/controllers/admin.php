@@ -150,6 +150,10 @@ class Admin extends Admin_Controller
 		)
     );
 
+    var $client;
+    var $cal;
+    var $calendarConnected = false;
+    var $gcalRetrieveError=false;
 	/**
 	 * The constructor
 	 */
@@ -157,6 +161,9 @@ class Admin extends Admin_Controller
 	{
 		parent::__construct();
 		
+		require_once SPARKPATH . "GoogleAPIClient/0.6.2/src/Google_Client.php";
+	    require_once SPARKPATH . "GoogleAPIClient/0.6.2/src/contrib/Google_CalendarService.php";
+
 		$this->load->model(array('event_m', 'event_categories_m'));
 		$this->lang->load(array('event', 'categories'));
 		
@@ -181,6 +188,10 @@ class Admin extends Admin_Controller
 			->set('end_minutes', array_combine($end_minutes = range(0, 59), $end_minutes))
 		;
 		*/
+		
+		//connect google calendar	
+		$this->calendarConnected = $this->connectGoogleCal();	
+
 
 		$_categories = array();
 		if ($categories = $this->event_categories_m->order_by('title')->get_all())
@@ -226,15 +237,287 @@ class Admin extends Admin_Controller
 			->set('pagination', $pagination)
 			->set('event', $event);
 			
+		//set gcalRetrieveError if there was an error retrieving gcal events
+		if ($this->gcalRetrieveError){
+			$this->template->set('gcalRetrieveError', true);
+		}
+		else{
+			$this->template->set('gcalRetrieveError', false);
+		}
+			
+
+		//connect google calendar	
+//moved to constructor		$this->calendarConnected = $this->connectGoogleCal();	
+			
+		if($this->calendarConnected){
+			$this->template->set('gcalConnected', true);
+		}
+		else{
+			$this->template->set('gcalConnected', false);	
+			if($this->client){//if we already created the Google Cal Client (pressing the load Gcal button)
+				$this->template->set('$authUrl',$this->client->createAuthUrl());	
+			}
+		}
 
 		$this->input->is_ajax_request()
 			? $this->template->build('admin/tables/posts')
 			: $this->template->build('admin/index');
 
 	}
+	
+	/**
+	 * Load events from Google Calendar.
+	 *
+	 * @return void
+	 */
+	/**
+	 * Function that retrieves the Google Calendar Events and save them in the database in case they are not yet there.
+	 * 
+	 * @return boolean
+	 */
+
+	public function load(){
+		
+		$CALENDAR_ID =  "40ngalvb65qq79ufitpenp2d24@group.calendar.google.com";
+
+		$this->cal = new Google_CalendarService($this->client);
+		if (isset($_GET['logout'])) {
+		  unset($_SESSION['token']);
+		}
+		
+		if (isset($_GET['code'])) {
+		  $this->client->authenticate($_GET['code']);
+		  $_SESSION['token'] = $this->client->getAccessToken();
+		  header('Location: http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']);
+		}
+		
+		if (isset($_SESSION['token'])) {
+		  $this->client->setAccessToken($_SESSION['token']);
+		}
+		/*
+		if ($this->$client->getAccessToken()){
+			return "Connected!";			
+		}else {
+		  $authUrl = $this->$client->createAuthUrl();
+		  print "<a class='login' href='$authUrl'>Connect Me!</a>";
+		}
+		*/
+		if ($this->client->getAccessToken()) {
+			
+			$eventOptions = Array(
+				"orderBy" => "startTime",
+			  	"singleEvents" => true,
+		  		"timeMin" => date("c")
+		  	);
+		  	$eventList = $this->cal->events->listEvents($CALENDAR_ID,$eventOptions);
+		  	$_SESSION['token'] = $this->client->getAccessToken();
+		}else{
+			$gcalRetrieveError = true;
+			redirect('admin/event'); 
+		}		
+		
+		foreach ($eventList["items"] as $key => $gCalEvent){
+			//print_r($event);
+			unset($foo);
+			$eventData = array();
+			
+			$gid=$gCalEvent["id"];
+			$eventData["id"]=$gid;  //save extracted data in array 
+			if (! $this->event_m->eventExists($gid)){
+				//event not existing, save it in db
+				//print_r($gCalEvent);
+				
+				if (isset($gCalEvent["description"])){
+					$eventData["body"]=$gCalEvent["description"];					
+				}else{
+					$eventData["body"]="";
+				}
+
+				if (isset($gCalEvent["location"])){
+					$eventData["location"]=$gCalEvent["location"];
+				}else{
+					$eventData["location"]="";
+				}
+
+				if (isset($gCalEvent["htmlLink"])){
+					$eventData["htmlLink"]=$gCalEvent["htmlLink"];
+				}else{
+					$eventData["htmlLink"]="";
+				}
+
+				$eventData["created_on"]=$gCalEvent["created"];
+				
+				if (isset($gCalEvent["summary"])){
+					$eventData["title"]=$gCalEvent["summary"];
+				}else{
+					$eventData["title"]="";
+				}
+
+				if (isset($gCalEvent["start"])){
+					if (isset($gCalEvent["start"]["dateTime"])){
+						$eventData["start_date"]=$gCalEvent["start"]["dateTime"];
+					}
+					elseif(isset($gCalEvent["start"]["date"])){
+						$eventData["start_date"]=$gCalEvent["start"]["date"];
+
+					}
+				}
+				if (isset($gCalEvent["end"])){
+					if (isset($gCalEvent["end"]["dateTime"])){
+						$eventData["end_date"]=$gCalEvent["end"]["dateTime"];
+					}
+					elseif(isset($gCalEvent["end"]["date"])){
+						$eventData["end_date"]=$gCalEvent["end"]["date"];
+					}
+				}
+						
+				/*				
+				if($this->event_m->check_exists('title', $eventData["title"], $id)){
+					
+				}	
+				*/
+				
+				//save event with the data received from Google Calendar.
+				//print_r($eventData);				
+				
+				if ($gid = $this->event_m->insert(array(
+					'id'                => $eventData["id"],
+					'title'				=> $eventData["title"],
+					'slug'				=> "slugFIXME",
+					'category_id'		=> 0,
+					//'keywords'			=> Keywords::process($this->input->post('keywords')),
+					'body'				=> $eventData["body"],
+					'status'			=> "draft", //events imported from GCal are created as draft
+					'created_on'		=> strtotime($eventData["created_on"]),  //convert time from 2013-07-06T13:30:37.000Z to unix timestamp					
+					//'comments_enabled'	=> $this->input->post('comments_enabled'),
+					//'author_id'			=> $this->current_user->id,
+					'type'				=> "wysiwyg-advanced",
+					'parsed'			=> "",
+	                //'preview_hash'      => $hash,
+					
+					//added by xavi
+					//'price'				=> $this->input->post('price'),
+					'location'			=> $eventData["location"],
+					//'address'			=>//FIXME make '' default value
+	
+	                //already added before, need to convert to right format
+	                
+	                'start_date'		=> strtotime($eventData["start_date"]),  //save date in timestamp format
+	                'end_date'			=> strtotime($eventData["end_date"]),
+	                //'start_date'		=> $start_date,
+	                //'end_date'			=> $end_date,
+					//'organizer'			=> $this->input->post('organizer'),
+					//'organizer_link'	=> $this->input->post('organizer_link'),
+					//'price'				=> $this->input->post('price'),
+					//'event_link'		=> $this->input->post('event_link'),
+	 				//'language'			=> $this->input->post('language'),
+	 				))){
+		 				$this->pyrocache->delete_all('event_m');
+		 				$this->session->set_flashdata('success', sprintf($this->lang->line('event:post_add_success'), $this->input->post('title')));
+				
+		 				// Event article has been updated, may not be anything to do with publishing though
+		 				Events::trigger('post_created', $id);
+					}
+					else
+					{
+						$this->session->set_flashdata('error', lang('event:post_add_error'));
+					}
+			}//end of if(gCalEventExists)
+			
+		}//end of foreach
+		
+		//onec all the events are imported from google calendar, redirect to admin
+		redirect('admin/event');
+
+	}
 
 	/**
-	 * Create new post
+	 * Function to connect to the Google Calenda API
+	 * 
+	 * @return boolean
+	 */
+	public function connectGoogleCal(){
+
+        $API_KEY= "AIzaSyDtLulQmA0aI3g01XI5yOLJVSWCQZi_vsA";
+	   
+		//SERVICE ACCOUNT
+	    /*
+	    $CLIENT_ID = "646621919636.apps.googleusercontent.com";
+	    $CLIENT_SECRET = "";
+	    $OAUTH2_REDIRECT_URL ="http://localhost:8888/designcms/event/auth/googleCal";
+	    $DEVELOPER_KEY = "AIzaSyDtLulQmA0aI3g01XI5yOLJVSWCQZi_vsA";
+	    */
+
+	    //WEB APPLICATION
+	    $CLIENT_ID = "646621919636-boro6ji9tkl64e3k8u42arrrubv9roh5.apps.googleusercontent.com";
+	    $CLIENT_SECRET = "kE-NZBHC-KyLl7cUmp_dCalc";
+	    $OAUTH2_REDIRECT_URL ="http://localhost:8888/designcms/event/auth/googleCal";
+	    $DEVELOPER_KEY = "AIzaSyDtLulQmA0aI3g01XI5yOLJVSWCQZi_vsA";
+
+		$this->client = new Google_Client();
+		$this->client->setApplicationName("Google Calendar Dlineup Application");
+		
+		// Visit https://code.google.com/apis/console?api=calendar to generate your
+		// client id, client secret, and to register your redirect uri.
+		$this->client->setClientId($CLIENT_ID);
+		$this->client->setClientSecret($CLIENT_SECRET);
+		$this->client->setRedirectUri($OAUTH2_REDIRECT_URL);
+		//$client->setDeveloperKey($DEVELOPER_KEY);
+
+		$this->cal = new Google_CalendarService($this->client);
+		if (isset($_GET['logout'])) {
+		  unset($_SESSION['token']);
+		}
+		
+		if (isset($_GET['code'])) {
+		  $this->client->authenticate($_GET['code']);
+		  $_SESSION['token'] = $this->client->getAccessToken();
+		  header('Location: http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']);
+		}
+		
+		if (isset($_SESSION['token'])) {
+		  $this->client->setAccessToken($_SESSION['token']);
+		}
+		/*
+		if ($this->$client->getAccessToken()){
+			return "Connected!";			
+		}else {
+		  $authUrl = $this->$client->createAuthUrl();
+		  print "<a class='login' href='$authUrl'>Connect Me!</a>";
+		}
+		*/
+		if ($this->client->getAccessToken()) {
+			return true;
+		}else{
+			return false;
+		}		
+	}
+	
+	/**
+	 * Function that does API call and gets the list of events for a specific $CALENDAR_ID
+	 * 
+	 * @return boolean
+	 */
+/*
+    public function getGcalEvents(){
+	    $eventOptions = Array(
+			"orderBy" => "startTime",
+		  	"singleEvents" => true,
+		  	"timeMin" => date("c")
+		);
+		  
+		// date(c) devuelve: 2013-06-28T19:27:02+02:00 a las 19:27. correcto!
+		  
+		//$eventList = $this->cal->events->listEvents($CALENDAR_ID,$eventOptions);
+		var $calendar = $this->cal;
+		$eventList = $calendar->events->listEvents($CALENDAR_ID,$eventOptions);
+		//print "<h1>Event List</h1><pre>" . print_r($eventList, true) . "</pre>";
+		$_SESSION['token'] = $this->client->getAccessToken();
+		return $eventList;			
+    }
+*/
+	/**
+	 * Create new event
 	 *
 	 * @return void
 	 */
@@ -259,6 +542,7 @@ class Admin extends Admin_Controller
 			}
 
 			if ($id = $this->event_m->insert(array(
+				'id' 				=> time(),  //use a random and unique id for events created from admin
 				'title'				=> $this->input->post('title'),
 				'slug'				=> $this->input->post('slug'),
 				'category_id'		=> $this->input->post('category_id'),
@@ -276,7 +560,6 @@ class Admin extends Admin_Controller
 				'price'				=> $this->input->post('price'),
 				'location'			=> $this->input->post('location'),
 				'address'			=> $this->input->post('address'),
-				'location'			=> $this->input->post('location'),
 
                 //already added before, need to convert to right format
                 'start_date'		=> strtotime(sprintf('%s', $this->input->post('start_date'))),  //save date in timestamp format
@@ -401,7 +684,7 @@ class Admin extends Admin_Controller
 			$author_id = empty($post->display_name) ? $this->current_user->id : $post->author_id;
 
 			$result = $this->event_m->update($id, array(
-				'title'				=> $this->input->post('title'),
+ 				'title'				=> $this->input->post('title'),
 				'slug'				=> $this->input->post('slug'),
 				'category_id'		=> $this->input->post('category_id'),
 				'keywords'			=> Keywords::process($this->input->post('keywords'), $old_keywords_hash),

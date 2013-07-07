@@ -54,6 +54,7 @@ class Event extends Public_Controller
 			->build('posts');
 	}
 
+
 	/**
 	 * Shows the about page	 
 	 */
@@ -72,7 +73,7 @@ class Event extends Public_Controller
 	}
 
 	/**
-	 * Shows the about page	 
+	 * Shows the yourevent page	 
 	 */
 	 public function yourevent()
 	{
