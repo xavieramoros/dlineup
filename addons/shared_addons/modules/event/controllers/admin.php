@@ -89,17 +89,17 @@ class Admin extends Admin_Controller
 			'label' => 'lang:event:start_date',
 			'rules' => 'trim|required'
 		),
-		/*
+		
 		array(
 			'field' => 'starts_on_hour',
-			'rules' => 'trim|numeric|required'
+			'rules' => 'trim|numeric'  //|required
 		),
 		
 		array(
 			'field' => 'starts_on_minute',
-			'rules' => 'trim|numeric|required'
+			'rules' => 'trim|numeric'  //|required
 		),
-		*/
+		
    		array(
 			'field' => 'end_date',
 			'label' => 'lang:event:end_date',
@@ -175,7 +175,7 @@ class Admin extends Admin_Controller
 			->set('hours', array_combine($hours = range(0, 23), $hours))
 			->set('minutes', array_combine($minutes = range(0, 59), $minutes));
 		
-		/*
+		
 		// Date ranges for start date
 		$this->template
 			->set('start_hours', array_combine($start_hours = range(0, 23), $start_hours))
@@ -187,7 +187,7 @@ class Admin extends Admin_Controller
 			->set('end_hours', array_combine($end_hours = range(0, 23), $end_hours))
 			->set('end_minutes', array_combine($end_minutes = range(0, 59), $end_minutes))
 		;
-		*/
+		
 		
 		//connect google calendar	
 		$this->calendarConnected = $this->connectGoogleCal();	
@@ -265,6 +265,51 @@ class Admin extends Admin_Controller
 
 	}
 	
+	public function testload(){
+		$CALENDAR_ID =  "40ngalvb65qq79ufitpenp2d24@group.calendar.google.com";
+
+		$this->cal = new Google_CalendarService($this->client);
+		if (isset($_GET['logout'])) {
+		  unset($_SESSION['token']);
+		}
+		
+		if (isset($_GET['code'])) {
+		  $this->client->authenticate($_GET['code']);
+		  $_SESSION['token'] = $this->client->getAccessToken();
+		  header('Location: http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']);
+		}
+		
+		if (isset($_SESSION['token'])) {
+		  $this->client->setAccessToken($_SESSION['token']);
+		}
+		if ($this->client->getAccessToken()) {
+			
+			$eventOptions = Array(
+				"orderBy" => "startTime",
+			  	"singleEvents" => true,
+		  		"timeMin" => date("c")
+		  	);
+		  	$eventList = $this->cal->events->listEvents($CALENDAR_ID,$eventOptions);
+		  	$_SESSION['token'] = $this->client->getAccessToken();
+		}else{
+			$gcalRetrieveError = true;
+			redirect('admin/event'); 
+		}		
+		foreach ($eventList["items"] as $key => $gCalEvent){
+			//print_r($event);
+			unset($eventData);
+			$eventData = array();
+			
+			$gid=$gCalEvent["id"];
+			$eventData["id"]=$gid;  //save extracted data in array 
+			if (! $this->event_m->eventExists($gid)){
+				//event not existing, save it in db
+				print_r($gCalEvent);
+			}
+		}
+				
+	}
+	
 	/**
 	 * Load events from Google Calendar.
 	 *
@@ -318,7 +363,7 @@ class Admin extends Admin_Controller
 		
 		foreach ($eventList["items"] as $key => $gCalEvent){
 			//print_r($event);
-			unset($foo);
+			unset($eventData);
 			$eventData = array();
 			
 			$gid=$gCalEvent["id"];
@@ -359,7 +404,6 @@ class Admin extends Admin_Controller
 					}
 					elseif(isset($gCalEvent["start"]["date"])){
 						$eventData["start_date"]=$gCalEvent["start"]["date"];
-
 					}
 				}
 				if (isset($gCalEvent["end"])){
@@ -416,7 +460,7 @@ class Admin extends Admin_Controller
 		 				$this->session->set_flashdata('success', sprintf($this->lang->line('event:post_add_success'), $this->input->post('title')));
 				
 		 				// Event article has been updated, may not be anything to do with publishing though
-		 				Events::trigger('post_created', $id);
+		 				Events::trigger('post_created', $gid);
 					}
 					else
 					{
@@ -436,7 +480,7 @@ class Admin extends Admin_Controller
 	 * 
 	 * @return boolean
 	 */
-	public function connectGoogleCal(){
+	private function connectGoogleCal(){
 
         $API_KEY= "AIzaSyDtLulQmA0aI3g01XI5yOLJVSWCQZi_vsA";
 	   
@@ -492,30 +536,6 @@ class Admin extends Admin_Controller
 			return false;
 		}		
 	}
-	
-	/**
-	 * Function that does API call and gets the list of events for a specific $CALENDAR_ID
-	 * 
-	 * @return boolean
-	 */
-/*
-    public function getGcalEvents(){
-	    $eventOptions = Array(
-			"orderBy" => "startTime",
-		  	"singleEvents" => true,
-		  	"timeMin" => date("c")
-		);
-		  
-		// date(c) devuelve: 2013-06-28T19:27:02+02:00 a las 19:27. correcto!
-		  
-		//$eventList = $this->cal->events->listEvents($CALENDAR_ID,$eventOptions);
-		var $calendar = $this->cal;
-		$eventList = $calendar->events->listEvents($CALENDAR_ID,$eventOptions);
-		//print "<h1>Event List</h1><pre>" . print_r($eventList, true) . "</pre>";
-		$_SESSION['token'] = $this->client->getAccessToken();
-		return $eventList;			
-    }
-*/
 	/**
 	 * Create new event
 	 *
@@ -562,10 +582,8 @@ class Admin extends Admin_Controller
 				'address'			=> $this->input->post('address'),
 
                 //already added before, need to convert to right format
-                'start_date'		=> strtotime(sprintf('%s', $this->input->post('start_date'))),  //save date in timestamp format
-                'end_date'			=> strtotime(sprintf('%s', $this->input->post('end_date'))),
-                //'start_date'		=> $start_date,
-                //'end_date'			=> $end_date,
+                'start_date'		=> strtotime(sprintf('%s %s:%s', $this->input->post('start_date'), $this->input->post('starts_on_hour'), $this->input->post('starts_on_minute'))),
+                'end_date'		    => strtotime(sprintf('%s %s:%s', $this->input->post('end_date'), $this->input->post('ends_on_hour'), $this->input->post('ends_on_minute'))),
 				'organizer'			=> $this->input->post('organizer'),
 				'organizer_link'	=> $this->input->post('organizer_link'),
 				'price'				=> $this->input->post('price'),
@@ -646,11 +664,18 @@ class Admin extends Admin_Controller
 		//strtotime(sprintf('%s %s:%s', $post->created_on , $this->input->post('created_on_hour'), $this->input->post('created_on_minute')));
 
 		//same for $post->start_date
-		$post->start_date = date('d-m-Y', (int)$post->start_date); //strtotime(sprintf('%s', (int)$post->start_date));
+		$start_date_stored = $post->start_date; //we save the start data, which also includes time.
+		$post->starts_on_hour = date('H', (int)$start_date_stored);
+		$post->starts_on_minute = date('i', (int)$start_date_stored);
+		$post->start_date = date('d-m-Y', (int)$start_date_stored); //strtotime(sprintf('%s', (int)$post->start_date));
 
 		//the $post->end_date retrieves is timestamp, make it date for display: (while created_on doesn´t need conversion because the conversion is done in the form.)
+		
 		if ($post->end_date){
-			$post->end_date = date('d-m-Y', (int)$post->end_date);//strtotime(sprintf('%s', (int)$post->end_date));
+			$end_date_stored = $post->end_date; //we save the start data, which also includes time.	
+			$post->ends_on_hour = date('H', (int)$end_date_stored);
+			$post->ends_on_minute = date('i', (int)$end_date_stored);
+			$post->end_date = date('d-m-Y', (int)$end_date_stored);//strtotime(sprintf('%s', (int)$post->end_date));
 		}
 		
 		$this->form_validation->set_rules(array_merge($this->validation_rules, array(
@@ -669,7 +694,6 @@ class Admin extends Admin_Controller
 
         if ($this->input->post('status') == 'draft' and $this->input->post('preview_hash') == '')
         {
-
             $hash = $this->_preview_hash();
         }
 		
@@ -703,18 +727,15 @@ class Admin extends Admin_Controller
 				'location'			=> $this->input->post('location'),
 				'address'			=> $this->input->post('address'),
 				'location'			=> $this->input->post('location'),
-
-                //already added before, need to convert to right format
-                //'start_date'		=> $this->input->post('start_date'),
-                //'end_date'			=> $this->input->post('end_date'),
-                'start_date'		=> strtotime(sprintf('%s', $this->input->post('start_date'))),  //save date in timestamp format
-                'end_date'			=> strtotime(sprintf('%s', $this->input->post('end_date'))),
+				
+                'start_date'		=> strtotime(sprintf('%s %s:%s', $this->input->post('start_date'), $this->input->post('starts_on_hour'), $this->input->post('starts_on_minute'))),
+                
+                'end_date'		    => strtotime(sprintf('%s %s:%s', $this->input->post('end_date'), $this->input->post('ends_on_hour'), $this->input->post('ends_on_minute'))),
 				'organizer'			=> $this->input->post('organizer'),
 				'organizer_link'	=> $this->input->post('organizer_link'),
 				'price'				=> $this->input->post('price'),
 				'event_link'		=> $this->input->post('event_link'),
  				'language'			=> $this->input->post('language'),
-
 			));
 			
 			if ($result)

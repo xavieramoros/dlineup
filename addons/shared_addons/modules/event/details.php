@@ -6,9 +6,9 @@
  * @author PyroCMS Dev Team
  * @package PyroCMS\Core\Modules\Blog
  */
-class Module_Event	 extends Module {
+class Module_Event extends Module {
 
-	public $version = '2.0';
+	public $version = '2.1';
 
 	public function info()
 	{
@@ -123,6 +123,26 @@ class Module_Event	 extends Module {
 
 	public function upgrade($old_version)
 	{
+		switch ($old_version) {
+			case '2.1':
+				//add here all the modifications in the database
+				
+				
+				//$this->dbforge->modify_column()
+				//http://ellislab.com/codeigniter/user-guide/database/forge.html
+				/*
+				$fields = array(
+                        'old_name' => array(
+                                                         'name' => 'new_name',
+                                                         'type' => 'TEXT',
+                                                ),
+);
+$this->dbforge->modify_column('table_name', $fields);
+				*/
+				
+				break;
+				
+		}
 		return true;
 	}
 }

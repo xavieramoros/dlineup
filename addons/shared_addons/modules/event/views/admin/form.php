@@ -59,18 +59,62 @@
 					<?php echo form_input('end_date',empty($post->end_date)? '' : $post->end_date,'maxlength="10" id="datepicker" class="text width-20"'); ?> &nbsp;
 				</div>
 			</li>			
-			
 			<li class="time-meta">
 				<label><?php echo lang('event:start_time'); ?></label>
-				<div>
-					<?php //echo form_dropdown('starts_on_hour', $start_hours) ?> : 
-					<?php //echo form_dropdown('starts_on_minute', $start_minutes) ?>
+				<div>				
+<!--
+					<?php echo form_dropdown('starts_on_hour', $start_hours, $post->starts_on_hour ? $post->starts_on_hour : ''); ?>  
+					<?php echo form_dropdown('starts_on_minute', $start_minutes, $post->starts_on_minute ? $post->starts_on_minute : '');?>
+-->
+					<?php $data_starts_on_hour = array(
+			              'name'        => 'starts_on_hour',
+			              'id'          => 'starts_on_hour',
+			              'value'       => $post->starts_on_hour ? $post->starts_on_hour : '',
+			              'maxlength'   => '2',
+			              'size'        => '50',
+			              'style'       => 'width:20px',
+			            );
+					
+					echo form_input($data_starts_on_hour); ?>:
+				
+					<?php $data_starts_on_minute = array(
+			              'name'        => 'starts_on_minute',
+			              'id'          => 'starts_on_minute',
+			              'value'       => $post->starts_on_minute ? $post->starts_on_minute : '',
+			              'maxlength'   => '2',
+			              'size'        => '50',
+			              'style'       => 'width:20px',
+			            );
+					
+					echo form_input($data_starts_on_minute); ?>  
+
 				</div>		
+				
 				<label><?php echo lang('event:end_time'); ?></label>
-				<div>
-					<?php //echo form_dropdown('ends_on_hour', $end_hours) ?> : 
-					<?php //echo form_dropdown('ends_on_minute', $end_minutes) ?>
-				</div>
+				<div>				
+					<?php $data_ends_on_hour = array(
+			              'name'        => 'ends_on_hour',
+			              'id'          => 'ends_on_hour',
+			              'value'       => $post->ends_on_hour ? $post->ends_on_hour : '',
+			              'maxlength'   => '2',
+			              'size'        => '50',
+			              'style'       => 'width:20px',
+			            );
+					
+					echo form_input($data_ends_on_hour); ?>:
+					
+					<?php $data_ends_on_minute = array(
+			              'name'        => 'ends_on_minute',
+			              'id'          => 'ends_on_minute',
+			              'value'       => $post->ends_on_minute ? $post->ends_on_minute : '',
+			              'maxlength'   => '2',
+			              'size'        => '50',
+			              'style'       => 'width:20px',
+			            );
+					
+					echo form_input($data_ends_on_minute); ?>  
+
+				</div>		
 			</li>
 
 			<li>
