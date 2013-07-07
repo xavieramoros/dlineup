@@ -211,6 +211,7 @@ class Admin extends Admin_Controller
 	 */
 	public function index()
 	{
+
 		//set the base/default where clause
 		$base_where = array('show_future' => TRUE, 'status' => 'all');
 
@@ -484,7 +485,9 @@ class Admin extends Admin_Controller
 	    //WEB APPLICATION
 	    $CLIENT_ID = "646621919636-boro6ji9tkl64e3k8u42arrrubv9roh5.apps.googleusercontent.com";
 	    $CLIENT_SECRET = "kE-NZBHC-KyLl7cUmp_dCalc";
-	    $OAUTH2_REDIRECT_URL ="http://localhost:8888/designcms/admin/event/load";
+	    $OAUTH2_REDIRECT_URL ="http://".$_SERVER['HTTP_HOST']."/designcms/admin/event/load";
+	    //$OAUTH2_REDIRECT_URL ="http://localhost:8888/designcms/admin/event/load";
+
 	    $DEVELOPER_KEY = "AIzaSyDtLulQmA0aI3g01XI5yOLJVSWCQZi_vsA";
 
 		$this->client = new Google_Client();
