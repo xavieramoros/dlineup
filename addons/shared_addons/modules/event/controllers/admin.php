@@ -390,7 +390,7 @@ class Admin extends Admin_Controller
 					'status'			=> "draft", //events imported from GCal are created as draft
 					'created_on'		=> strtotime($eventData["created_on"]),  //convert time from 2013-07-06T13:30:37.000Z to unix timestamp					
 					//'comments_enabled'	=> $this->input->post('comments_enabled'),
-					//'author_id'			=> $this->current_user->id,
+					'author_id'			=> $this->current_user->id,
 					'type'				=> "wysiwyg-advanced",
 					'parsed'			=> "",
 	                //'preview_hash'      => $hash,
