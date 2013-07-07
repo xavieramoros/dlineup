@@ -251,6 +251,8 @@ class Admin extends Admin_Controller
 		}
 		else{
 			$this->template->set('gcalConnected', false);	
+			$this->template->set('authUrl',$this->authUrl);
+			
 		}
 
 		$this->input->is_ajax_request()
