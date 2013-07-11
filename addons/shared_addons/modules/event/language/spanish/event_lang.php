@@ -54,6 +54,13 @@ $lang['event:end_date_label']        	   = 'Fecha fin';
 $lang['event:end_hour']                   = 'Hora de fin';
 $lang['event:end_minute']                 = 'Minuto de fin';
 
+//admin info labels
+$lang['event:slug_info'] 							="Esto será la url";
+$lang['event:address_info'] 						="Calle, número y ciudad";
+$lang['event:location_info'] 						= "Nombre del sitio";
+
+
+
 //labels for frontpage:
 $lang['event:location_post']        	    = 'En';
 $lang['event:organizer_post']        	    = 'Organizado por';

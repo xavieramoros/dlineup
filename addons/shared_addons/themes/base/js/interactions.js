@@ -36,9 +36,6 @@ $(document).ready(function() {
     
 	$('.btn_show_content').toggle(
     	function () {  
-    	
-    		console.log("Button pressed");
-
     		var current_content = $(this).parent().children('.event_content');
     		var currentHeight=$(current_content)[0].scrollHeight;
     		    	
@@ -54,17 +51,29 @@ $(document).ready(function() {
 		    	height:currentHeight
 	    	},500);
 	    	*/
-	    	$(this).val("-");  //change button to minus
+	    	
+	    	//replace image
+	    	//var src = $(this).attr("src").match(/[^\.]+/) + "collapse.png";
+	    	//this.src = src;
+	    	if (document.location.hostname == "localhost"){
+	    		this.src = 'http://localhost:8888/designcms/addons/shared_addons/themes/base/img/collapse.png';
+	    		this.id = "collapse_button";
+	    		this.title = "Show less";
+	    		this.alt = "Show less";
+	    	}else{
+		    	this.src = document.location.hostname+'/addons/shared_addons/themes/base/img/collapse.png';
+	    		this.id = "collapse_button";
+	    		this.title = "Show less";
+	    		this.alt = "Show less";
+	    	}
+            //$(this).attr("src", src);
+	    	//$(this).val("-");  //change button to minus
 	    
 	    
 	    },
 	    function () { 
-    
-   		console.log("Button pressed");
-
-    	var current_content = $(this).parent().children('.event_content');
-
-    	$(this).parent().children('.event_content').animate({
+        	var current_content = $(this).parent().children('.event_content');
+        	$(this).parent().children('.event_content').animate({
 		    	height:'70px',
 		    	maxHeight :'70px'
 	    	},500);
@@ -76,6 +85,25 @@ $(document).ready(function() {
 	    	},500);
 	    */
 	    
-    	$(this).val("+"); 
+	    	//replace image
+	    	//this.src = '/addons/shared_addons/themes/base/img/expand.png';
+	    	//var src = $(this).attr("src").match(/[^\.]+/) + "expand.png";
+	    	//this.src = src;
+	    	if (document.location.hostname == "localhost"){
+	    		this.src = 'http://localhost:8888/designcms/addons/shared_addons/themes/base/img/expand.png';
+	    		this.id = "expand_button";
+	    		this.title = "Show more";
+	    		this.alt = "Show more";
+	    	}else{
+		    	this.src = document.location.hostname+'/addons/shared_addons/themes/base/img/expand.png';
+	    		this.id = "expand_button";
+	    		this.title = "Show more";
+	    		this.alt = "Show more";
+	    	}
+
+            
+            //var src = $(this).attr("src").match(/[^\.]+/) + "expand.png";
+            //$(this).attr("src", src);
+	    	//$(this).val("+"); 
     }
 );});

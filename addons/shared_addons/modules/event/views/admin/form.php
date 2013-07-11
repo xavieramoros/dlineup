@@ -123,10 +123,12 @@
 			</li>
 			<li>
 				<label for="address"><?php echo lang('event:address'); ?></label>
-				<div class="input"><?php echo form_input('address', htmlspecialchars_decode($post->address), 'maxlength="100" id="address"'); ?></div>					</li>
+				<div class="input"><?php echo form_input('address', htmlspecialchars_decode($post->address), 'maxlength="100" id="address"'); ?></div>					
+			</li>
 			<li>
 				<label for="location"><?php echo lang('event:location'); ?></label>
-				<div class="input"><?php echo form_input('location', htmlspecialchars_decode($post->location), 'maxlength="100" id="location"'); ?></div>				</li>
+				<div class="input"><?php echo form_input('location', htmlspecialchars_decode($post->location), 'maxlength="100" id="location"'); ?></div>				
+			</li>
 			<li>
 				<label for="organizer"><?php echo lang('event:organizer'); ?></label>
 				<div class="input"><?php echo form_input('organizer', htmlspecialchars_decode($post->organizer), 'maxlength="100" id="organizer"'); ?></div>			</li>

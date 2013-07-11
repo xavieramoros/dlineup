@@ -55,6 +55,13 @@ $('.tooltip').tipsy({
 	html: true
 });
 
+$('.tooltip-n').tipsy({
+	gravity: 'n',
+	fade: true,
+	html: true
+});
+
+
 $('.tooltip-s').tipsy({
 	gravity: 's',
 	fade: true,

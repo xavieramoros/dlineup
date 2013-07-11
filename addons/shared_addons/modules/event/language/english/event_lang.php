@@ -45,6 +45,13 @@ $lang['event:address']        				= 'Address';
 $lang['event:event_link']        			= 'Event Link';
 $lang['event:event_language']        	    = 'Language';
 
+//admin info labels
+$lang['event:slug_info'] 							="This will be the url";
+$lang['event:address_info'] 						="Street name, number and city";
+$lang['event:location_info'] 						="Name of the place";
+
+
+
 //labels for frontpage:
 $lang['event:location_post']        	    = 'In';
 $lang['event:organizer_post']        	    = 'Organized by';

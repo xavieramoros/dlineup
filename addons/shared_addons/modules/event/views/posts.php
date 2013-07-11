@@ -102,10 +102,13 @@
 			</div>
 			<?php 
 				if (strlen($post->body)>200){
-					echo "<input type='button' class='btn_show_content' value='+'>";
-				}
-			?>
+					//echo "<input type='button' class='btn_show_content' value='+'>";
+					//echo "<button type='submit' class='btn_show_content'><img src=''></button>";
+			?> 
+				{{ theme:image class="btn_show_content tooltip-e" id="expand_button" file="expand.png" alt="Show more" title="Show more"}}
 
+			<?php 	}
+			?>
 					
 		</div>	
 	</div>

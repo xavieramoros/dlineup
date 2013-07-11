@@ -369,7 +369,11 @@ class Admin extends Admin_Controller
 				}
 
 				if (isset($gCalEvent["location"])){
-					$eventData["location"]=$gCalEvent["location"];
+					if(strlen($gCalEvent["location"])<41){ //if location is too long
+						$eventData["location"]=$gCalEvent["location"];
+					}else{//split location in two: address and location
+						list($eventData["location"],$eventData["address"])=explode("-", $gCalEvent["location"], 2);
+					}
 				}else{
 					$eventData["location"]="";
 				}
@@ -432,7 +436,7 @@ class Admin extends Admin_Controller
 					//added by xavi
 					//'price'				=> $this->input->post('price'),
 					'location'			=> $eventData["location"],
-					//'address'			=>//FIXME make '' default value
+					'address'			=> $eventData["address"]?$eventData["address"]:'', 
 	
 	                //already added before, need to convert to right format
 	                
@@ -485,7 +489,12 @@ class Admin extends Admin_Controller
 	    //WEB APPLICATION
 	    $CLIENT_ID = "646621919636-boro6ji9tkl64e3k8u42arrrubv9roh5.apps.googleusercontent.com";
 	    $CLIENT_SECRET = "kE-NZBHC-KyLl7cUmp_dCalc";
-	    $OAUTH2_REDIRECT_URL ="http://".$_SERVER['HTTP_HOST']."/admin/event/load";
+	    
+	    if(ENVIRONMENT == PYRO_DEVELOPMENT){ //if we are in localhost, development
+		    $OAUTH2_REDIRECT_URL ="http://".$_SERVER['HTTP_HOST']."/designcms/admin/event/load";
+	    }else{
+	    	$OAUTH2_REDIRECT_URL ="http://".$_SERVER['HTTP_HOST']."/admin/event/load";
+	    }
 	    //$OAUTH2_REDIRECT_URL ="http://localhost:8888/designcms/admin/event/load";
 
 	    $DEVELOPER_KEY = "AIzaSyDtLulQmA0aI3g01XI5yOLJVSWCQZi_vsA";

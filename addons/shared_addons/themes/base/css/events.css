@@ -52,6 +52,9 @@ header{
 	margin-top: 1%;
 }
 
+.admin_label{
+	width:50px;
+}
 
 h1#event_site_logo{
 	margin:0 0 1% 0;
@@ -80,7 +83,7 @@ h2#event_site_slogan{
 #event_left_menu_months{
 	list-style: none;
 }
-
+/**************************/
 /* Right menu (navigation)*/
 .event_right_menu ul{   /*Right menu is placec before post_container to avoid problems with floats*/
 	list-style: none;
@@ -89,6 +92,7 @@ h2#event_site_slogan{
 .event_right_menu li{
 	font-size: 1.2em;
 	color: #666578;
+	padding: 4% 2%;
 }	
 
 
@@ -103,6 +107,28 @@ h2#event_site_slogan{
 	/*border: 1px solid rgba(0, 0, 0, 1);*/
 	/*width: 240px;*/
 }
+
+#twitter_logo{
+	width:35px;
+	height:29px;
+}
+
+#facebook_logo{
+	width:22px;
+	height:29px;
+}
+
+.li_horizontal{
+	 display: inline;
+	 list-style-type: none;
+	 padding-right: 20px;
+}
+
+#SendButton{
+	margin-bottom: 4%;
+}
+
+/*End of right menu*/
 
 
 /*Text selection*/
@@ -205,7 +231,19 @@ h2#event_site_slogan{
 .btn_show_content{
 	position:relative;
 	float:right;
-	bottom:20px;
+	bottom:38px;
+	right:3px;
+}
+
+#collapse_button{
+	height:6px;
+	width:35px;
+}
+
+#expand_button{
+	height:35px;
+	width:35px;
+
 }
 
 /****************************/

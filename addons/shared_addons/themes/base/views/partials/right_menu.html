@@ -12,25 +12,29 @@
 			<li>Newsletter
 			</li>
 			
-			<li><a class="tooltip-s" href="http://twitter.com/iKreativ" title="Follow on Twitter" target="_blank">{{ theme:image file="twitter.png" }}</a>
+			<li>
+		
+				<form id="signup" action="index.html" method="get">
+				    <input type="hidden" name="ajax" value="true" />
+				    <input type="email" name="email" id="email" class="textinput" value="" placeholder="Email"/>
+				    <input type="text" name="fname" id="fname" class="textinput" value="" placeholder="Name"/>
+   				    <input type="submit" id="SendButton" name="submit" class="textinput" value="Submit" />
+
+				    <!-- Last Name: <input type="text" name="lname" id="lname" class="textinput" value="" /> -->
+
+		<!--
+				    HTML: <input type="radio" name="emailtype" value="html" checked="checked">
+				    Text: <input type="radio" name="emailtype" value="text">
+		-->
+				</form>
+				<div id="message"></div>
+			</li>
+			<li class="li_horizontal"><a class="tooltip-n" href="http://twitter.com/dlineup" title="Dlineup on Twitter" target="_blank" style="witdh=35px;">{{ theme:image id="twitter_logo" file="twitter.png" alt="twitter" }}</a>
 			</li>	
 						
-			<li><a class="tooltip-s" href="#" title="Follow on Facebook" target="_blank">{{ theme:image file="facebook.png" }}</a>
+			<li class="li_horizontal"><a class="tooltip-n" href="#" title="Dlineup on Facebook" target="_blank">{{ theme:image id="facebook_logo" file="facebook.png" alt="facebook"}}</a>
 			</li>
 		</ul>
-
-		<form id="signup" action="index.html" method="get">
-		    <input type="hidden" name="ajax" value="true" />
-		    First Name: <input type="text" name="fname" id="fname" class="textinput" value="" />
-		    Last Name: <input type="text" name="lname" id="lname" class="textinput" value="" />
-		    email Address (required): <input type="email" name="email" id="email" class="textinput" value="" />
-<!--
-		    HTML: <input type="radio" name="emailtype" value="html" checked="checked">
-		    Text: <input type="radio" name="emailtype" value="text">
--->
-		    <input type="submit" id="SendButton" name="submit" class="textinput" value="Submit" />
-		</form>
-		<div id="message"></div>
 		
 		<script src="jquery.min.js" type="text/javascript"></script>
 		<script type="text/javascript">
@@ -47,6 +51,30 @@
 		        });
 		        return false;
 		    });
+		    
+		    //Fixing placeholder for non HTML5 browsers
+		    if(!Modernizr.input.placeholder){
+
+			    $("input").each(
+			    	//console.log("BROWSER NON HTML5");
+			    	function(){
+				    	var inputField = $(this);
+				    	if(inputField.val()=="" && inputField.attr("placeholder")!=""){
+
+					    	inputField.val(inputField.attr("placeholder"));
+
+					    	inputField.focus(function(){
+						    	if(inputField.val()==inputField.attr("placeholder")){ inputField.val(""); }
+						    });
+
+						    inputField.blur(function(){
+							    if(inputField.val()==""){ 
+							    	inputField.val(inputField.attr("placeholder")); 
+							    }
+							});
+						}
+					});
+				}
 		});
 		</script>
 		{{ widgets:area slug="sidebar" }}
