@@ -57,26 +57,26 @@ $('.tooltip').tipsy({
 
 $('.tooltip-n').tipsy({
 	gravity: 'n',
-	fade: true,
+	fade: false,
 	html: true
 });
 
 
 $('.tooltip-s').tipsy({
 	gravity: 's',
-	fade: true,
+	fade: false,
 	html: true
 });
 
 $('.tooltip-e').tipsy({
 	gravity: 'e',
-	fade: true,
+	fade: false,
 	html: true
 });
 
 $('.tooltip-w').tipsy({
 	gravity: 'w',
-	fade: true,
+	fade: false,
 	html: true
 });
 

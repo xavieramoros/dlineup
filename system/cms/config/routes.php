@@ -39,7 +39,6 @@
 */
 $route['default_controller'] 				= 'event';
 //$route['default_controller']                = 'pages';
-$route['404_override']                      = 'event/error';//'pages';
 
 /*
 $route['admin/help/([a-zA-Z0-9_-]+)']       = 'admin/help/$1';
@@ -64,13 +63,16 @@ $route['edit-profile']	                    = 'users/edit';
 
 $route['sitemap.xml']                       = 'sitemap/xml';
 
+
 $route['about']                       		= 'event/about';
-$route['your-event']                       	= 'event/yourevent';
+$route['your-event']          				= 'event/submit/yourevent';
 $route['auth']                       		= 'event/auth';
+
 
 $route['newsletter/subscribe']              = 'event/newsletter/subscribe';  //here event looks like the module not the controller
 
 
+$route['404_override']                      = 'event/error';//'pages';
 
 
 /* End of file routes.php */

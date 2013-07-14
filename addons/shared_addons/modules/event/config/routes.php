@@ -21,14 +21,15 @@
 */
 
 // public
-$route['(event)/(:num)/(:num)/(:any)']	= 'event/view/$4';
+$route['(event)/(:num)/(:num)/(:any)']		= 'event/view/$4';
 $route['(event)/page(/:num)?']			    = 'event/index$2';
 $route['(event)/rss/all.rss']			    = 'rss/index';
 $route['(event)/rss/(:any).rss']		    = 'rss/category/$2';
 
+
 //not needed?
 //$route['(event)/about/']		    = 'about2';
-//$route['(event)/your-event/']		    = 'yourevent';
+//$route['(event)/your-event/']		    = 'submit/yourevent';
 
 
 //$route['(event)/newsletter']		    = 'newsletter';

@@ -65,6 +65,13 @@ $lang['event:location_info'] 						= "Nombre del sitio";
 $lang['event:location_post']        	    = 'En';
 $lang['event:organizer_post']        	    = 'Organizado por';
 
+//your event page
+
+$lang['event:submit_event_title']        	    = 'Titulo del evento';
+$lang['event:submit_event_link']        	    = 'Link del evento';
+$lang['event:submit_your_name']        	= 'Tu nombre';
+$lang['event:submit_your_email']        = 'Tu email';
+
 
 // titles
 $lang['event:create_title'] 			    = 'Crear un artículo';

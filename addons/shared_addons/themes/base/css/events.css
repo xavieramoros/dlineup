@@ -131,6 +131,60 @@ h2#event_site_slogan{
 /*End of right menu*/
 
 
+/*Your event page*/
+.your_event_form ul{
+	list-style: none;
+}
+
+.your_event_form li{
+	margin: 2% 0% 0% 0%;
+}
+.your_event_form p{
+	margin:0 0 0 1em;
+}
+
+.form_input_wrapper{
+    overflow: hidden; /* add this to contain floated children */
+}
+.form_input{
+	float:left;
+}
+.form_input .input{
+/* 	width:50%; */
+	height:2em;	
+}
+
+.form_error{
+	float:left;
+}
+
+.event_form_button{
+	font-family: Impact;
+
+	width:100px;
+	height:50px;
+	margin-right: 2%;
+	font-size: 1.1em;
+
+}
+
+.your_event_buttons{
+	margin: 2% 0% 0% 0%;
+}
+
+/* FORMAT PLACEHOLDERS
+input::-webkit-input-placeholder {
+	font-size: 2em;
+}
+/ For Mozilla Firefox 
+input:-moz-placeholder {
+	font-size: 2em;
+}
+*/
+
+/*End of YourEvent page */
+
+
 /*Text selection*/
 ::selection {
 	background: #C03D3C; /* Safari */

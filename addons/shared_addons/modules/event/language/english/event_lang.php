@@ -51,10 +51,16 @@ $lang['event:address_info'] 						="Street name, number and city";
 $lang['event:location_info'] 						="Name of the place";
 
 
-
 //labels for frontpage:
 $lang['event:location_post']        	    = 'In';
 $lang['event:organizer_post']        	    = 'Organized by';
+
+//your event page
+
+$lang['event:submit_event_title']        	    = 'Event title';
+$lang['event:submit_event_link']        	    = 'Event link';
+$lang['event:submit_your_name']        	= 'Your name';
+$lang['event:submit_your_email']        = 'Your email';
 
 
 
