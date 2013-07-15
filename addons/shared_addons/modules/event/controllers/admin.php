@@ -369,10 +369,27 @@ class Admin extends Admin_Controller
 				}
 
 				if (isset($gCalEvent["location"])){
-					if(strlen($gCalEvent["location"])<41){ //if location is too long
+					if(strlen($gCalEvent["location"])< 41){ //if location is too long
 						$eventData["location"]=$gCalEvent["location"];
-					}else{//split location in two: address and location
-						list($eventData["location"],$eventData["address"])=explode("-", $gCalEvent["location"], 2);
+						$eventData["address"]="";
+					}else{
+						//split location in two: address and location
+						//check if the location contains an address (by checking for Street, Carrer o Calle)
+						if (strpos($gCalEvent["location"],'Carrer') !== false){
+							$del='Carrer';
+						} 
+						elseif(strpos($gCalEvent["location"],'Calle') !== false){
+							$del='Calle';
+						}
+						elseif(strpos($gCalEvent["location"],'Street') !== false){
+							$del='Street';
+						}
+						else{
+							$del=$gCalEvent["location"][0];	//location will be empty.
+						}	
+						$eventData["location"]=substr($gCalEvent["location"],0,strpos($gCalEvent["location"],$del));
+						$eventData["address"]=substr($gCalEvent["location"],strpos($gCalEvent["location"],$del));
+
 					}
 				}else{
 					$eventData["location"]="";
