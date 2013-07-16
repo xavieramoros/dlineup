@@ -14,6 +14,23 @@ body {
 	margin:0;
 }
 
+body, button, input, select, textarea{
+	color: #666578;
+}
+a{
+	color: #666578;
+}
+
+a:hover{
+	color: #C03D3C !important;
+}
+
+.event_red_text{
+	font-family: inherit;
+	color: #C03D3C;
+}
+
+
 .container {
 	background-color:#E5E4E3;
 	margin:0 auto;
@@ -85,15 +102,33 @@ h2#event_site_slogan{
 }
 /**************************/
 /* Right menu (navigation)*/
+#ul_mobile_container{
+	overflow: hidden;	
+}
+
+#ul_right_mobile{
+	overflow: hidden;
+	 text-align:center;
+}
+
+#ul_left_mobile{
+ text-align:center;
+	float: left;
+	margin:0 auto;
+}
+
 .event_right_menu ul{   /*Right menu is placec before post_container to avoid problems with floats*/
 	list-style: none;
 	font-weight:bold;
+	width:40%; /**/
 }
 .event_right_menu li{
 	font-size: 1.2em;
 	color: #666578;
 	padding: 4% 2%;
+	margin:auto;
 }	
+
 
 
 .event_post_container{
@@ -232,16 +267,17 @@ input:-moz-placeholder {
 .event_date{
 	padding:2% 0 0 2%;
 	float:left;
-	width:20%;
+	width:20% auto;
 	display: inline-block;
-	font-size:1.5em;
+	font-size:1.8em;
 	font-weight: 500;
 	vertical-align: middle;
 	font-family: Impact;
-}
-
-.event_date{
-	width:auto;
+	transform : scale(1,1.5);
+	-webkit-transform:scale(1,1.5); /* Safari and Chrome */
+	-moz-transform:scale(1,1.5); /* Firefox */
+	-ms-transform:scale(1,1.5); /* IE 9+ */
+	-o-transform:scale(1,1.5); /* Opera */
 	margin-right:2%;
 }
 
@@ -300,43 +336,25 @@ input:-moz-placeholder {
 
 }
 
-/****************************/
+/****************************************************************************************/
+/* START OF RESPONSIVE CODE:
+Small tablet portrait 
+@media only screen and (min-width: 641px) {
 
+iPad portrait 
+@media only screen and (min-width: 769px) {
 
+Small browser / iPad landscape 
+@media only screen and (min-width: 1025px) {
 
+ Generic browser 
+@media only screen and (min-width: 1281px) {
 
+ Large browser 
+@media only screen and (min-width: 1600px) {
 
+/****************************************************************************************/
 
-
-
-
-
-body, button, input, select, textarea{
-	color: #666578;
-}
-a{
-	color: #666578;
-}
-
-a:hover{
-	color: #C03D3C !important;
-}
-
-.event_red_text{
-	font-family: inherit;
-	color: #C03D3C;
-}
-
-
-/* Right Menu */	
-/*
-.event_right_menu{
-	margin:0;
-	font-family: Impact;
-	float:left;
-	display:inline-block;
-}
-*/
 
 
 
@@ -349,11 +367,29 @@ a:hover{
 		font-size: 4em;
 	}
 	
+	/*Right menu mobile*/
+	#ul_mobile_container{
+/* 		overflow: hidden;	 */
+	}
+	
+	#ul_right_mobile{
+/* 		overflow: hidden; */
+		 text-align:left;
+		 width:100%;
+	}
+	
+	#ul_left_mobile{
+		 text-align:left;
+/* 		float: left; */
+/* 		margin:0 auto; */
+	}
+
 	.event_post_container{
 		width:80%;	
 	}
 	.event_right_menu{
 		width:18%;
+
 		float:right;	
 		margin:0 0 0 0;
 		padding:0 0 0 0;
@@ -361,10 +397,16 @@ a:hover{
 	.event_right_menu ul{
 		padding: 0;
 		margin:0 auto;	
+		width:auto;
 	}
 	.event_right_menu li{
 		font-size: 1.2em;
+		padding:0% 2% 5%; /*Change respect small size: text now alligned to left, */
 	}
+	.event_date{
+		font-size:2em;
+	}
+
 }
 
 
@@ -395,6 +437,9 @@ a:hover{
 	.event_body{	
 		display:block;
 	}
+	.event_date{
+		font-size:2.3em;
+	}
 
 }
 
@@ -402,6 +447,7 @@ a:hover{
 /**********************************/
 /* Small browser / iPad landscape */
 @media only screen and (min-width: 1025px) {
+
 	h1#event_site_logo{
 		font-size: 5em; /*5*/
 	}
@@ -410,7 +456,9 @@ a:hover{
 		margin:0 auto;	
 	}
 	
-	/*Right menu*/
+	.event_date{
+		font-size:2.7em;
+	}
 	.event_right_menu{
 		width:15%;
 		float:right;	
@@ -418,11 +466,13 @@ a:hover{
 		padding:0 0 0 0;
 	}
 	.event_right_menu ul{
-		padding: 0 0 0 8%;
+		padding: 0;
 		margin:0 auto;	
 	}
 	.event_right_menu li{
 		font-size: 1.4em;
+		padding:0% 2% 5%; /*Change respect small size: text now alligned to left, */
+		
 	}
 
 	/*Left menu*/
@@ -443,9 +493,6 @@ a:hover{
 
 
 
-
-
-
 /* Generic browser */
 @media only screen and (min-width: 1281px) {
 	h1#event_site_logo{
@@ -457,7 +504,7 @@ a:hover{
 	}
 	
 	.event_date{
-		font-size:4em;
+		font-size:4.7em;
 
 	}
 	
