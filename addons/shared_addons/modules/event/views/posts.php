@@ -9,7 +9,7 @@
 <?php if ( ! empty($event)): ?>
 
 <?php foreach ($event as $key=>$post): ?>
-	<div class="event_post">
+	<div class="event_post event_post_<?php echo $key; ?>">
 		<!-- Post heading -->
 		<div class="event_header">
 			<div class="event_date">

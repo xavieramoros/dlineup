@@ -1,15 +1,12 @@
-
-/*
-.event{
-	max-height: 220px;
-	border: 1px solid rgba(0, 0, 0, 0.2);
-	overflow: hidden;
-}
 */
 /*General CSS, aplied for all the screens (mobile first)*/
+home{
+	background-color: #E5E4E3;
+}
+
 body {
 	font-family: Impact;
-	color: #676679;
+	color: #666578;
 	height:auto;
 	margin:0;
 }
@@ -30,6 +27,14 @@ a:hover{
 	color: #C03D3C;
 }
 
+
+/*Text selection*/
+::selection {
+	background: #999A87; /*#C03D3C; Safari */
+	}
+::-moz-selection {
+	background: #999A87; /* Firefox */
+}
 
 .container {
 	background-color:#E5E4E3;
@@ -62,11 +67,11 @@ header{
 
 #content{
 	background-color:#E5E4E3;
-	padding: 2% 0 0 0;
+	padding:0;
 	width:90%;
 	float:none;
 	margin:0 auto;
-	margin-top: 1%;
+	margin-top: 1.5%;
 }
 
 .admin_label{
@@ -99,6 +104,8 @@ h2#event_site_slogan{
 
 #event_left_menu_months{
 	list-style: none;
+	text-align: right;
+	font-size: 1.4em;
 }
 /**************************/
 /* Right menu (navigation)*/
@@ -132,7 +139,7 @@ h2#event_site_slogan{
 
 
 .event_post_container{
-	background: #E5E4E3;
+	background-color:  #E5E4E3;
 	/*padding: 5px 15px 15px 15px;
 	float:left;	
 		display:inline-block;
@@ -220,19 +227,36 @@ input:-moz-placeholder {
 /*End of YourEvent page */
 
 
-/*Text selection*/
-::selection {
-	background: #C03D3C; /* Safari */
-	}
-::-moz-selection {
-	background: #C03D3C; /* Firefox */
-}
-
 
 /****   Event post   ****/
 /************************/
+.event_post_container{
+	border-top-right-radius:30px;
+	border-top-left-radius:30px;	
+	
+	-moz-box-shadow		: 0px -2px 12px #676679;
+	-webkit-box-shadow	: 0px -2px 12px #676679;
+	box-shadow			: 0px -2px 12px #676679;
+}
+.event_post_0{   /*First post*/
+		
+	border-top-right-radius:30px;
+	border-top-left-radius:30px;	
+	
+/*
+	-moz-box-shadow		: 0px -2px 12px #676679;
+	-webkit-box-shadow	: 0px -2px 12px #676679;
+	box-shadow			: 0px -2px 12px #676679;
+*/
+	
+	/*filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
+	zoom: 1;
+	*/
+}
+
 .event_post{
-	margin:0 0 2% 0;
+	padding:0 0 2% 0;
 	background: #ffffff;
 	min-height: 65px;
 	min-width: 350px;
