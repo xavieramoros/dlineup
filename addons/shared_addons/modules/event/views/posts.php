@@ -89,11 +89,7 @@
 						echo $post->language;
 						echo '</li>';
 					} ?>
-					
-					<li>Register <b>Here(FIXME)</b>
-						
-					</li>	
-		
+							
 				</ul>
 			</div>
 			<div class='event_content'>

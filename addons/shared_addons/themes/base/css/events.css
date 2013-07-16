@@ -2,6 +2,19 @@
 /*General CSS, aplied for all the screens (mobile first)*/
 home{
 	background-color: #E5E4E3;
+	background-image: linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
+	background-image: -o-linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
+	background-image: -moz-linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
+	background-image: -webkit-linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
+	background-image: -ms-linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.31, rgb(186,165,186)),
+		color-stop(0.66, rgb(229,229,227))
+	);
 }
 
 body {
@@ -9,6 +22,21 @@ body {
 	color: #666578;
 	height:auto;
 	margin:0;
+	
+		background-image: linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
+	background-image: -o-linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
+	background-image: -moz-linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
+	background-image: -webkit-linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
+	background-image: -ms-linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.31, rgb(186,165,186)),
+		color-stop(0.66, rgb(229,229,227))
+	);
+
 }
 
 body, button, input, select, textarea{
@@ -263,16 +291,19 @@ input:-moz-placeholder {
 }
 
 .event_body{
-	display: none;
+	display: inline-block;
 	font-size:100%;
     color: #666578;
 	font-family: Georgia;
+	padding: 2% 0 0 2%;
+	margin-right: 2%;
+	
 }
 
 .event_info{
 	line-height: 1.3em;
 	font-style: italic;
-	padding:0 0 0 2%;
+	padding:0 0 1% 2%;
 }
 
 
@@ -289,7 +320,7 @@ input:-moz-placeholder {
 
 /*event_header*/
 .event_date{
-	padding:2% 0 0 2%;
+	padding:1% 0 0 2%;
 	float:left;
 	width:20% auto;
 	display: inline-block;
@@ -308,7 +339,8 @@ input:-moz-placeholder {
 .event_title{
 	width:auto;
 	overflow: hidden;
-	vertical-align:middle;	
+	vertical-align:middle;
+	min-height: 15%;	
 	/*display:block;*/
 
 }
@@ -438,7 +470,7 @@ Small browser / iPad landscape
 /* iPad portrait */
 @media only screen and (min-width: 769px) {
 	h1#event_site_logo{
-		font-size: 5em;
+		font-size: 6em;
 	}
 	.event_post_container{
 		width:80%;	
@@ -473,7 +505,7 @@ Small browser / iPad landscape
 @media only screen and (min-width: 1025px) {
 
 	h1#event_site_logo{
-		font-size: 5em; /*5*/
+		font-size: 7em; /*5*/
 	}
 	.event_post_container{
 		width:65%;	
@@ -520,7 +552,7 @@ Small browser / iPad landscape
 /* Generic browser */
 @media only screen and (min-width: 1281px) {
 	h1#event_site_logo{
-		font-size: 7em;
+		font-size: 9em;
 	}
 	
 	.event_title h3 a{
