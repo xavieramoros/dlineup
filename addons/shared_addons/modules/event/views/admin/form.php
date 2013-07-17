@@ -19,7 +19,6 @@
 	
 	<!-- Content tab -->
 	<div class="form_inputs" id="event-content-tab">
-		
 		<fieldset>
 	
 		<ul>

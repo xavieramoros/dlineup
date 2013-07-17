@@ -442,7 +442,7 @@ class Admin extends Admin_Controller
 				if ($gid = $this->event_m->insert(array(
 					'id'                => $eventData["id"],
 					'title'				=> $eventData["title"],
-					'slug'				=> "slugFIXME",
+					'slug'				=> "",
 					'category_id'		=> 0,
 					//'keywords'			=> Keywords::process($this->input->post('keywords')),
 					'body'				=> $eventData["body"],
@@ -872,7 +872,7 @@ class Admin extends Admin_Controller
 			->title($this->module_details['name'], sprintf(lang('event:edit_title'), $post->title))
 			->append_metadata($this->load->view('fragments/wysiwyg', array(), TRUE))
 			->append_js('jquery/jquery.tagsinput.js')
-			->append_js('module::event_form.js')
+			->append_js('module::event_form.js')  //HERE is done the SLUG stuff
 			->append_css('jquery/jquery.tagsinput.css')
 			->set('post', $post)
 			->build('admin/form');

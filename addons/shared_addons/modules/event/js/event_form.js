@@ -1,9 +1,12 @@
 (function($) {
+
 	$(function(){
-		
-		// generate a slug when the user types a title in
-		pyro.generate_slug('#event-content-tab input[name="title"]', 'input[name="slug"]');
-		
+		//if we have a title, then generate it now, otherwise generate a slug when the user types a title in
+		if($('#event-content-tab input[name="title"]').val() && !$('input[name="slug"]').val()){ //if we have title and no slug.
+			pyro.generate_slug_now('#event-content-tab input[name="title"]', 'input[name="slug"]');			
+		}else{
+			pyro.generate_slug('#event-content-tab input[name="title"]', 'input[name="slug"]');
+		}	
 		// needed so that Keywords can return empty JSON
 		$.ajaxSetup({
 			allowEmpty: true

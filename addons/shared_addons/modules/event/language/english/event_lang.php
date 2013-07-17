@@ -98,6 +98,10 @@ $lang['event:currently_no_posts']          = 'There are no coming events.';
 $lang['event:post_add_success']            = 'The post "%s" was added.';
 $lang['event:post_add_error']              = 'An error occured.';
 $lang['event:edit_success']                   = 'The post "%s" was updated.';
+$lang['event:post_made_live_success']		 = 'The post "%s" was made live.';
+$lang['event:post_made_draft_success']		 = 'The post "%s" was made draft.';
+
+
 $lang['event:edit_error']                     = 'An error occurred.';
 $lang['event:publish_success']                = 'The post "%s" has been published.';
 $lang['event:mass_publish_success']           = 'The posts "%s" have been published.';
