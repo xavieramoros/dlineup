@@ -324,7 +324,7 @@ input:-moz-placeholder {
 	float:left;
 	width:20% auto;
 	display: inline-block;
-	font-size:1.8em;
+	font-size:2.4em;
 	font-weight: 500;
 	vertical-align: middle;
 	font-family: Impact;
@@ -340,10 +340,11 @@ input:-moz-placeholder {
 	width:auto;
 	overflow: hidden;
 	vertical-align:middle;
-	min-height: 15%;	
-	/*display:block;*/
+	/*Avoid third line in Event Title*/
+	min-height:55px;
+	max-height:55px;
+	}
 
-}
 .event_title h3{
 	overflow: hidden;
 	display: block;
@@ -351,7 +352,7 @@ input:-moz-placeholder {
 }
 
 .event_title a{
-	font-size:1.4em;
+	font-size:1.2em; /*1.4em*/
 	font-family: Impact;
 	color: #666578;
 }
@@ -445,7 +446,6 @@ Small browser / iPad landscape
 	}
 	.event_right_menu{
 		width:18%;
-
 		float:right;	
 		margin:0 0 0 0;
 		padding:0 0 0 0;
@@ -460,10 +460,15 @@ Small browser / iPad landscape
 		padding:0% 2% 5%; /*Change respect small size: text now alligned to left, */
 	}
 	.event_date{
-		font-size:2em;
+		font-size:3em;
 	}
-
-}
+	.event_title{  /*Avoid third line in Event Title*/
+		min-height:70px;
+		max-height:70px;
+	}
+	.event_title a{
+		font-size:1.5em; /*1.4em*/
+	}
 
 
 /*****************/
@@ -494,7 +499,14 @@ Small browser / iPad landscape
 		display:block;
 	}
 	.event_date{
-		font-size:2.3em;
+		font-size:3.6em;
+	}
+	.event_title{  /*Avoid third line in Event Title*/
+		min-height:85px;
+		max-height:85px;
+	}
+	.event_title a{
+		font-size:1.8em; /*1.4em*/
 	}
 
 }
@@ -513,7 +525,7 @@ Small browser / iPad landscape
 	}
 	
 	.event_date{
-		font-size:2.7em;
+		font-size:4em;/* 2.7em; */
 	}
 	.event_right_menu{
 		width:15%;
@@ -544,6 +556,11 @@ Small browser / iPad landscape
 	.event_body{	
 		display:block;
 	}
+	.event_title{  /*Avoid third line in Event Title*/
+		min-height:85px;
+		max-height:85px;
+	}
+
 
 }
 
@@ -555,18 +572,23 @@ Small browser / iPad landscape
 		font-size: 9em;
 	}
 	
+	.event_title{ /*Avoid third line in Event Title*/
+		min-height:110px;
+		max-height:110px;
+	}
+	
 	.event_title h3 a{
 		font-size: 2.4em;
 	}
 	
 	.event_date{
 		font-size:4.7em;
-
 	}
 	
 	.event_header{
 		min-height: 100px;
 	}
+	
 	.event_post_container{
 /* 		min-width: 800px; FIXME ANAAAA!!!! */
 	}
@@ -578,6 +600,12 @@ Small browser / iPad landscape
 		font-size: 20em;
 	}
 	
-	
+	.event_title{ /*Avoid third line in Event Title*/
+/*
+		min-height:110px;
+		max-height:110px;
+*/
+	}
+
 }
 

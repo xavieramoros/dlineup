@@ -59,6 +59,8 @@ $lang['event:slug_info'] 							="Esto será la url";
 $lang['event:address_info'] 						="Calle, número y ciudad";
 $lang['event:location_info'] 						= "Nombre del sitio";
 
+$lang['event:make_live'] 						="Hacer live";
+$lang['event:make_draft'] 						="Hacer draft";
 
 
 //labels for frontpage:
@@ -90,6 +92,9 @@ $lang['event:currently_no_posts'] 			= 'De momento no hay eventos próximos.';
 $lang['event:post_add_success'] 				= 'El artículo "%s" fue agregado.';
 $lang['event:post_add_error'] 				= 'Ha ocurrido un error.';
 $lang['event:edit_success'] 					= 'El artículo "%s" fue actualizado.';
+$lang['event:post_made_live_success']		 = 'El artículo "%s" fue actualizado a "live".';
+$lang['event:post_made_draft_success']		 = 'El artículo "%s" fue actualizado a "draft".';
+
 $lang['event:edit_error'] 					= 'Ha ocurrido un error.';
 $lang['event:publish_success'] 				= 'El artículo "%s" ha sido publicado.';
 $lang['event:mass_publish_success'] 			= 'Los artículos "%s" fueron publicados.';

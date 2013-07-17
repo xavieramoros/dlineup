@@ -50,6 +50,8 @@ $lang['event:slug_info'] 							="This will be the url";
 $lang['event:address_info'] 						="Street name, number and city";
 $lang['event:location_info'] 						="Name of the place";
 
+$lang['event:make_live'] 						="Make live";
+$lang['event:make_draft'] 						="Make draft";
 
 //labels for frontpage:
 $lang['event:location_post']        	    = 'In';

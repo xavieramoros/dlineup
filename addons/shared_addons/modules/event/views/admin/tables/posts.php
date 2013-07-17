@@ -4,8 +4,10 @@
 			<tr>
 				<th width="20"><?php echo form_checkbox(array('name' => 'action_to_all', 'class' => 'check-all')); ?></th>
 				<th><?php echo lang('event:post_label'); ?></th>
+				<th class="collapse"><?php echo lang('event:start_date'); ?></th>
 				<th class="collapse"><?php echo lang('event:category_label'); ?></th>
 				<th class="collapse"><?php echo lang('event:date_label'); ?></th>
+				
 				<th class="collapse"><?php echo lang('event:written_by_label'); ?></th>
 				<th><?php echo lang('event:status_label'); ?></th>
 				<th width="180"></th>
@@ -23,6 +25,7 @@
 				<tr>
 					<td><?php echo form_checkbox('action_to[]', $post->id); ?></td>
 					<td><?php echo $post->title; ?></td>
+					<td class="collapse"><?php echo format_date($post->start_date); ?></td>					
 					<td class="collapse"><?php echo $post->category_title; ?></td>
 					<td class="collapse"><?php echo format_date($post->created_on); ?></td>
 					<td class="collapse">
@@ -36,13 +39,17 @@
 					<td>
 
                         <?php if($post->status=='live') : ?>
-                            <?php echo anchor('event/' . date('Y/m',$post->created_on). '/'. $post->slug, lang('global:view'), 'class="btn green" target="_blank"');?>
+                            <?php echo anchor('event/' . date('Y/m',$post->created_on). '/'. $post->slug, lang('global:view'), 'class="btn green" target="_blank"');?>		<?php echo anchor('admin/event/flipstatus/' . $post->id, lang('event:make_draft'), 'class="btn orange edit"'); ?>
+
                         <?php else: ?>
-                            <?php echo anchor('event/preview/' . $post->preview_hash, lang('global:preview'), 'class="btn green" target="_blank"');?>
+                            <?php echo anchor('event/preview/' . $post->preview_hash, lang('global:preview'), 'class="btn green" target="_blank"');?>                        	<?php echo anchor('admin/event/flipstatus/' . $post->id, lang('event:make_live'), 'class="btn red"'); ?>
+
                         <?php endif; ?>
-						<?php echo anchor('admin/event/edit/' . $post->id, lang('global:edit'), 'class="btn orange edit"'); ?>
-						<?php echo anchor('admin/event/delete/' . $post->id, lang('global:delete'), array('class'=>'confirm btn red delete')); ?>
 					</td>
+					<td><?php echo anchor('admin/event/edit/' . $post->id, lang('global:edit'), 'class="btn orange edit"'); ?>
+					</td>
+					<td><?php echo anchor('admin/event/delete/' . $post->id, lang('global:delete'), array('class'=>'confirm btn red delete')); ?>
+					</td>					
 				</tr>
 			<?php endforeach; ?>
 		</tbody>

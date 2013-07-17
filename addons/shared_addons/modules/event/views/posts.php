@@ -19,6 +19,56 @@
 			
 			<div class="event_title">
 				<!--<h3><?php echo  anchor('event/'.date('Y/m/', $post->created_on).$post->slug, $post->title); ?></h3>-->
+				
+<!--
+				<?php// if (strlen($post->title)>55){
+					//cut title and append ...
+					//	$post->title = substr($post->title,0,55)."...";
+					//}
+				?>
+
+				<script>
+
+					function checkOverflow(el)
+					{
+					   var curOverflow = el.style.overflow;
+					   if ( !curOverflow || curOverflow === "visible" )
+					      el.style.overflow = "hidden";
+					
+					   var isOverflowing = el.clientWidth < el.scrollWidth 
+					      || el.clientHeight < el.scrollHeight;
+					
+					   el.style.overflow = curOverflow;
+					
+					   return isOverflowing;
+					}
+				</script>
+
+				<script>
+					$(function(){
+						// save selector to UL
+						var $liArray = $('ul.demo').children('li');
+   
+						// var to hold height of one line
+						// this line needs to be changed to fit
+						// your layout.
+						var lineHeight = 20;
+						$liArray.each(function(){
+							var $this = $(this);
+							if ($this.height() == lineHeight) {
+								$this.addClass('oneLine')
+								return true;
+							}
+							if ($this.height() == lineHeight*2) {
+								$this.addClass('twoLine')
+								return true;
+							}
+							$this.addClass('threeLine')
+						});
+					});
+				</script>
+				
+-->
 				<h3><a href="<?php echo($post->event_link)?>" target="_blank"><?php echo($post->title);?></a>
 			</div>
 		</div>

@@ -261,7 +261,7 @@ class Admin extends Admin_Controller
 			: $this->template->build('admin/index');
 
 	}
-	/*
+	
 	public function testload(){
 		$CALENDAR_ID =  "40ngalvb65qq79ufitpenp2d24@group.calendar.google.com";
 
@@ -306,7 +306,7 @@ class Admin extends Admin_Controller
 		}
 				
 	}
-	*/
+	
 	/**
 	 * Load events from Google Calendar.
 	 *
@@ -320,6 +320,7 @@ class Admin extends Admin_Controller
 
 	public function load(){
 		
+//		 [creator] => Array ( [email] => ana.lopez.triguero@gmail.com [displayName] => Ana Lopez Triguero
 		$CALENDAR_ID =  "40ngalvb65qq79ufitpenp2d24@group.calendar.google.com";
 
 		$this->cal = new Google_CalendarService($this->client);
@@ -363,6 +364,9 @@ class Admin extends Admin_Controller
 				//print_r($gCalEvent);
 				
 				if (isset($gCalEvent["description"])){
+					//get if there is a link in the description and use it as event_link.
+					$eventData["event_link"]=$this->_extract_link($gCalEvent["description"]);
+
 					$eventData["body"]=$gCalEvent["description"];					
 				}else{
 					$eventData["body"]="";
@@ -425,7 +429,7 @@ class Admin extends Admin_Controller
 						$eventData["end_date"]=$gCalEvent["end"]["date"];
 					}
 				}
-						
+
 				/*				
 				if($this->event_m->check_exists('title', $eventData["title"], $id)){
 					
@@ -453,7 +457,7 @@ class Admin extends Admin_Controller
 					//added by xavi
 					//'price'				=> $this->input->post('price'),
 					'location'			=> $eventData["location"],
-					'address'			=> $eventData["address"]?$eventData["address"]:'', 
+					'address'			=> $eventData["event_link"],//FIXME, TESTING:$eventData["address"]?$eventData["address"]:'', 
 	
 	                //already added before, need to convert to right format
 	                
@@ -464,7 +468,7 @@ class Admin extends Admin_Controller
 					//'organizer'			=> $this->input->post('organizer'),
 					//'organizer_link'	=> $this->input->post('organizer_link'),
 					//'price'				=> $this->input->post('price'),
-					//'event_link'		=> $this->input->post('event_link'),
+					'event_link'		=> $eventData["event_link"]?$eventData["event_link"]:"",
 	 				//'language'			=> $this->input->post('language'),
 	 				))){
 		 				$this->pyrocache->delete_all('event_m');
@@ -548,6 +552,25 @@ class Admin extends Admin_Controller
 			return false;
 		}		
 	}
+	
+	/*Function that checks if there is a link in the string passed and returns it or empty string*/
+	private function _extract_link($text_with_url){
+			
+		// The Regular Expression filter
+		$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
+		
+		// Check if there is a url in the text
+		if(preg_match($reg_exUrl, $text_with_url, $url)) {
+		
+		       // make the urls hyper links
+		       //echo preg_replace($reg_exUrl, "<a href="{$url[0]}">{$url[0]}</a> ", $text);
+		       return $url[0];
+		
+		} else {
+		       // if no urls in the text just return empty string.
+				return "";
+		}
+	}
 	/**
 	 * Create new event
 	 *
@@ -572,7 +595,6 @@ class Admin extends Admin_Controller
 
                 $hash = "";
 			}
-
 			if ($id = $this->event_m->insert(array(
 				'id' 				=> time(),  //use a random and unique id for events created from admin
 				'title'				=> $this->input->post('title'),
@@ -650,7 +672,70 @@ class Admin extends Admin_Controller
 			->set('post', $post)
 			->build('admin/form');
 	}
+	/**
+	 * Flip status of event post. 
+	 If status is draft then live and viceversa.
+	 *
+	 * 
+	 * @param int $id the ID of the event post to edit
+	 * @return void
+	 */
+	
+	public function flipstatus($id = 0){
+		$id OR redirect('admin/event');
 
+		role_or_die('event', 'put_live'); //if we don't have access role for putting event live, (same for draft), go out.
+		
+		$post = $this->event_m->get($id); //FIXME Could be improved only requesting the status, not all the object.
+		
+		if ($post->status === 'draft')
+		{
+			$new_status="live";
+		}else{
+			//role_or_die('event', 'put_draft'); FIXME:New role needs to be added:put_draft
+			$new_status="draft";
+		}			
+        $hash = $this->_preview_hash();
+
+		$author_id = empty($post->display_name) ? $this->current_user->id : $post->author_id;
+
+		$result = $this->event_m->update($id, array(
+			'status'			=> $new_status,
+			'author_id'			=> $author_id, //not sure if needed yet.
+            'preview_hash'      => $hash
+		));
+		
+		if ($result)
+		{
+			if ($post->status = 'draft')
+			{
+				$success_message="event:post_made_live_success";
+			}else{
+				$success_message="event:post_made_draft_success";
+			}			
+
+			$this->session->set_flashdata(array('success' => sprintf(lang($success_message), $this->input->post('title'))));
+
+			// Event article has been updated, may not be anything to do with publishing though
+			Events::trigger('post_updated', $id);
+
+			// They are trying to put this live
+			if ($post->status != 'live' and $this->input->post('status') == 'live')
+			{
+				// Fire an event, we're posting a new event!
+				Events::trigger('post_published', $id);
+			}
+		}
+		
+		else
+		{
+			$this->session->set_flashdata('error', lang('event:edit_error'));
+		}
+		//when flipped status, go back to admin.
+		redirect('admin/event');
+	}
+	
+	
 	/**
 	 * Edit event post
 	 *
