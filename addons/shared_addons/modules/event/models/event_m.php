@@ -15,6 +15,17 @@ class Event_m extends MY_Model
 		return $this->db->get('event')->result();
 	}
 
+	public function get_all_live()
+	{
+		$this->db
+			->select('event.*, event_categories.title AS category_title, event_categories.slug AS category_slug, profiles.display_name')
+			->join('event_categories', 'event.category_id = event_categories.id', 'left')
+			->join('profiles', 'profiles.user_id = event.author_id', 'left')
+			->order_by('created_on', 'DESC');
+
+		return $this->db->get('event')->result();
+	}
+
 	public function get($id)
 	{
 		return $this->db
@@ -90,29 +101,12 @@ class Event_m extends MY_Model
 				->like('event.title', trim($params['keywords']))
 				->or_like('profiles.display_name', trim($params['keywords']));
 		}
-
-		// Is a status set?
-		if (!empty($params['status']))
-		{
-			// If it's all, then show whatever the status
-			if ($params['status'] != 'all')
-			{
-				// Otherwise, show only the specific status
-				$this->db->where('status', $params['status']);
-			}
-		}
-
-		// Nothing mentioned, show live only (general frontend stuff)
-		else
-		{
-			$this->db->where('status', 'live');
-		}
-
 		// By default, dont show future posts
 		if (!isset($params['show_future']) || (isset($params['show_future']) && $params['show_future'] == FALSE))
 		{
 			$this->db->where('created_on <=', now());
 		}
+		
 		//Xavi: remove older posts
 		//we get current day, month and year:
 		$current_day = date("d");
@@ -125,15 +119,39 @@ class Event_m extends MY_Model
 		//if we have a lower day or month from next year, it won«t get selected. So adding extra condition:
 		$this->db->or_where('start_date >=', now());  
 
+		// Is a status set?
+		if (!empty($params['status']))
+		{
+			// If it's all, then show whatever the status
+			if ($params['status'] != 'all')
+			{
+				// Otherwise, show only the specific status
+				$this->db->where('status', $params['status']);
+			}
+		}
+		// Nothing mentioned, show live only (general frontend stuff)
+		else
+		{
+			$this->db->where('status', 'live');
+		}
+
+
 		// Limit the results based on 1 number or 2 (2nd is offset)
 		if (isset($params['limit']) && is_array($params['limit']))
 			$this->db->limit($params['limit'][0], $params['limit'][1]);
 		elseif (isset($params['limit']))
 			$this->db->limit($params['limit']);
 		
+		
 		//order results from newer to older	
 		$this->db->order_by("start_date", "asc");	
-		return $this->get_all();
+		
+
+		$final_result = $this->get_all();
+		//echo $this->db->last_query();
+		return $final_result;
+//		return $this->get_all();
+
 	}
 	
 	public function count_tagged_by($tag, $params)
@@ -229,6 +247,8 @@ class Event_m extends MY_Model
 		$this->db->select('start_date')
 				 ->from('default_event')
 				 ->where('start_date > UNIX_TIMESTAMP(now())')
+				 ->where('status','live')
+/* 				 ->where('author_id !=', 0)				  */				 
 				 ->order_by("start_date", "DESC")
 				 ->limit(1);
 		

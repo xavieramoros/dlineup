@@ -39,4 +39,7 @@ $route['event/admin/categories(/:any)?']		= 'admin_categories$1';
 
 
 
+/*
+$route['(event)/submit/success']		    = 'submit/success';
+*/
 

@@ -39,7 +39,7 @@ class Submit extends Public_Controller
 		$this->load->model('event_categories_m');
 		$this->load->model('comments/comments_m');
 		$this->load->library(array('keywords/keywords', 'form_validation'));
-
+		$this->load->helper(array('form', 'url'));
 		$this->lang->load('event');
 	}
 
@@ -48,52 +48,15 @@ class Submit extends Public_Controller
 	 */
 	 public function index(){
 		
-		$this->yourevent();
-	}
-	public function success(){
-		$this->template
-			->title($this->module_details['name'])
-			->set_layout('submit.html')			
-			->build('success');			
-	}
-	public function submit_your_event(){
-		$this->form_validation->set_rules($this->validation_rules);
-		if ($this->form_validation->run())
-		{
-			$this->yourevent();
-		}
-		else
-		{
-			// Go through all the known fields and get the post values
-			$your_event = new stdClass;
-			foreach ($this->validation_rules as $key => $field)
-			{
-				$your_event->$field['field'] = set_value($field['field']);
-			}
-		}
-	}
-	 
-	 
-	public function yourevent()
-	{
-
 		$this->form_validation->set_rules($this->validation_rules);
 
 		if ($this->form_validation->run())
 		{
-			//add event to database:
-			
-			//check if event exists.
-			//FIXME
-			//if (! $this->event_m->linkExists($link)){
+				//check if event exists.
+				//FIXME
+				//if (! $this->event_m->linkExists($link)){
 
-			$gid = $this->event_m->insert(array(
-				/* FIXME
-				your_name
-				your_email
-				author_id create new author id.
-				*/
-				
+				$gid = $this->event_m->insert(array(				
 				'id'                => now(), //using timestamp as id.
 				'title'				=> $this->input->post('event_title'),
 				'slug'				=> "",
@@ -133,24 +96,34 @@ class Submit extends Public_Controller
 	 			Events::trigger('post_created', $gid);
 	 			
 	 			//redirect to success page
+	 			//$this->success();
 	 			redirect('submit/success');
 		}
 		else
 		{
-			// Go through all the known fields and get the post values
-			$this->your_event = new stdClass;
-			foreach ($this->validation_rules as $key => $field)
-			{
-				$this->your_event->$field['field'] = set_value($field['field']);
-			}
-			$this->template
-			->title($this->module_details['name'])
-			->set_breadcrumb(lang('event:event_title'))
-			->set('your_event',$this->your_event)
-			->set_layout('submit.html')
-			->build('your-event');
+			$your_event = new stdClass;
+            $this->your_event = new stdClass;
+            foreach ($this->validation_rules as $key => $field)
+            {
+	            $your_event->$field['field'] = set_value($field['field']);
+	            $this->your_event->$field['field'] = set_value($field['field']);
+	        }
 
+			$this->template
+				->title($this->module_details['name'])
+				->set_breadcrumb(lang('event:event_title'))
+				->set('your_event',$this->your_event)
+				->set_layout('submit.html')
+				->build('submit-event');
 		}
 		
 	}
+
+	public function success(){
+		$this->template
+			->title($this->module_details['name'])
+			->set_layout('submit.html')			
+			->build('success');			
+	}
+	
 }
