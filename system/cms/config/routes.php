@@ -67,7 +67,7 @@ $route['sitemap.xml']                       = 'sitemap/xml';
 $route['about']                       		= 'event/about';
 $route['your-event']          				= 'event/submit/yourevent';
 $route['auth']                       		= 'event/auth';
-
+$route['submit/success']						= 'event/submit/success';
 
 $route['newsletter/subscribe']              = 'event/newsletter/subscribe';  //here event looks like the module not the controller
 

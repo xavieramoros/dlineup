@@ -74,6 +74,10 @@ $lang['event:submit_event_link']        	    = 'Link del evento';
 $lang['event:submit_your_name']        	= 'Tu nombre';
 $lang['event:submit_your_email']        = 'Tu email';
 
+$lang['event:submit_success_title']        = 'El evento se ha enviado correctamente!';
+$lang['event:submit_success_message1']     = 'Lo revisaremos y subiremos a nuestra página si es interesante';
+$lang['event:submit_success_message2']     = 'Gracias por tu colaboración!';
+
 
 // titles
 $lang['event:create_title'] 			    = 'Crear un artículo';

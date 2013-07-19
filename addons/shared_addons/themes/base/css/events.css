@@ -23,7 +23,7 @@ body {
 	height:auto;
 	margin:0;
 	
-		background-image: linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
+	background-image: linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
 	background-image: -o-linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
 	background-image: -moz-linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
 	background-image: -webkit-linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
@@ -125,6 +125,21 @@ h2#event_site_slogan{
 	line-height: 1.2em;
 }
 
+/* Submit event*/
+.submit_form_container{
+	height: 500px;
+}
+.submit_form_container ul{
+	padding-left: 2%;
+	list-style: none;
+}
+
+.submit_form_container h2{
+	padding:2% 0 0 2%;
+}
+.submit_success_button{
+	margin: 2% 0 0 2%;
+}
 /*Left menu (calendar)*/
 .event_left_menu{
 	display:none; /*FIXME hide months in mobile screen*/

@@ -64,7 +64,10 @@ $lang['event:submit_event_link']        	    = 'Event link';
 $lang['event:submit_your_name']        	= 'Your name';
 $lang['event:submit_your_email']        = 'Your email';
 
-
+$lang['event:submit_success_title']        = 'Your event was submitted correctly!';
+$lang['event:submit_success_message1']     = 'We will review and submit it to our website if appropriate.';
+$lang['event:submit_success_message2']     = 'Thanks for your collaboration!';
+///////
 
 $lang['event:event_date']             		= 'Event Date';  //used for form verification message
 $lang['event:start_date']        			= 'Start Date'; //used for form verification message

@@ -1,4 +1,10 @@
-<div>
-<h2>Your event was submitted correctly!</h2>
+<section class="submit_form_container">		
+<h2><?php echo lang('event:submit_success_title');?></h2>
 
-</div>
+<ul>
+	<li><?php echo lang('event:submit_success_message1');?></li>
+	<li><?php echo lang('event:submit_success_message2');?></li>
+</ul>
+	<button class='event_form_button submit_success_button' onclick="location.href= '/'; return false;">Back</button>
+
+</section>

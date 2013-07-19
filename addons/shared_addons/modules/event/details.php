@@ -8,7 +8,7 @@
  */
 class Module_Event extends Module {
 
-	public $version = '2.1';
+	public $version = '2.4';
 
 	public function info()
 	{
@@ -124,24 +124,44 @@ class Module_Event extends Module {
 	public function upgrade($old_version)
 	{
 		switch ($old_version) {
-			case '2.1':
+			case '2.2':
 				//add here all the modifications in the database
-				
-				
-				//$this->dbforge->modify_column()
 				//http://ellislab.com/codeigniter/user-guide/database/forge.html
-				/*
+				
 				$fields = array(
-                        'old_name' => array(
-                                                         'name' => 'new_name',
-                                                         'type' => 'TEXT',
-                                                ),
-);
-$this->dbforge->modify_column('table_name', $fields);
-				*/
-				
+/*                         'start_date' => array('default' => ''), */
+/*                         'address' => array('default' => '')                         */
+                        'start_date' => array(
+		                        'name' => 'start_date',
+		                        'type' => 'int(11)',
+                        		'default' => 1577840461),
+                        'end_date' => array(
+		                        'name' => 'end_date',
+		                        'type' => 'int(11)',
+                        		'default' => 1577840461),
+                        'slug' => array(
+                        	'type' => 'VARCHAR',
+                        	'constraint' => 100,
+                        	'null' => false,                        	                        	
+                        	'default' => ''),
+                        'location' => array(
+		                        'name' => 'location',
+		                        'type' => 'varchar(40)',
+                        		'default' => ''),
+                        	
+                );
+				$this->dbforge->modify_column('event', $fields);
 				break;
-				
+			case '2.3':  //make title not unique.
+				$fields = array(
+					'title' => array(
+						'type' => 'VARCHAR(100)', 
+						'null' => false, 
+						'unique' => false),
+				);	
+				$this->dbforge->modify_column('event', $fields);
+			break;
+	
 		}
 		return true;
 	}

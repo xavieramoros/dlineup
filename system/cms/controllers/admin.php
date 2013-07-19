@@ -33,7 +33,7 @@ class Admin extends Admin_Controller
 		}
 		//$this->template
 		//	->build('admin/dashboard');
-		redirect('admin/event/');
+		redirect('admin/event/');  //default
 		
 	}
 

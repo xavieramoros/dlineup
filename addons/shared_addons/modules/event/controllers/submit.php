@@ -49,34 +49,21 @@ class Submit extends Public_Controller
 	 public function index(){
 		
 		$this->yourevent();
-		//$this->load->view('about');
-		// Set meta description based on post titles
-		//$meta = $this->_posts_metadata($_event);
-
-		
-		/*
-		$this->	template
-			//->title($this->module_details['name'])
-			->set_breadcrumb(lang('event:event_title'))
-			->set_metadata('description', $meta['description'])
-			->set_metadata('keywords', $meta['keywords'])
-			->set('your_event',$this->your_event);
-			//->build('your-event');
-		*/	
 	}
-	
+	public function success(){
+		$this->template
+			->title($this->module_details['name'])
+			->set_layout('submit.html')			
+			->build('success');			
+	}
 	public function submit_your_event(){
 		$this->form_validation->set_rules($this->validation_rules);
-		echo "FORM VALIDATION OK";
-
 		if ($this->form_validation->run())
 		{
-			echo "FORM VALIDATION OK";
 			$this->yourevent();
 		}
 		else
 		{
-			echo "FORM VALIDATION ERROR";
 			// Go through all the known fields and get the post values
 			$your_event = new stdClass;
 			foreach ($this->validation_rules as $key => $field)
@@ -89,36 +76,64 @@ class Submit extends Public_Controller
 	 
 	public function yourevent()
 	{
-		// Set meta description based on post titles
-		//$meta = $this->_posts_metadata($_event);
-		
-		
-/*
-		$this->your_event=array(
-			'your_name'=>"name",
-			'your_email'=>"email",
-			'event_link'=>"event_link",
-			'title'=>"title"
-		);
-*/
-
-		/*
-		if($this->input->is_ajax_request()){
-		}
-		else{
-		}
-*/
-			//->set_metadata('description', $meta['description'])
-			//->set_metadata('keywords', $meta['keywords'])
 
 		$this->form_validation->set_rules($this->validation_rules);
 
 		if ($this->form_validation->run())
 		{
-			$this->template
-			->title($this->module_details['name'])
-			->build('success');
+			//add event to database:
+			
+			//check if event exists.
+			//FIXME
+			//if (! $this->event_m->linkExists($link)){
 
+			$gid = $this->event_m->insert(array(
+				/* FIXME
+				your_name
+				your_email
+				author_id create new author id.
+				*/
+				
+				'id'                => now(), //using timestamp as id.
+				'title'				=> $this->input->post('event_title'),
+				'slug'				=> "",
+				'category_id'		=> 0,
+				//'keywords'			=> Keywords::process($this->input->post('keywords')),
+				'body'				=> "",
+				'status'			=> "draft", //events imported from GCal are created as draft
+				'created_on'		=> now(),  //convert time from 2013-07-06T13:30:37.000Z to unix timestamp					
+				//'comments_enabled'	=> $this->input->post('comments_enabled'),
+				//'author_id'			=> "",//$this->current_user->id,
+				'type'				=> "wysiwyg-advanced",
+				'parsed'			=> "",
+                //'preview_hash'      => $hash,
+				
+				//added by xavi
+				//'price'				=> $this->input->post('price'),
+				'location'			=> "",
+				'address'			=> "", 
+
+                //already added before, need to convert to right format
+                
+                //'start_date'		=> strtotime($eventData["start_date"]),  //save date in timestamp format
+                //'end_date'			=> strtotime($eventData["end_date"]),
+                //'start_date'		=> $start_date,
+                //'end_date'			=> $end_date,
+				//'organizer'			=> $this->input->post('organizer'),
+				//'organizer_link'	=> $this->input->post('organizer_link'),
+				//'price'				=> $this->input->post('price'),
+				'event_link'		=> $this->input->post('event_link'),
+ 				//'language'			=> $this->input->post('language'),
+ 			));
+
+	 		$this->pyrocache->delete_all('event_m');
+	 			$this->session->set_flashdata('success', sprintf($this->lang->line('event:post_add_success'), $this->input->post('title')));
+			
+	 			// Event article has been updated, may not be anything to do with publishing though
+	 			Events::trigger('post_created', $gid);
+	 			
+	 			//redirect to success page
+	 			redirect('submit/success');
 		}
 		else
 		{
@@ -132,6 +147,7 @@ class Submit extends Public_Controller
 			->title($this->module_details['name'])
 			->set_breadcrumb(lang('event:event_title'))
 			->set('your_event',$this->your_event)
+			->set_layout('submit.html')
 			->build('your-event');
 
 		}

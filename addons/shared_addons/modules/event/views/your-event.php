@@ -1,10 +1,10 @@
- <section>		
+ <section class="submit_form_container>		
 		
 		<?php //echo validation_errors(); ?>
 
 		<?php echo form_open(); ?>
 		
-		<fieldset>
+		<fieldset style="border: 0;">
 		<div class="your_event_form">
 			<ul>
 				<li ><label for="event_title"><?php echo lang('event:submit_event_title'); ?> <span>*</span></label>
