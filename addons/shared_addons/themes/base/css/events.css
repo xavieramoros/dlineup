@@ -170,7 +170,7 @@ h2#event_site_slogan{
 .event_right_menu ul{   /*Right menu is placec before post_container to avoid problems with floats*/
 	list-style: none;
 	font-weight:bold;
-	width:40%; /**/
+	width:48%; /**/
 }
 .event_right_menu li{
 	font-size: 1.2em;
@@ -210,8 +210,10 @@ h2#event_site_slogan{
 }
 
 #SendButton{
-	margin-bottom: 4%;
+	margin: 4% auto auto;
+	display: block;
 }
+
 
 /*End of right menu*/
 
@@ -302,11 +304,12 @@ input:-moz-placeholder {
 	padding:0 0 2% 0;
 	background: #ffffff;
 	min-height: 65px;
-	min-width: 350px;
+/* 	min-width: 350px; */
 }
 
 .event_body{
-	display: inline-block;
+/* 	display: inline-block; */
+	display: block;
 	font-size:100%;
     color: #666578;
 	font-family: Georgia;
@@ -394,7 +397,7 @@ input:-moz-placeholder {
 	position:relative;
 	float:right;
 	bottom:38px;
-	right:3px;
+	right:15px;
 }
 
 #collapse_button{
@@ -460,7 +463,7 @@ Small browser / iPad landscape
 		width:80%;	
 	}
 	.event_right_menu{
-		width:18%;
+		width:19%;
 		float:right;	
 		margin:0 0 0 0;
 		padding:0 0 0 0;
@@ -484,8 +487,10 @@ Small browser / iPad landscape
 	.event_title a{
 		font-size:1.5em; /*1.4em*/
 	}
-
-
+	
+	#SendButton{
+		display: inline-block;
+	}
 /*****************/
 /* iPad portrait */
 @media only screen and (min-width: 769px) {
@@ -497,7 +502,7 @@ Small browser / iPad landscape
 	}
 	
 	.event_right_menu{
-		width:18%;
+		width:19%;
 		float:right;	
 		margin:0 0 0 0;
 		padding:0 0 0 0;

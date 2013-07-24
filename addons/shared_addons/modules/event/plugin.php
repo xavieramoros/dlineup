@@ -202,6 +202,39 @@ class Plugin_Event extends Plugin
 	        $array_full[$dt->format( "Y" )][] = $dt->format( "F" ); //array compelte: array(2013 => array("May","June","July","August"), 2014=> ....)
 
 	    }
+	    	    /*
+	    $arra_years = Array ( [0] => 2013 
+	    		[1] => 2013 
+	    		[2] => 2013 
+	    		[3] => 2013 
+	    		[4] => 2013 
+	    		[5] => 2013 
+	    		[6] => 2014 
+	    		[7] => 2014 
+	    		[8] => 2014 ) 
+
+	    $array_months = Array ( [0] => July 
+	    		[1] => August 
+	    		[2] => September 
+	    		[3] => October 
+	    		[4] => November 
+	    		[5] => December 
+	    		[6] => January 
+	    		[7] => February 
+	    		[8] => March ) 
+
+	    $array_full =Array ( [2013] => Array ( 
+	    				[0] => July 
+	    				[1] => August 
+	    				[2] => September 
+	    				[3] => October 
+	    				[4] => November 
+	    				[5] => December ) 
+	    		[2014] => Array ( 
+	    				[0] => January 
+	    				[1] => February 
+	    				[2] => March ) ) 
+	    */
 	    $final_result="<ul id='event_left_menu_months'>";
 	    if (sizeof($array_full)==1){ //we only have one year, we only show months
 		    foreach($array_months as $key=>$month){
@@ -211,15 +244,17 @@ class Plugin_Event extends Plugin
 		    }
 	    }
 	    else if(sizeof($array_full)>1){  //we have multiple years, print year and then months 
-		    foreach($arra_years as $key=>$year){
+		    foreach($array_full as $key=>$year){
 				$final_result.="<li>";
-				$final_result.=$year;
+				$final_result.=$key;
 				$final_result.="</li>";
-			    foreach($array_full[$year] as $key=>$month){
+				
+			    foreach($array_full[$key] as $key=>$month){
 				    $final_result.="<li>";
 				    $final_result.=$month;
 				    $final_result.="</li>";
 			    }
+			    
 			}
 	    }else{  //$array_full is empty, so use current month
 			/* in case we need to show current month even if there are not events

@@ -48,37 +48,41 @@ $("nav#primary ul li:has(ul)").hover(function () {
 	});
 });
 
-// Tipsy
-$('.tooltip').tipsy({
-	gravity: $.fn.tipsy.autoNS,
-	fade: true,
-	html: true
-});
-
-$('.tooltip-n').tipsy({
-	gravity: 'n',
-	fade: false,
-	html: true
-});
 
 
-$('.tooltip-s').tipsy({
-	gravity: 's',
-	fade: false,
-	html: true
-});
+if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) { //remove tooltip if mobile device
+	// Tipsy
+	$('.tooltip').tipsy({
+		gravity: $.fn.tipsy.autoNS,
+		fade: true,
+		html: true
+	});
+	
+	$('.tooltip-n').tipsy({
+		gravity: 'n',
+		fade: false,
+		html: true
+	});
+	
+	
+	$('.tooltip-s').tipsy({
+		gravity: 's',
+		fade: false,
+		html: true
+	});
+	$('.tooltip-e').tipsy({
+		gravity: 'e',
+		fade: false,
+		html: true
+	});
+	$('.tooltip-w').tipsy({
+		gravity: 'w',
+		fade: false,
+		html: true
+	});
+	
+}
 
-$('.tooltip-e').tipsy({
-	gravity: 'e',
-	fade: false,
-	html: true
-});
-
-$('.tooltip-w').tipsy({
-	gravity: 'w',
-	fade: false,
-	html: true
-});
 
 // Chosen
 $(".chzn").chosen();
