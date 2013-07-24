@@ -101,23 +101,9 @@ class Event_m extends MY_Model
 				->like('event.title', trim($params['keywords']))
 				->or_like('profiles.display_name', trim($params['keywords']));
 		}
-		// By default, dont show future posts
-		if (!isset($params['show_future']) || (isset($params['show_future']) && $params['show_future'] == FALSE))
-		{
-			$this->db->where('created_on <=', now());
-		}
-		
-		//Xavi: remove older posts
-		//we get current day, month and year:
-		$current_day = date("d");
-		$numericMonth = date("n"); // 1 through 12 (no leading zero)		
- 		$year = date("Y"); // 2011
-			
-		$array = array('DAY(FROM_UNIXTIME(start_date)) >= ' => $current_day, 'MONTH(FROM_UNIXTIME(start_date)) >= ' => $numericMonth, 'YEAR(FROM_UNIXTIME(start_date)) >= ' => $year);
-		$this->db->where($array);
-	
-		//if we have a lower day or month from next year, it won«t get selected. So adding extra condition:
-		$this->db->or_where('start_date >=', now());  
+
+		//show only events with start_date higher than current date. 
+		$this->db->where('start_date >=', now());
 
 		// Is a status set?
 		if (!empty($params['status']))
@@ -148,7 +134,7 @@ class Event_m extends MY_Model
 		
 
 		$final_result = $this->get_all();
-		//echo $this->db->last_query();
+/* 		echo $this->db->last_query(); */
 		return $final_result;
 //		return $this->get_all();
 
@@ -254,6 +240,8 @@ class Event_m extends MY_Model
 		
 		$result = $this->db->get()->result_array();
 		
+/* 		echo $this->db->last_query(); */
+
 		$last_event_date=time();
 		
 		if(!is_null($result)){
@@ -400,7 +388,7 @@ class Event_m extends MY_Model
 				$counter++;
 			}
 		}
-		return $this->get_all();
+		return $this();
 	}
 
 }

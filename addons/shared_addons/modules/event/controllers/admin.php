@@ -457,7 +457,7 @@ class Admin extends Admin_Controller
 					//added by xavi
 					//'price'				=> $this->input->post('price'),
 					'location'			=> $eventData["location"],
-					'address'			=> $eventData["event_link"],//FIXME, TESTING:$eventData["address"]?$eventData["address"]:'', 
+					'address'			=> $eventData["address"]?$eventData["address"]:'', 
 	
 	                //already added before, need to convert to right format
 	                
@@ -595,6 +595,45 @@ class Admin extends Admin_Controller
 
                 $hash = "";
 			}
+			//start date and end date.
+			$start_date=$this->input->post('start_date');  //we always have a start date.
+			
+			if(!$this->input->post('end_date')){
+				//if no end_date, use same value as start_date
+				$end_date = $this->input->post('start_date');
+			}else{
+				$end_date=$this->input->post('end_date');
+			}			
+						
+			if(!$this->input->post('starts_on_hour')){ //if we don't have start time, use default values.
+				$starts_on_hour="11"; 
+				$starts_on_minute="11";
+				$ends_on_hour="11";
+				$ends_on_minute="11";
+			}
+			else{
+				$starts_on_hour=$this->input->post('starts_on_hour'); //default value
+				if(!$this->input->post('starts_on_minute')){  //we have hour but not minute, use 00.
+					$starts_on_minute="00";
+				}
+				else{
+					$starts_on_minute=$this->input->post('starts_on_minute');
+				}
+				if(!$this->input->post('ends_on_hour')){  //we have no stop time
+					$ends_on_hour="11";
+					$ends_on_minute="11";
+				}else{
+					$ends_on_hour=$this->input->post('ends_on_hour');
+					if(!$this->input->post('ends_on_minute')){  //we have hour but not minute, use 00.
+						$ends_on_minute="00";
+					}
+					else{
+						$ends_on_minute=$this->input->post('ends_on_minute');
+					}
+				}
+
+			}
+					
 			if ($id = $this->event_m->insert(array(
 				'id' 				=> time(),  //use a random and unique id for events created from admin
 				'title'				=> $this->input->post('title'),
@@ -616,14 +655,13 @@ class Admin extends Admin_Controller
 				'address'			=> $this->input->post('address'),
 
                 //already added before, need to convert to right format
-                'start_date'		=> strtotime(sprintf('%s %s:%s', $this->input->post('start_date'), $this->input->post('starts_on_hour'), $this->input->post('starts_on_minute'))),
-                'end_date'		    => strtotime(sprintf('%s %s:%s', $this->input->post('end_date'), $this->input->post('ends_on_hour'), $this->input->post('ends_on_minute'))),
+                'start_date'		=> strtotime(sprintf('%s %s:%s', $start_date,$starts_on_hour,$starts_on_minute)),
+                'end_date'		    => strtotime(sprintf('%s %s:%s', $end_date,$ends_on_hour,$ends_on_minute)),
 				'organizer'			=> $this->input->post('organizer'),
 				'organizer_link'	=> $this->input->post('organizer_link'),
 				'price'				=> $this->input->post('price'),
 				'event_link'		=> $this->input->post('event_link'),
- 				'language'			=> $this->input->post('language'),
-		
+ 				'language'			=> $this->input->post('language')
 			)))
 			{
 				$this->pyrocache->delete_all('event_m');

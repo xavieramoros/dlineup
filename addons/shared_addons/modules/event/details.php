@@ -161,7 +161,7 @@ class Module_Event extends Module {
 				);	
 				$this->dbforge->modify_column('event', $fields);
 			break;
-	
+					
 		}
 		return true;
 	}

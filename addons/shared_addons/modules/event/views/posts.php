@@ -91,9 +91,16 @@
 		<div class="event_body">
 			<div class="event_info">
 				<ul class="event_info_list">
-					<li class="info-tag" id="info-tag-time">
-						19:00-21:00
-					</li>	
+					<?php if (date('H:i',$post->start_date)!="11:11"){
+						echo '<li class="info-tag" id="info-tag-time">';
+						echo '<span style="font-weight:bold;">';					
+						echo date('H:i',$post->start_date);
+						if(date('H:i',$post->end_date)!="11:11"){
+							echo "-".date('H:i',$post->end_date);
+						}
+						echo '</span>';										
+						echo '</li>';
+					} ?>
 					<?php if ($post->location){
 	
 						echo '<li class="info-tag" id="info-tag-location">';

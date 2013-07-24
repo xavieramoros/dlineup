@@ -183,13 +183,13 @@ class Plugin_Event extends Plugin
 		
 		$last_event_timestamp = $this->event_m->get_last_event_date();
 
-		//$last_event_timestamp = $this->event_m->get_last_event_date();
-
 	    $begin = new DateTime();
 	    $begin->setTimestamp($current_timestamp);// $start_date );
 	    
 	    $end = new DateTime();
 	    $end->setTimestamp($last_event_timestamp);
+	    $end->modify('+1 month'); //add one month to see last one correctly
+	    
 	    $interval = new DateInterval('P1M'); // 1 month interval
 	
 	    $period = new DatePeriod($begin, $interval, $end);
@@ -202,7 +202,6 @@ class Plugin_Event extends Plugin
 	        $array_full[$dt->format( "Y" )][] = $dt->format( "F" ); //array compelte: array(2013 => array("May","June","July","August"), 2014=> ....)
 
 	    }
-
 	    $final_result="<ul id='event_left_menu_months'>";
 	    if (sizeof($array_full)==1){ //we only have one year, we only show months
 		    foreach($array_months as $key=>$month){
