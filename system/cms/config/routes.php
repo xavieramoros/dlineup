@@ -65,7 +65,7 @@ $route['sitemap.xml']                       = 'sitemap/xml';
 
 
 $route['about']                       		= 'event/about';
-$route['auth']                       		= 'event/auth';
+$route['terms']                       		= 'event/terms';
 /* $route['submit/success']					= 'event/submit/success'; */
 $route['submit']          					= 'event/submit'; 
 $route['submit/(:any)']          			= 'event/submit/$1'; 

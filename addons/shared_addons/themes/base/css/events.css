@@ -279,7 +279,14 @@ h2#event_site_slogan{
 	height:29px;
 }
 
+/*Used in footer and header, controlling li or ul.*/
 .li_horizontal{
+	 display: inline;
+	 list-style-type: none;
+	 padding-right: 20px;
+}
+
+.ul_horizontal li{
 	 display: inline;
 	 list-style-type: none;
 	 padding-right: 20px;
@@ -497,6 +504,16 @@ input:-moz-placeholder {
 	width:35px;
 
 }
+
+/***********************Terms page*/
+.terms_ul li{
+	margin-bottom: 2%;
+	list-style: none;
+}
+/***********************End of Terms*/
+
+
+
 
 /****************************************************************************************/
 /* START OF RESPONSIVE CODE:

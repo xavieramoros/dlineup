@@ -10,6 +10,8 @@ web1:
     - /system/cms/logs/
     - /assets/cache/
     
+  php_newrelic_framework: codeigniter
+    
 web2: 
   name: pyrocms2
   php_extensions: 

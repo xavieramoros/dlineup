@@ -57,7 +57,7 @@ class Event extends Public_Controller
 	/**
 	 * Shows the about page	 
 	 */
-	 public function about2()
+	 public function about()
 	{
 		//$this->load->view('about');
 		// Set meta description based on post titles
@@ -68,11 +68,30 @@ class Event extends Public_Controller
 			->set_breadcrumb(lang('event:event_title'))
 			->set_metadata('description', $meta['description'])
 			->set_metadata('keywords', $meta['keywords'])
+			->set_layout('submit.html')
 			->build('about');
 	}
 
 	/**
 	 * Shows the about page	 
+	 */
+	 public function terms()
+	{
+		//$this->load->view('about');
+		// Set meta description based on post titles
+		$meta = $this->_posts_metadata($_event);
+
+		$this->template
+			->title($this->module_details['name'])
+			->set_breadcrumb(lang('event:event_title'))
+			->set_metadata('description', $meta['description'])
+			->set_metadata('keywords', $meta['keywords'])
+			->set_layout('submit.html')
+			->build('terms');
+	}
+
+	/**
+	 * Shows the error page	 
 	 */
 	 public function error()
 	{
