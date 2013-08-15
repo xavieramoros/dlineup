@@ -64,7 +64,7 @@ $(document).ready(function() {
 	    		this.title = "Show less";
 	    		this.alt = "Show less";
 	    	}else{
-		    	this.src = document.location.hostname+'/addons/shared_addons/themes/base/img/collapse.png';
+		    	this.src = 'http://'+document.location.hostname+'/addons/shared_addons/themes/base/img/collapse.png';
 	    		this.id = "collapse_button";
 	    		this.title = "Show less";
 	    		this.alt = "Show less";
@@ -98,7 +98,7 @@ $(document).ready(function() {
 	    		this.title = "Show more";
 	    		this.alt = "Show more";
 	    	}else{
-		    	this.src = document.location.hostname+'/addons/shared_addons/themes/base/img/expand.png';
+		    	this.src = 'http://'+document.location.hostname+'/addons/shared_addons/themes/base/img/expand.png';
 	    		this.id = "expand_button";
 	    		this.title = "Show more";
 	    		this.alt = "Show more";

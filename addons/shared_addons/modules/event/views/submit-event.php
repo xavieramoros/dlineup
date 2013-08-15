@@ -8,7 +8,7 @@
 		<div class="your_event_form">
 			<h2>Submit your event
 			</h2>
-			<p class="georgia_text">Send us your event info so we can add it to our event agenda. This will help promote your event and </p>
+			<p class="georgia_text">Send us your event info so we can add it to our event agenda. This will help promote your event and increase the number of attendees: </p>
 			<ul>
 				<li ><label for="event_title"><?php echo lang('event:submit_event_title'); ?></label>
 					<div class="form_input_wrapper">
