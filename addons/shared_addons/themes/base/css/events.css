@@ -1,6 +1,7 @@
 */
 /*General CSS, aplied for all the screens (mobile first)*/
 home{
+/*
 	background-color: #E5E4E3;
 	background-image: linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
 	background-image: -o-linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
@@ -15,28 +16,29 @@ home{
 		color-stop(0.31, rgb(186,165,186)),
 		color-stop(0.66, rgb(229,229,227))
 	);
+*/
+
 }
 
 body {
 	font-family: Impact;
-	color: #666578;
+/* 	color: #666578; */
 	height:auto;
 	margin:0;
 	
-	background-image: linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
-	background-image: -o-linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
-	background-image: -moz-linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
-	background-image: -webkit-linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
-	background-image: -ms-linear-gradient(bottom, rgb(186,165,186) 31%, rgb(229,229,227) 66%);
+background-image: linear-gradient(bottom, rgb(184,180,184) 9%, rgb(229,229,227) 90%);
+background-image: -o-linear-gradient(bottom, rgb(184,180,184) 9%, rgb(229,229,227) 90%);
+background-image: -moz-linear-gradient(bottom, rgb(184,180,184) 9%, rgb(229,229,227) 90%);
+background-image: -webkit-linear-gradient(bottom, rgb(184,180,184) 9%, rgb(229,229,227) 90%);
+background-image: -ms-linear-gradient(bottom, rgb(184,180,184) 9%, rgb(229,229,227) 90%);
 
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0.31, rgb(186,165,186)),
-		color-stop(0.66, rgb(229,229,227))
-	);
-
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.09, rgb(184,180,184)),
+	color-stop(0.9, rgb(229,229,227))
+);
 }
 
 html, body {
@@ -55,16 +57,25 @@ a:hover{
 	color: #C03D3C !important;
 }
 
+
+/*  General classes*/
 .red_text{
 	font-family: inherit;
 	color: #C03D3C;
 }
+
 
 .bright_brown_text{
 	font-family: inherit;
 	color: #E5E4E3;
 }
 
+.georgia_text{
+	font-family: Georgia;
+}
+
+
+/*End of general classes*/
 
 /*Text selection*/
 ::selection {
@@ -85,7 +96,8 @@ ul{
 }
 
 .container {
-	background-color:#E5E4E3;
+/* 	background-color:#E5E4E3; */
+	background-color:none;
 	margin:0 auto;
 	width:100%;
 	height:auto;
@@ -95,7 +107,7 @@ ul{
 }
 
 header{
-	background-color:#E5E4E3;
+	background-color:none;
 	float:none;
 	height:auto;
 	text-align: center;
@@ -106,7 +118,9 @@ header{
 }
 
 #content{
-	background-color:#E5E4E3;
+/* 	background-color:#E5E4E3; */
+	background-color:none;
+
 	padding:0;
 	width:90%;
 	float:none;
@@ -258,7 +272,7 @@ h2#event_site_slogan{
 
 .event_post_container{
 	min-height: 25em;
-	background-color:  #E5E4E3;
+	background-color:  #FFFFFF;
 	/*padding: 5px 15px 15px 15px;
 	float:left;	
 		display:inline-block;
@@ -297,10 +311,10 @@ h2#event_site_slogan{
 	display: block;
 }
 
-.newsletter_feedback{
+.newsletter_form_error{
 	display: inline;
 	font-size:0.6em;
-	line-height:1em;
+	line-height:1.5em;
 	font-family: Georgia;
 	font-style: italic;
 }
@@ -325,13 +339,20 @@ h2#event_site_slogan{
 .form_input{
 	float:left;
 }
+
 .form_input .input{
 /* 	width:50%; */
 	height:2em;	
 }
 
-.form_error{
-	float:left;
+.submit_event_form_error{
+/* 	float:left; */
+	display: inline-block;
+	font-size:0.9em;
+	line-height:1em;
+	font-family: Georgia;
+	font-style: italic;
+
 }
 
 .event_form_button{

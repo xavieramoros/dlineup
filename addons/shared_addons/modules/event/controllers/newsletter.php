@@ -51,17 +51,6 @@ class Newsletter extends Public_Controller
 			$post_data = $this->input->post();
 			//Array ( [ajax] => true [fname] => Xavier [lname] => Amoros [email] => xaviamoros@gmail.com ) 
 			
-
-/*
-			
-			$post_data=
-			(
-				[ajax] => true
-				[newsletter_name] => Test
-				[newsletter_email] => xaviamoros@gmail.com
-			)
-*/
-
 			if (!$post_data) {
 	        	//exit('No direct script access allowed');
 	   	        $data=array("subscribe_error"=>"There was an error adding your email #ERROR_1");
@@ -72,17 +61,25 @@ class Newsletter extends Public_Controller
 				$merge_vars=array('FNAME'=>$post_data['newsletter_name']);
 		        if($this->mail_chimp->listSubscribe($list_id,$post_data['newsletter_email'],$merge_vars)) {
 	             	// $email is now subscribed to list with id: $list_id
-	             	$data=array("subscribe_ok"=>"Email added to newletter");
+	             	$data=array("subscribe_ok"=>"Email confirmation sent");
 	            }
 	            else{
 	             	$data=array("subscribe_error"=>"There was an error adding your email");	            
 	            }
 	        }       
 	    }else{
-	    	$data = array(
-	    		'newsletter_name' => form_error('newsletter_name'),
-	    		'newsletter_email' => form_error('newsletter_email')
-            );
+	    	if(form_error('newsletter_name')){
+			    $data = array(
+			    	"subscribe_error"=>form_error('newsletter_name'),
+			    	"newsletter_name"=>""
+			    );	
+	    	}
+	    	else{
+			    $data = array(
+			    	"subscribe_error"=>form_error('newsletter_email'),
+			    	"newsletter_email"=>""
+			    	);			    	
+	    	}
             //echo json_encode("Validation not passed");
 	    }
 	    echo json_encode($data);

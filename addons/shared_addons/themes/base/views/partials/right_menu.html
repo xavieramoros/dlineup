@@ -23,26 +23,27 @@
 			</li>
 			<li>
 				<div id="newsletter_menu_box">
-				<form id="signup" action="index.html" method="get">
-					<?php echo validation_errors(); ?>
-					<input type="hidden" name="ajax" value="true" />
-<!--
-				    <input type="email" name="email" id="email" class="textinput" value="" placeholder="Email"/>
-				    <input type="text" name="fname" id="fname" class="textinput" value="" placeholder="Name"/>
--->
-				    <a class='tooltip-error-e' id="newsletter_name_error" title=''><input type="text" required size="15" maxlength="100" name="newsletter_name" id="name_input" class="textinput" value="" placeholder="Name"/></a>
-					<a class='tooltip-error-e' id="newsletter_email_error" title=''><input type="email" required size="15" maxlength="30" name="newsletter_email" id="email_input" class="textinput" value="" placeholder="Email"/></a>
-
-   				    <input type="submit" id="SendButton" name="submit" class="textinput" value="Submit" />
-
-				    <!-- Last Name: <input type="text" name="lname" id="lname" class="textinput" value="" /> -->
-
-		<!--
-				    HTML: <input type="radio" name="emailtype" value="html" checked="checked">
-				    Text: <input type="radio" name="emailtype" value="text">
-		-->
-				</form>
-				<div id="message"></div>	
+					<form id="signup" action="index.html" method="get">
+					
+						<input type="hidden" name="ajax" value="true"/>
+	<!--
+					    <input type="email" name="email" id="email" class="textinput" value="" placeholder="Email"/>
+					    <input type="text" name="fname" id="fname" class="textinput" value="" placeholder="Name"/>
+	-->
+					    <a class='tooltip-error-e' id="newsletter_name_error" title=''><input type="text" required size="15" maxlength="100" name="newsletter_name" id="name_input" class="textinput" value="" placeholder="Name"/></a>
+						<a class='tooltip-error-e' id="newsletter_email_error" title=''><input type="email" required size="15" maxlength="30" name="newsletter_email" id="email_input" class="textinput" value="" placeholder="Email"/></a>
+	
+	   				    <input type="submit" id="SendButton" name="submit" class="textinput" value="Submit" />
+	
+					    <!-- Last Name: <input type="text" name="lname" id="lname" class="textinput" value="" /> -->
+	
+			<!--
+					    HTML: <input type="radio" name="emailtype" value="html" checked="checked">
+					    Text: <input type="radio" name="emailtype" value="text">
+			-->
+					</form>
+					<div id="message" class="newsletter_form_error">
+					</div>	
 				</div>
 			</li>
 		</ul>
@@ -51,8 +52,9 @@
 		<script src="jquery.min.js" type="text/javascript"></script>
 		<script type="text/javascript">
 		$(document).ready(function() {
+		
 		    $('#signup').submit(function() {
-		        $("#message").html("<span class='newsletter_feedback'>Adding your email address...</span>");
+		        $("#message").html("<p>Adding your email address...</p>");
 		        $.ajax({
 			        type: 'POST',
 		            url: '<?php echo base_url()."newsletter/subscribe/";?>', // proper url to your "store-address.php" file
@@ -67,13 +69,16 @@
 		            	
 		            	/* $("#newsletter_name_error").title("ERROR");//data.newsletter_name); */
 						if(data.subscribe_ok){
-							$("#message").html("<span class='newsletter_feedback'>"+data.subscribe_ok+"</span>");
+							$("#message").html("<p>"+data.subscribe_ok+"</p>"); //here no need or <p>, automatically added
+							
+							
+							$('#newsletter_menu_box').toggle(4000);
 
 						}else if(data.subscribe_error){
-							$("#message").html("<span class='newsletter_feedback red'>"+data.subscribe_error+"</span>");
+							$("#message").html("<span class='red_text'>"+data.subscribe_error+"</span>");
 						} 						
 						
-/*
+/* Using tooltips to show error messages
 						if(data.newsletter_email){
 	   			            $("#newsletter_email_error").attr('title',data.newsletter_email);
 	   			            $("#newsletter_email_error").tipsy("show");

@@ -11,7 +11,7 @@ class Submit extends Public_Controller
 		'event_title' => array(
 			'field' => 'event_title',
 			'label' => 'event title ',
-			'rules' => 'trim|required|max_length[100]'
+			'rules' => 'trim|max_length[100]'
 		),
 		'event_link' => array(
 			'field' => 'event_link',
@@ -21,7 +21,7 @@ class Submit extends Public_Controller
 		'your_name' => array(
 			'field' => 'your_name',
 			'label' => 'name',
-			'rules' => 'trim|alpha|required|max_length[100]'
+			'rules' => 'trim|required|max_length[100]'
 		),
 		'your_email' => array(
 			'field' => 'your_email',
@@ -48,10 +48,10 @@ class Submit extends Public_Controller
 	 */
 	 public function index(){
 		
-		$this->form_validation->set_rules($this->validation_rules);
+			$this->form_validation->set_rules($this->validation_rules);
 
-		if ($this->form_validation->run())
-		{
+			if ($this->form_validation->run())
+			{
 				//check if event exists.
 				//FIXME
 				//if (! $this->event_m->linkExists($link)){
@@ -90,33 +90,32 @@ class Submit extends Public_Controller
  			));
 
 	 		$this->pyrocache->delete_all('event_m');
-	 			$this->session->set_flashdata('success', sprintf($this->lang->line('event:post_add_success'), $this->input->post('title')));
+	 		$this->session->set_flashdata('success', sprintf($this->lang->line('event:post_add_success'), $this->input->post('title')));
 			
-	 			// Event article has been updated, may not be anything to do with publishing though
-	 			Events::trigger('post_created', $gid);
+	 		// Event article has been updated, may not be anything to do with publishing though
+	 		Events::trigger('post_created', $gid);
 	 			
-	 			//redirect to success page
-	 			//$this->success();
-	 			redirect('submit/success');
-		}
-		else
-		{
-			$your_event = new stdClass;
-            $this->your_event = new stdClass;
-            foreach ($this->validation_rules as $key => $field)
-            {
-	            $your_event->$field['field'] = set_value($field['field']);
-	            $this->your_event->$field['field'] = set_value($field['field']);
-	        }
-
-			$this->template
-				->title($this->module_details['name'])
-				->set_breadcrumb(lang('event:event_title'))
-				->set('your_event',$this->your_event)
-				->set_layout('submit.html')
-				->build('submit-event');
-		}
-		
+	 		//redirect to success page
+	 		//$this->success();
+	 		redirect('submit/success');
+	 		}
+	 		else
+	 		{
+				$your_event = new stdClass;
+	            $this->your_event = new stdClass;
+	            foreach ($this->validation_rules as $key => $field)
+	            {
+		            $your_event->$field['field'] = set_value($field['field']);
+		            $this->your_event->$field['field'] = set_value($field['field']);
+		        }
+	
+				$this->template
+					->title($this->module_details['name'])
+					->set_breadcrumb(lang('event:event_title'))
+					->set('your_event',$this->your_event)
+					->set_layout('submit.html')
+					->build('submit-event');
+			}
 	}
 
 	public function success(){

@@ -3,6 +3,30 @@ $(window).resize(function() {
 
 $(document).ready(function() { 
 	
+	//uncomment to disable temporarily html5 form validation
+/*
+	$( "input" ).each(
+    function()
+    {
+        var $input  =   $( this ).attr( "required",false );
+        // certain input types shouldn't be changed
+        var typesToIgnore   =   /(button|checkbox|file|hidden|image|radio|submit)/i;
+        var inputType   = $input.attr( "type" );
+        if( inputType.search( typesToIgnore ) > -1 )
+            return true;// skip to the next iteration
+        // change the input type by temporarily detaching it from the DOM
+        $temporaryMarker    =   $( "<b />" ).insertBefore( $input );
+        $input
+            .detach()
+            .attr( "type","text" )
+            .insertAfter( $temporaryMarker );
+        $temporaryMarker.remove();
+    }
+    );
+*/
+	//end of html5 form validation disabling.
+	
+	
 	//when clicking newsletter open box:
     $('#newsletter_label').click(function() {
     	//when clicking newsletter button, toggle newsletter box 

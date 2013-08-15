@@ -2,11 +2,15 @@
 		
 
 		<?php echo form_open(); ?>
+		<input type="hidden" name="submitevent_form" value="whatever">
 		
 		<fieldset style="border:0;">
 		<div class="your_event_form">
+			<h2>Submit your event
+			</h2>
+			<p class="georgia_text">Send us your event info so we can add it to our event agenda. This will help promote your event and </p>
 			<ul>
-				<li ><label for="event_title"><?php echo lang('event:submit_event_title'); ?> <span>*</span></label>
+				<li ><label for="event_title"><?php echo lang('event:submit_event_title'); ?></label>
 					<div class="form_input_wrapper">
 						<div class="form_input"><?php echo form_input(array(
 							'name'=>'event_title',	
@@ -42,7 +46,7 @@
 							'required'=>''							
 						));?>
 						</div>
-						<div class="form_error"><?php echo form_error('event_link'); ?>
+						<div class="submit_event_form_error red_text"><?php echo form_error('event_link'); ?>
 						</div>	
 					</div>
 					
@@ -60,7 +64,7 @@
 							'required'=>''							
 						));?>
 						</div>											
-						<div class="form_error"><?php echo form_error('your_name'); ?>
+						<div class="submit_event_form_error red_text"><?php echo form_error('your_name'); ?>
 						</div>						
 					</div>
 				</li>	
@@ -70,7 +74,8 @@
 						<div class="form_input">
 						<?php echo form_input(array(
 							'name'=>'your_email',	
-							'class'	=>'input',							
+							'class'	=>'input',	
+							'type'=>'email',						
 							'value'=> empty($your_event->your_email)? "":$your_event->your_email,
 							'id	'=>"your_email",							
 							'maxlength'=>"50",
@@ -78,7 +83,7 @@
 							'required'=>''							
 						));?>
 						</div>						
-						<div class="form_error"><?php echo form_error('your_email'); ?>
+						<div class="submit_event_form_error red_text"><?php echo form_error('your_email'); ?>
 						</div>						
 					</div>
 				</li>	
