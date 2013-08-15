@@ -39,8 +39,13 @@ body {
 
 }
 
+html, body {
+	min-height: 100%;
+}
+
 body, button, input, select, textarea{
 	color: #666578;
+	height: 100%;
 }
 a{
 	color: #666578;
@@ -50,9 +55,14 @@ a:hover{
 	color: #C03D3C !important;
 }
 
-.event_red_text{
+.red_text{
 	font-family: inherit;
 	color: #C03D3C;
+}
+
+.bright_brown_text{
+	font-family: inherit;
+	color: #E5E4E3;
 }
 
 
@@ -64,13 +74,6 @@ a:hover{
 	background: #999A87; /* Firefox */
 }
 
-.container {
-	background-color:#E5E4E3;
-	margin:0 auto;
-	width:100%;
-	height:auto;
-	min-height: 800px;  /*min heigt needed when there are no event*/
-}
 
 a{
 	text-decoration:none;
@@ -81,6 +84,15 @@ ul{
 	margin:0;
 }
 
+.container {
+	background-color:#E5E4E3;
+	margin:0 auto;
+	width:100%;
+	height:auto;
+	min-height: 100%;  /**//*min heigt needed when there are no event*/
+	position:relative; /**/
+
+}
 
 header{
 	background-color:#E5E4E3;
@@ -100,6 +112,34 @@ header{
 	float:none;
 	margin:0 auto;
 	margin-top: 1.5%;
+	padding-bottom:60px; 
+	
+	min-height: 100%;		
+}
+
+#footer{
+	position:absolute;
+	bottom:0;
+	width:90%;
+	height:61px;   /* Height of the footer */
+	background:#666578;
+	margin:0 5% 0 5%;
+}
+
+/*#footer{
+	position:absolute;
+	bottom:0;
+	width:58.5%;
+	height:61px;    Height of the footer 
+	background:#666578;
+	margin:0 20.75% 0 20.75%;
+}
+*/
+
+#footer ul{
+	padding-top: 1%;
+	margin:auto;
+	width:80%;
 }
 
 .admin_label{
@@ -150,6 +190,14 @@ h2#event_site_slogan{
 	text-align: right;
 	font-size: 1.4em;
 }
+/***************************/
+/* Single page  (about, terms, submit...)*/
+.text-page{
+	font-size: 1.1em;
+	font-family: Georgia;
+	padding: 2% 2% 2% 2%;
+}
+
 /**************************/
 /* Right menu (navigation)*/
 #ul_mobile_container{
@@ -158,11 +206,11 @@ h2#event_site_slogan{
 
 #ul_right_mobile{
 	overflow: hidden;
-	 text-align:center;
+	text-align:center;
 }
 
 #ul_left_mobile{
- text-align:center;
+ 	text-align:center;
 	float: left;
 	margin:0 auto;
 }
@@ -177,11 +225,39 @@ h2#event_site_slogan{
 	color: #666578;
 	padding: 4% 2%;
 	margin:auto;
+	width:100%;
+	text-align: center;
+
 }	
 
+#newsletter_label{
+	padding: 4% 2% 0;
+}
 
+#newsletter_menu_box{
+	margin: 0 auto;
+	background-color: white;
+	z-index: 1;
+	position:absolute;	
+
+	padding: 2% 0%;
+	width:30%;
+	min-width: 150px;
+	
+	margin-left: 3%;
+	-moz-box-shadow		: 0px -2px 12px #999A87;
+	-webkit-box-shadow	: 0px -2px 12px #999A87;
+	box-shadow			: 0px -2px 12px #999A87;
+	
+/* 	border:2px solid; */
+	border-radius:15px;
+	border-color: #666578;
+	
+	display:none;
+}
 
 .event_post_container{
+	min-height: 25em;
 	background-color:  #E5E4E3;
 	/*padding: 5px 15px 15px 15px;
 	float:left;	
@@ -214,7 +290,13 @@ h2#event_site_slogan{
 	display: block;
 }
 
-
+.newsletter_feedback{
+	display: inline;
+	font-size:0.6em;
+	line-height:1em;
+	font-family: Georgia;
+	font-style: italic;
+}
 /*End of right menu*/
 
 
@@ -275,13 +357,18 @@ input:-moz-placeholder {
 
 /****   Event post   ****/
 /************************/
+.month_separator{
+	background: none repeat scroll 0 0 #FFFFFF;
+	padding: 1%;
+	font-size: 2em;
+}
 .event_post_container{
 	border-top-right-radius:30px;
 	border-top-left-radius:30px;	
 	
-	-moz-box-shadow		: 0px -2px 12px #676679;
-	-webkit-box-shadow	: 0px -2px 12px #676679;
-	box-shadow			: 0px -2px 12px #676679;
+	-moz-box-shadow		: 0px -2px 12px #999A87;
+	-webkit-box-shadow	: 0px -2px 12px #999A87;
+	box-shadow			: 0px -2px 12px #999A87;
 }
 .event_post_0{   /*First post*/
 		
@@ -476,6 +563,8 @@ Small browser / iPad landscape
 	.event_right_menu li{
 		font-size: 1.2em;
 		padding:0% 2% 5%; /*Change respect small size: text now alligned to left, */
+		text-align: left;
+
 	}
 	.event_date{
 		font-size:3em;
@@ -488,9 +577,39 @@ Small browser / iPad landscape
 		font-size:1.5em; /*1.4em*/
 	}
 	
+	#newsletter_menu_box{/*Show again by default the box*/
+		display:inherit;
+		z-index: 0;
+	
+		margin: 0% 0% 0% 0% !important;
+		background-color: inherit;
+		position: relative;	
+	
+		padding: 2% 0%;
+		width:30%;
+		min-width: 150px;
+		
+		margin-left: 3%;
+		-moz-box-shadow		: none;
+		-webkit-box-shadow	: none;
+		box-shadow			: none;
+		
+	/* 	border:2px solid; */
+		border-radius:15px;
+		border-color: #666578;
+		
+		display:inherit;
+	}
+
 	#SendButton{
 		display: inline-block;
 	}
+	
+	#footer{
+		width:72%;
+		margin:0 19% 0 5%;
+	}
+
 /*****************/
 /* iPad portrait */
 @media only screen and (min-width: 769px) {
@@ -540,7 +659,7 @@ Small browser / iPad landscape
 		font-size: 7em; /*5*/
 	}
 	.event_post_container{
-		width:65%;	
+		width:68%;	
 		margin:0 auto;	
 	}
 	
@@ -579,6 +698,10 @@ Small browser / iPad landscape
 	.event_title{  /*Avoid third line in Event Title*/
 		min-height:85px;
 		max-height:85px;
+	}
+	#footer{
+		width:61.2%;
+		margin:0 19.4%;
 	}
 
 

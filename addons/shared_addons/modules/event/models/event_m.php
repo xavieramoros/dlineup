@@ -35,7 +35,18 @@ class Event_m extends MY_Model
 			->get('event')
 			->row();
 	}
-	
+	public function events_in_month($month,$year){
+		//function that given a month number (number format, 7, 8 ,12...) and year (full number format, 2013, 2013...) checks if there are any events in that month
+		$this->db->where('MONTH(FROM_UNIXTIME(start_date)) =', $month)
+			 ->limit(1);
+		$result = $this->db->count_all_results('event');
+		if ($result!=0){
+			return 1;
+		}else{
+			return 0;
+		}
+
+	}
 	public function eventExists($gid){
 		//function that returns 1 if event already in database, 0 if not. Using the unique gcalid.
 		$this->db->where('event.id',$gid)

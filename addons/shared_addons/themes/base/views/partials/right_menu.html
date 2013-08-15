@@ -19,17 +19,19 @@
 		</ul>	
 		
 		<ul id="ul_right_mobile">
-			<li class="menu_item" 	id="newsletter_menu">Newsletter
+			<li class="menu_item" id="newsletter_label"><a>Newsletter</a>
 			</li>
 			<li>
+				<div id="newsletter_menu_box">
 				<form id="signup" action="index.html" method="get">
-				    <input type="hidden" name="ajax" value="true" />
+					<?php echo validation_errors(); ?>
+					<input type="hidden" name="ajax" value="true" />
 <!--
 				    <input type="email" name="email" id="email" class="textinput" value="" placeholder="Email"/>
 				    <input type="text" name="fname" id="fname" class="textinput" value="" placeholder="Name"/>
 -->
-				    <input type="email" size="15" maxlength="30" name="email" id="email_input" class="textinput" value="" placeholder="Email"/>
-				    <input type="text" size="15" maxlength="100" name="fname" id="name_input" class="textinput" value="" placeholder="Name"/>
+				    <a class='tooltip-error-e' id="newsletter_name_error" title=''><input type="text" required size="15" maxlength="100" name="newsletter_name" id="name_input" class="textinput" value="" placeholder="Name"/></a>
+					<a class='tooltip-error-e' id="newsletter_email_error" title=''><input type="email" required size="15" maxlength="30" name="newsletter_email" id="email_input" class="textinput" value="" placeholder="Email"/></a>
 
    				    <input type="submit" id="SendButton" name="submit" class="textinput" value="Submit" />
 
@@ -40,7 +42,8 @@
 				    Text: <input type="radio" name="emailtype" value="text">
 		-->
 				</form>
-				<div id="message"></div>
+				<div id="message"></div>	
+				</div>
 			</li>
 		</ul>
 		
@@ -49,14 +52,53 @@
 		<script type="text/javascript">
 		$(document).ready(function() {
 		    $('#signup').submit(function() {
-		        $("#message").html("<span class='error'>Adding your email address...</span>");
+		        $("#message").html("<span class='newsletter_feedback'>Adding your email address...</span>");
 		        $.ajax({
 			        type: 'POST',
 		            url: '<?php echo base_url()."newsletter/subscribe/";?>', // proper url to your "store-address.php" file
 		            data: $('#signup').serialize(),
 		            success: function(msg) {
-		                $('#message').html(msg);
-		            }
+			            
+			            //remove "Adding your email address..." message
+			            $("#message").html('');
+			            
+			            //get message returned
+		            	var data = $.parseJSON(msg);
+		            	
+		            	/* $("#newsletter_name_error").title("ERROR");//data.newsletter_name); */
+						if(data.subscribe_ok){
+							$("#message").html("<span class='newsletter_feedback'>"+data.subscribe_ok+"</span>");
+
+						}else if(data.subscribe_error){
+							$("#message").html("<span class='newsletter_feedback red'>"+data.subscribe_error+"</span>");
+						} 						
+						
+/*
+						if(data.newsletter_email){
+	   			            $("#newsletter_email_error").attr('title',data.newsletter_email);
+	   			            $("#newsletter_email_error").tipsy("show");
+												}
+   			            else if(data.newsletter_name){
+	   			            $("#newsletter_name_error").attr('title',data.newsletter_name);//data.newsletter_name);
+	   			            $("#newsletter_name_error").tipsy("show");   			            
+   			            }
+*/
+/*    			            $("#newsletter_email_error").title(data.newsletter_email); */
+	
+			            //$("#newsletter_name_error").html(msg.newsletter_name);
+			            
+			            
+			            //$("#newsletter_email_error").html(msg.newsletter_email);
+			            
+			            //$('#message').html(msg);
+		            },
+		            error:function(msg) {
+		            	alert("Error in POST");
+			            //$("#newsletter_name_error").html(msg.newsletter_name);
+			            //$("#newsletter_email_error").html(msg.newsletter_email);
+		                
+		                //$('#message').html(msg);
+		            },
 		        });
 		        return false;
 		    });

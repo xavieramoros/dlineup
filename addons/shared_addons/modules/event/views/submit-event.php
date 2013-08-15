@@ -14,8 +14,15 @@
 							'value'=> empty($your_event->event_title)? "":$your_event->event_title,
 							'id	'=>"event_title",							
 							'maxlength'=>"100",
-							'placeholder' => ''
+							'placeholder' => '',
+							'autofocus'=>''
 						));?>
+						<script>
+							if (!("autofocus" in document.createElement("input"))) {
+								document.getElementById("event_title").focus();
+								}
+						</script>
+
 						</div>
 						<div class="form_error"><?php echo form_error('event_title'); ?>
 						</div>						
@@ -31,7 +38,8 @@
 							'value'=> empty($your_event->event_link)? "":$your_event->event_link,
 							'id	'=>"event_link",							
 							'maxlength'=>"100",
-							'placeholder' => ''
+							'placeholder' => '',
+							'required'=>''							
 						));?>
 						</div>
 						<div class="form_error"><?php echo form_error('event_link'); ?>
@@ -48,7 +56,8 @@
 							'value'=> empty($your_event->your_name)? "":$your_event->your_name,
 							'id	'=>"your_name",							
 							'maxlength'=>"50",
-							'placeholder' => ''
+							'placeholder' => '',
+							'required'=>''							
 						));?>
 						</div>											
 						<div class="form_error"><?php echo form_error('your_name'); ?>
@@ -65,7 +74,8 @@
 							'value'=> empty($your_event->your_email)? "":$your_event->your_email,
 							'id	'=>"your_email",							
 							'maxlength'=>"50",
-							'placeholder' => ''
+							'placeholder' => '',
+							'required'=>''							
 						));?>
 						</div>						
 						<div class="form_error"><?php echo form_error('your_email'); ?>

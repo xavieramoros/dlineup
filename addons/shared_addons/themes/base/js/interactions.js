@@ -1,38 +1,17 @@
+$(window).resize(function() {
+});
+
 $(document).ready(function() { 
-
-	//Get collapsed height:
-	var collapsedHeight = $('.event_content').css('maxHeight');
-
-	/* var currentHeight = $('.event_content').scrollHeight;*/
-
-	/*
-    $('.event_content').each(function(){
-      var $this = $(this);
-      $this.data('natural', $this[0].scrollHeight);
+	
+	//when clicking newsletter open box:
+    $('#newsletter_label').click(function() {
+    	//when clicking newsletter button, toggle newsletter box 
+    	width_retrieved=$(window).width();
+		if(width_retrieved<641){
+		 	//if New width<641 : if we are in mobile layout toogle box
+		 	$('#newsletter_menu_box').toggle();
+		}; 	
     });
-
-    // Now, set-up the handler for the toggle buttons
-    $('#btn_show_content').bind('click', function(){
-      var $story = $(this).parent().siblings('.story').eq(0),
-          duration = 250; // animation duration
-
-      // I use a class 'expanded' as a flag to know what state it is in,
-      // and to make style changes, as required.  
-      if ($story.hasClass('expanded')) {
-        // If it is already expanded, then collapse it using the css figure as
-        // collected above and remove the expanded class
-        $story.animate({'maxHeight': collapsedHeight}, duration);
-        $story.removeClass('expanded');
-      }
-      else {
-        // If it is not expanded now, then animate the max-height to the natural
-        // height as stored in data, then add the 'expanded' class
-        $story.animate({'maxHeight': $story.data('natural')}, duration);
-        $story.addClass('expanded');
-      }
-    });
-    */
-    
     
 	$('.btn_show_content').toggle(
     	function () {  

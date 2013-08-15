@@ -196,8 +196,9 @@ class Plugin_Event extends Plugin
 	
 	    $array_full=array();
 
-	    foreach ( $period as $dt ){
+	    foreach ( $period as $dt	 ){
 	    	$array_months[]=$dt->format( "F" );						//array of months
+	    	$array_months_numbers[]=$dt->format( "n" );				//array of months numbers, 1, 2,3...
 	    	$arra_years[]=$dt->format( "Y" ); 						//array of years
 	        $array_full[$dt->format( "Y" )][] = $dt->format( "F" ); //array compelte: array(2013 => array("May","June","July","August"), 2014=> ....)
 
@@ -239,7 +240,15 @@ class Plugin_Event extends Plugin
 	    if (sizeof($array_full)==1){ //we only have one year, we only show months
 		    foreach($array_months as $key=>$month){
 			    $final_result.="<li>";
-			    $final_result.=$month;
+			    //check if there are events for a specific month
+			    if ($this->event_m->events_in_month($array_months_numbers[$key],$arra_years[$key])==1){
+			    	//add link to month if there are events in that month
+				    $final_result.="<a href='#".$month."_".$arra_years[$key]."'>";
+				    $final_result.=$month;
+				    $final_result.="</a>";
+				}else{
+					$final_result.=$month;
+				}
 			    $final_result.="</li>";
 		    }
 	    }

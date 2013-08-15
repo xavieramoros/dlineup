@@ -80,6 +80,13 @@ if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) { /
 		fade: false,
 		html: true
 	});
+	//tooltip for form errors:
+	$('.tooltip-error-e').tipsy({
+		gravity: 'e',
+		fade: false,
+		html: true,
+		trigger: 'manual'
+	});
 	
 }
 
