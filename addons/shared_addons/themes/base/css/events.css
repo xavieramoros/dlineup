@@ -64,9 +64,14 @@ a{
 	color: #666578;
 }
 
-a:hover{
-	color: #C03D3C !important;
+.no_red_hover a:hover{
+	color: #676679 !important;
 }
+
+a:hover{
+	color: #C03D3C;
+}
+
 
 
 /*  General classes*/
@@ -323,7 +328,7 @@ h2#event_site_slogan{
 	width:35px;
 	height:29px;
 */
-	display:inline-block;
+/* 	display:inline-block; */
 }
 
 #facebook_logo{
@@ -331,7 +336,7 @@ h2#event_site_slogan{
 	width:22px;
 	height:29px;
 */
-		display:inline-block;
+/* 		display:inline-block; */
 }
 
 /*Used in footer and header, controlling li or ul.*/
@@ -527,7 +532,8 @@ input:-moz-placeholder {
 	/*Avoid third line in Event Title*/
 	min-height:55px;
 	max-height:55px;
-	}
+	padding-top:0.4em; /*Fix allignement of title with date*/
+}
 
 .event_title h3{
 	overflow: hidden;
@@ -539,6 +545,7 @@ input:-moz-placeholder {
 	font-size:1.2em; /*1.4em*/
 	font-family: Impact;
 	color: #666578;
+	line-height: 1.2em;
 }
 
 /*event_body*/
@@ -581,10 +588,16 @@ input:-moz-placeholder {
 	margin-top: 2%;
 	margin-left: 10%;	
 }
-
-.event_buttons_box ul li{
-	
+.social_button{
+	z-index: 1000000;
+	position:relative;
 }
+
+.social_button img{
+	z-index: 1000000;
+	position:relative;	
+}
+
 /***********************Terms page*/
 .terms_ul li{
 	margin-bottom: 2%;
@@ -684,6 +697,8 @@ Small browser / iPad landscape
 	.event_title{  /*Avoid third line in Event Title*/
 		min-height:70px;
 		max-height:70px;
+		padding-top:0.55em; /*Fix allignement of title with date*/
+		
 	}
 	.event_title a{
 		font-size:1.5em; /*1.4em*/
@@ -755,6 +770,7 @@ Small browser / iPad landscape
 	.event_title{  /*Avoid third line in Event Title*/
 		min-height:85px;
 		max-height:85px;
+		padding-top: 0.7em;
 	}
 	.event_title a{
 		font-size:1.8em; /*1.4em*/

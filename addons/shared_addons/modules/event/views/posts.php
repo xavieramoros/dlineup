@@ -136,7 +136,7 @@
 			?>
 			<div class="event_buttons_box">
 				<ul class="ul_horizontal">
-					<li><a href="http://example.com/link-to-your-event" title="Add to Calendar" class="addthisevent" style="">{{ theme:image file='./share_icons/calendar_share_icon.png' alt="Facebook Share" width="20" height="20" border="0"}}
+					<li><a href="" title="Add to Calendar" class="addthisevent" style="border-style: none">{{ theme:image file='./share_icons/calendar_share_icon.png' alt="Facebook Share" width="20" height="20" border="0"}}
 					    <span class="_start"><?php echo date("d-m-Y H:i:s",$post->start_date);?></span>
 					    <span class="_end"><?php echo date("d-m-Y H:i:s",$post->end_date);?></span>
 					    <span class="_zonecode">40</span>
@@ -149,20 +149,20 @@
 					    <span class="_all_day_event">false</span>
 					    <span class="_date_format">DD/MM/YYYY</span>				    
 					    </a> 					
-					</li>
+					</li>					
 					<!--  "ADD THIS" SOCIAL BUTTONS				 -->
-					<li><a class="addthis_button_facebook">{{ theme:image file='./share_icons/facebook_share_icon.png' alt="Facebook Share" width="21px" height="21px"}}
+					<li><a class="addthis_button_facebook social_button" addthis:description="" addthis:url=<?php echo $post->event_link;?> addthis:title=<?php echo $post->title."via Dlineup.net";?> >{{ theme:image file='./share_icons/facebook_share_icon.png' alt="Facebook Share" width="21px" height="21px"}}
 					</a>
 					</li>
-					<li><a class="addthis_button_twitter">{{ theme:image file='./share_icons/twitter_share_icon.png' alt="Twitter Share" width="21px" height="21px"}}
+					<li><a class="addthis_button_twitter social_button" addthis:description="" addthis:url=<?php echo $post->event_link;?> addthis:title=<?php echo $post->title."via @dlineup";?> >{{ theme:image file='./share_icons/twitter_share_icon.png' alt="Twitter Share" width="21px" height="21px"}}
 					</a>
 					</li>
-					<li><a class="addthis_button_google_plusone_share">{{ theme:image file='./share_icons/gplus_share_icon.png' alt="G+ Share" width="21px" height="21px"}}
+					<li><a class="addthis_button_google_plusone_share social_button" addthis:description="via Dlineup.net" addthis:url=<?php echo $post->event_link;?> addthis:title=<?php echo $post->title."via Dlineup.net";?>>{{ theme:image file='./share_icons/gplus_share_icon.png' alt="G+ Share" width="21px" height="21px"}}
 					</a>
 					</li>
-					<li><a class="addthis_button_email">{{ theme:image file='./share_icons/email_share_icon.png' alt="Email Share" width="21px" height="21px" border="0"}}
+					<li><a class="addthis_button_email social_button" addthis:url=<?php echo $post->event_link;?> addthis:title=<?php echo $post->title;?>  addthis:description="via Dlineup.net">{{ theme:image file='./share_icons/email_share_icon.png' alt="Email Share" width="21px" height="21px" border="0"}}
 					</a>
-					</li>
+					</li>					
 				</ul>
 			</div>			
 					

@@ -3,14 +3,14 @@ $(window).resize(function() {
 	var nb = $('#navbtn');
   	var n = $('.event_right_menu');
 
-    if(nb.is(':hidden') && n.is(':hidden') && $(window).width() > 640) {
+    if(nb.is(':hidden') && n.is(':hidden') && $(window).width() > 644) {
 	      // if the navigation menu and nav button are both hidden,
 	      // then the responsive nav is closed and the nav menu is still hidden.
 	      // just display the nav menu which will auto-hide at <560px width and remove class.
 	      $('.event_right_menu').show();
 	}
 
-	if($(this).width() < 641) {
+	if($(this).width() < 645) {
 	  // if the nav menu and nav button are both visible,
 	  // then the responsive nav transitioned from open to non-responsive, then back again.
 	  // re-hide the nav menu and remove the hidden class
@@ -52,10 +52,11 @@ $(document).ready(function() {
     );
 */
 	//end of html5 form validation disabling.
-	
+/*
 	$('.event_right_menu a,.event_right_menu h1 a,#btmnav a').on('click', function(e){
 		  e.preventDefault(); // stop all hash(#) anchor links from loading
 	});
+*/
 
 	//mobile layout menu button	 
 	$('#navbtn').on('click', function(e){
