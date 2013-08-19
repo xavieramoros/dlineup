@@ -641,7 +641,7 @@ class Admin extends Admin_Controller
 				'category_id'		=> $this->input->post('category_id'),
 				'keywords'			=> Keywords::process($this->input->post('keywords')),
 				//'intro'				=> $this->input->post('intro'),
-				'body'				=> $this->input->post('body'),
+				'body'				=> $this->txt2link($this->input->post('body')),
 				'status'			=> $this->input->post('status'),
 				'created_on'		=> $created_on,  //we save the timestamp right away, no need to modify format
 				'comments_enabled'	=> $this->input->post('comments_enabled'),
@@ -848,7 +848,7 @@ class Admin extends Admin_Controller
 				'category_id'		=> $this->input->post('category_id'),
 				'keywords'			=> Keywords::process($this->input->post('keywords'), $old_keywords_hash),
 				//'intro'				=> $this->input->post('intro'),
-				'body'				=> $this->input->post('body'),
+				'body'				=> $this->input->post('body'), //add markup for links in text
 				'status'			=> $this->input->post('status'),
 				'created_on'		=> strtotime(sprintf('%s', $this->input->post('created_on'))),
 				'comments_enabled'	=> $this->input->post('comments_enabled'),
@@ -1071,6 +1071,27 @@ class Admin extends Admin_Controller
 		}
 
 		redirect('admin/event');
+	}
+
+	/* Function that given a text add markup of links*/	
+
+	public function txt2link($text_with_links){
+		
+		//add http:// before www.
+		$text_with_links = str_replace(" www.", " http://www.", $text_with_links);
+		
+		// The Regular Expression filter
+		$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
+				
+		// Check if there is a url in the text
+		if(preg_match_all($reg_exUrl, $text_with_links, $urls)) {
+		
+			foreach($urls[0] as $url){
+				$replacement_string = "<a href=".$url." target='_blank' rel='nofollow'>".str_replace(array("http://","https://"), "", $url)."</a> ";
+				$text_with_links = str_replace($url,$replacement_string, $text_with_links);
+		    }
+		}
+		return $text_with_links;
 	}
 
 	/**

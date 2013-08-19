@@ -1,4 +1,15 @@
-*/
+@font-face {
+    font-family: 'Impact';
+    src: url('../font/impact-webfont.eot');
+    src: url('../font/impact-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/impact-webfont.woff') format('woff'),
+         url('../font/impact-webfont.ttf') format('truetype'),
+         url('../font/impact-webfont.svg#impactregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 /*General CSS, aplied for all the screens (mobile first)*/
 home{
 /*
@@ -120,14 +131,13 @@ header{
 #content{
 /* 	background-color:#E5E4E3; */
 	background-color:none;
-
 	padding:0;
 	width:90%;
 	float:none;
 	margin:0 auto;
-	margin-top: 1.5%;
+	margin-top: 2.5%;
 	padding-bottom:60px; 
-	
+	position:relative; /*Use to position it's child with absolute.*/
 	min-height: 100%;		
 }
 
@@ -162,7 +172,7 @@ header{
 
 h1#event_site_logo{
 	margin:0 0 1% 0;
-	font-size: 3em;
+	font-size: 4em;
 }
 
 #event_site_logo a{
@@ -175,7 +185,7 @@ h2#event_site_slogan{
 	margin:0;
 	color: #676679;
 	font-family: Georgia;
-	font-size: 1.1em;
+	font-size: 0.9em;
 	line-height: 1.2em;
 }
 
@@ -214,8 +224,33 @@ h2#event_site_slogan{
 
 /**************************/
 /* Right menu (navigation)*/
-#ul_mobile_container{
-	overflow: hidden;	
+#navbtn {
+  display: block;
+  margin-right: 5%;
+  float: right;
+/*   top: 0; */
+  width: 26px;
+  height: 25px;
+  border: 1px solid #666578;
+  border-radius: 5px 5px 5px 5px;
+  background: url('../img/menu.png') center no-repeat;
+  text-indent: -99999px;
+/*   overflow: hidden; */
+}
+/*  display: none;
+*/
+.event_right_menu  { 
+    display: none; 
+    z-index:1;
+    position:absolute;
+/*     float:right; */
+	padding-bottom: 2%;
+	right:0%;
+	top:0%;
+	box-shadow:0 -2px 12px #999A87;
+	border-radius:15px 15px 15px 15px;
+	background-color: white;
+    width:10em;
 }
 
 #ul_right_mobile{
@@ -231,21 +266,21 @@ h2#event_site_slogan{
 
 .event_right_menu ul{   /*Right menu is placec before post_container to avoid problems with floats*/
 	list-style: none;
-	font-weight:bold;
-	width:48%; /**/
+	font-weight:none;
+	width:auto; /**/
 }
 .event_right_menu li{
 	font-size: 1.2em;
 	color: #666578;
-	padding: 4% 2%;
+	padding: 0% 2%;
 	margin:auto;
-	width:100%;
+/* 	width:100%; */
 	text-align: center;
 
 }	
 
 #newsletter_label{
-	padding: 4% 2% 0;
+	padding: 0% 2% 0;
 }
 
 #newsletter_menu_box{
@@ -284,13 +319,19 @@ h2#event_site_slogan{
 }
 
 #twitter_logo{
+/*
 	width:35px;
 	height:29px;
+*/
+	display:inline-block;
 }
 
 #facebook_logo{
+/*
 	width:22px;
 	height:29px;
+*/
+		display:inline-block;
 }
 
 /*Used in footer and header, controlling li or ul.*/
@@ -320,7 +361,7 @@ h2#event_site_slogan{
 }
 /*End of right menu*/
 
-
+/*****************/
 /*Your event page*/
 .your_event_form ul{
 	list-style: none;
@@ -362,12 +403,13 @@ h2#event_site_slogan{
 	height:50px;
 	margin-right: 2%;
 	font-size: 1.1em;
-
+	z-index: 999;
 }
 
 .your_event_buttons{
 	margin: 2% 0% 0% 0%;
 }
+
 
 /* FORMAT PLACEHOLDERS
 input::-webkit-input-placeholder {
@@ -394,14 +436,22 @@ input:-moz-placeholder {
 	border-top-right-radius:30px;
 	border-top-left-radius:30px;	
 	
-	-moz-box-shadow		: 0px -2px 12px #999A87;
-	-webkit-box-shadow	: 0px -2px 12px #999A87;
-	box-shadow			: 0px -2px 12px #999A87;
+	-moz-box-shadow		: 0px -2px 12px 0px #999A87; 
+ 	-webkit-box-shadow	: 0px -2px 12px 0px #999A87;
+	box-shadow			: 0px -2px 12px 0px #999A87;
 }
-.event_post_0{   /*First post*/
-		
+
+.month_separator_0{
 	border-top-right-radius:30px;
 	border-top-left-radius:30px;	
+}
+
+
+/* No need to round first post because we have first month
+.event_post_0{   //First post
+	border-top-right-radius:30px;
+	border-top-left-radius:30px;	
+*/
 	
 /*
 	-moz-box-shadow		: 0px -2px 12px #676679;
@@ -456,6 +506,7 @@ input:-moz-placeholder {
 	padding:1% 0 0 2%;
 	float:left;
 	width:20% auto;
+	overflow: hidden;	
 	display: inline-block;
 	font-size:2.4em;
 	font-weight: 500;
@@ -526,6 +577,14 @@ input:-moz-placeholder {
 
 }
 
+.event_buttons_box {
+	margin-top: 2%;
+	margin-left: 10%;	
+}
+
+.event_buttons_box ul li{
+	
+}
 /***********************Terms page*/
 .terms_ul li{
 	margin-bottom: 2%;
@@ -568,12 +627,26 @@ Small browser / iPad landscape
 	}
 	
 	/*Right menu mobile*/
-	#ul_mobile_container{
-/* 		overflow: hidden;	 */
+	
+	#navbtn{
+		display: none;
 	}
 	
+	.event_right_menu{ 
+    	display: block;
+    	position: relative;
+    	float:right;
+    	width:7em; 
+    	/*Remove box and background*/
+    	box-shadow:0px 0px 0px 0px;
+    	background-color:transparent;
+    	border-radius:0px;
+    	
+    	z-index:0 !important;
+    }
+
 	#ul_right_mobile{
-/* 		overflow: hidden; */
+		overflow: hidden;
 		 text-align:left;
 		 width:100%;
 	}
@@ -592,6 +665,7 @@ Small browser / iPad landscape
 		float:right;	
 		margin:0 0 0 0;
 		padding:0 0 0 0;
+		
 	}
 	.event_right_menu ul{
 		padding: 0;
@@ -600,7 +674,7 @@ Small browser / iPad landscape
 	}
 	.event_right_menu li{
 		font-size: 1.2em;
-		padding:0% 2% 5%; /*Change respect small size: text now alligned to left, */
+		padding:0% 1% 5%; /*Change respect small size: text now alligned to left, */
 		text-align: left;
 
 	}

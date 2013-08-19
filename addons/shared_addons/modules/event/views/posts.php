@@ -1,3 +1,4 @@
+
 <?php if (isset($category->title)): ?>
 	<h2 id="page_title"><?php echo $category->title; ?></h2>
 
@@ -10,13 +11,22 @@
 
 <?php foreach ($event as $key=>$post): ?>
 	<?php if($key==0){
-		$previous_month=date("n",$post->start_date);
+		$initial_month=date("n",$post->start_date);//month of first post
+
+		echo "<div class='month_separator month_separator_0'>";
+		echo "<a id=".date("F",$post->start_date)."_".date("Y",$post->start_date)."></a>";
+		echo "<span class='red_text'>".date("F",$post->start_date)."</span>"	;
+		echo "</div>";
+		$previous_month=$initial_month;
 	}else if(date("n",$post->start_date)!=$previous_month){
 		echo "<div class='month_separator'>";
 		echo "<a id=".date("F",$post->start_date)."_".date("Y",$post->start_date)."></a>";
 		echo "<span class='red_text'>".date("F",$post->start_date)."</span>"	;
 		echo "</div>";
-	}?>
+		
+		$previous_month=date("n",$post->start_date);
+	}
+	?>
 	
 		
 	<div class="event_post event_post_<?php echo $key; ?>">
@@ -124,8 +134,42 @@
 
 			<?php 	}
 			?>
+			<div class="event_buttons_box">
+				<ul class="ul_horizontal">
+					<li><a href="http://example.com/link-to-your-event" title="Add to Calendar" class="addthisevent" style="">{{ theme:image file='./share_icons/calendar_share_icon.png' alt="Facebook Share" width="20" height="20" border="0"}}
+					    <span class="_start"><?php echo date("d-m-Y H:i:s",$post->start_date);?></span>
+					    <span class="_end"><?php echo date("d-m-Y H:i:s",$post->end_date);?></span>
+					    <span class="_zonecode">40</span>
+					    <span class="_summary"><?php echo $post->title;?></span>
+					    <span class="_description"><?php echo $post->body;?></span>
+					    <span class="_location"><?php echo $post->location." ".$post->address;?></span>
+					    <span class="_organizer"><?php echo $post->organizer;?></span>
+					   <!--  <span class="_organizer_email">Organizer e-mail</span> -->
+					   <!--  <span class="_facebook_event">http://www.facebook.com/events/160427380695693</span> -->
+					    <span class="_all_day_event">false</span>
+					    <span class="_date_format">DD/MM/YYYY</span>				    
+					    </a> 					
+					</li>
+					<!--  "ADD THIS" SOCIAL BUTTONS				 -->
+					<li><a class="addthis_button_facebook">{{ theme:image file='./share_icons/facebook_share_icon.png' alt="Facebook Share" width="21px" height="21px"}}
+					</a>
+					</li>
+					<li><a class="addthis_button_twitter">{{ theme:image file='./share_icons/twitter_share_icon.png' alt="Twitter Share" width="21px" height="21px"}}
+					</a>
+					</li>
+					<li><a class="addthis_button_google_plusone_share">{{ theme:image file='./share_icons/gplus_share_icon.png' alt="G+ Share" width="21px" height="21px"}}
+					</a>
+					</li>
+					<li><a class="addthis_button_email">{{ theme:image file='./share_icons/email_share_icon.png' alt="Email Share" width="21px" height="21px" border="0"}}
+					</a>
+					</li>
+				</ul>
+			</div>			
 					
-		</div>	
+		</div>
+		
+		<div class="add_to_cal">	
+		</div>
 	</div>
 <?php endforeach; ?>
 

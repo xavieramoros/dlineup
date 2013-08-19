@@ -16,7 +16,7 @@
   	<meta name="author" content="Scott Parry - iKreativ">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
-
+	
   	<!-- Mobile viewport optimized -->
   	<meta name="viewport" content="width=device-width,initial-scale=1">
 	
@@ -28,6 +28,8 @@
   	{{ theme:css file="plugins.css" }}
 <!-- 	{{ theme:css file="workless.css" }} -->
   	{{ theme:css file="events.css" }}
+  	{{ theme:css file="addthisevent.css" }}
+
 
   	<!-- End CSS-->
 
@@ -35,13 +37,60 @@
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold" type="text/css" />
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif:regular,bold" type="text/css" />
 
+	<!-- Add This plugin -->
+	<script type="text/javascript">var addthis_config = {"data_track_addressbar":false};</script>
+<!-- 	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-520fe7db163d3a1a"></script> -->
+	{{ theme:js file="addthis_widget.js"}}
+
+	<!-- Load up iOS favicons -->
+  	{{ theme:favicon file="./ios_icons/iphone_normal_icon.png" rel="apple-touch-icon-precomposed"}}
+  	{{ theme:favicon file="./ios_icons/ipad_normal_icon.png" rel="apple-touch-icon-precomposed" sizes="72x72"}}
+  	{{ theme:favicon file="./ios_icons/iphone_retina_icon.png" rel="apple-touch-icon-precomposed" sizes="114x114"}}
+  	{{ theme:favicon file="./ios_icons/ipad_retina_icon.png" rel="apple-touch-icon-precomposed" sizes="144x144"}}
+  	<meta name="apple-mobile-web-app-capable" content="yes" />
+
+  	<!--iPhone and iPad Web App Startup Images -->
+		<!-- Do NOT use width=device width because it will letterbox viewport. -->
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  	
+		 <!-- iPhone 3 and 4 Non-Retina -->
+		<link rel="apple-touch-startup-image" media="(device-width: 320px)" href="apple-touch-startup-image-320x460.png">
+		<!-- iPhone 4 Retina -->
+		<link rel="apple-touch-startup-image" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)" href="apple-touch-startup-image-640x920.png">
+		<!-- iPhone 5 Retina -->
+		<link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="apple-touch-startup-image-640x1096.png">
+		 
+		<!-- iPad Non-Retina Portrait -->
+		<link rel="apple-touch-startup-image" media="(device-width: 768px) and (orientation: portrait)" href="apple-touch-startup-image-768x1004.png">
+		<!-- iPad Non-Retina Landscape -->
+		<link rel="apple-touch-startup-image" media="(device-width: 768px) and (orientation: landscape)" href="apple-touch-startup-image-748x1024.png">
+		<!-- iPad Retina Portrait -->
+		<link rel="apple-touch-startup-image" media="(device-width: 1536px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" href="apple-touch-startup-image-1536x2008.png">
+		<!-- iPad Retina Landscape -->
+		<link rel="apple-touch-startup-image" media="(device-width: 1536px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" href="apple-touch-startup-image-2048x1496.png">
+
+
 	<!-- Load up some favicons -->
   	{{ theme:favicon }}
 
   	<!-- All JavaScript at the bottom, except for Modernizr. -->
   	{{ theme:js file="libs/modernizr.js" }}
   	{{ theme:js file="libs/jquery.js" }}
-	
+	{{ theme:js file="addevent.js" }}
+	<!-- AddThisEvent Settings -->
+	<script type="text/javascript">
+	addthisevent.settings({
+	    mouse     : false,
+	    css       : false,
+	    outlook   : {show:true, text:"Outlook Calendar"},
+	    google    : {show:true, text:"Google Calendar"},
+	    yahoo     : {show:false, text:"Yahoo Calendar"},
+	    hotmail   : {show:false, text:"Hotmail Calendar"},
+	    ical      : {show:true, text:"iCal Calendar"},
+	    facebook  : {show:true, text:"Facebook Event"},
+	    callback  : ""
+	});
+	</script>
+
 	{{ template:metadata }}
 	
 	<!-- Google Analytics -->
@@ -104,9 +153,8 @@
 						<span class="red_text">D</span> Line Up
 				</a>
 			</h1>
-		
+			<a href="#" id="navbtn">Nav Menu</a>        		
 			<h2 id="event_site_slogan">
 					Design, Innovation & Technology Events in <span class="red_text">Barcelona</span>
 			</h2>
-		
 		</header>

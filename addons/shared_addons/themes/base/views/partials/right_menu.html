@@ -1,28 +1,23 @@
-	<menu class="event_right_menu">
-		<!--<ul>
-			{{ navigation:links group="sidebar" }}
-		</ul>
-		-->	
-		<!--
-		- You can modify these social links to suit. 
-		- Add your username and links, add or remove items.
-		-->
-		<div id="ul_mobile_container">
-		<ul id="ul_left_mobile">
-			{{ navigation:links group="header" }}
-			<li class="li_horizontal"><a class="tooltip-n" href="http://twitter.com/dlineup" title="Dlineup on Twitter" target="_blank" style="witdh=35px;">{{ theme:image id="twitter_logo" file="twitter.png" alt="twitter" }}</a>
+	<nav class="event_right_menu">
+		<ul>
+			<li>
+				<ul>
+				<li class="li_horizontal"><a class="tooltip-n" href="http://twitter.com/dlineup" title="Dlineup on Twitter" target="_blank" style="witdh=35px;">{{ theme:image id="twitter_logo" file="./menu_icons/twitter.png" alt="twitter" }}</a>
+				</li>	
+							
+				<li class="li_horizontal"><a class="tooltip-n" href="#" title="Dlineup on Facebook" target="_blank">{{ theme:image id="facebook_menu_icon" file="./menu_icons/facebook.png" alt="facebook"}}</a>
+				</li>		
+				<li class="li_horizontal"><a class="tooltip-n" href="#" title="Dlineup Calendar" target="_blank">{{ theme:image id="calendar_menu_icon" file="./menu_icons/calendar.png" alt="calendar"}}</a>
+				</li>		
+				<li class="li_horizontal"><a class="tooltip-n" href="#" title="Contact Us" target="_blank">{{ theme:image id="mail_menu_icon" file="./menu_icons/email.png" alt="email"}}</a>
+				</li>		
+				</ul>
 			</li>	
-						
-			<li class="li_horizontal"><a class="tooltip-n" href="#" title="Dlineup on Facebook" target="_blank">{{ theme:image id="facebook_logo" file="facebook.png" alt="facebook"}}</a>
-			</li>
-
-		</ul>	
-		
-		<ul id="ul_right_mobile">
+			{{ navigation:links group="header" }}
 			<li class="menu_item" id="newsletter_label"><a>Newsletter</a>
 			</li>
 			<li>
-				<div id="newsletter_menu_box">
+<!-- 				<div id="newsletter_menu_box"> -->
 					<form id="signup" action="index.html" method="get">
 					
 						<input type="hidden" name="ajax" value="true"/>
@@ -43,95 +38,9 @@
 			-->
 					</form>
 					<div id="message" class="newsletter_form_error">
-					</div>	
-				</div>
 			</li>
 		</ul>
-		
-		</div>
+				
 		<script src="jquery.min.js" type="text/javascript"></script>
-		<script type="text/javascript">
-		$(document).ready(function() {
-		
-		    $('#signup').submit(function() {
-		        $("#message").html("<p>Adding your email address...</p>");
-		        $.ajax({
-			        type: 'POST',
-		            url: '<?php echo base_url()."newsletter/subscribe/";?>', // proper url to your "store-address.php" file
-		            data: $('#signup').serialize(),
-		            success: function(msg) {
-			            
-			            //remove "Adding your email address..." message
-			            $("#message").html('');
-			            
-			            //get message returned
-		            	var data = $.parseJSON(msg);
-		            	
-		            	/* $("#newsletter_name_error").title("ERROR");//data.newsletter_name); */
-						if(data.subscribe_ok){
-							$("#message").html("<p>"+data.subscribe_ok+"</p>"); //here no need or <p>, automatically added
-							
-							
-							$('#newsletter_menu_box').toggle(4000);
-
-						}else if(data.subscribe_error){
-							$("#message").html("<span class='red_text'>"+data.subscribe_error+"</span>");
-						} 						
-						
-/* Using tooltips to show error messages
-						if(data.newsletter_email){
-	   			            $("#newsletter_email_error").attr('title',data.newsletter_email);
-	   			            $("#newsletter_email_error").tipsy("show");
-												}
-   			            else if(data.newsletter_name){
-	   			            $("#newsletter_name_error").attr('title',data.newsletter_name);//data.newsletter_name);
-	   			            $("#newsletter_name_error").tipsy("show");   			            
-   			            }
-*/
-/*    			            $("#newsletter_email_error").title(data.newsletter_email); */
-	
-			            //$("#newsletter_name_error").html(msg.newsletter_name);
-			            
-			            
-			            //$("#newsletter_email_error").html(msg.newsletter_email);
-			            
-			            //$('#message').html(msg);
-		            },
-		            error:function(msg) {
-		            	alert("Error in POST");
-			            //$("#newsletter_name_error").html(msg.newsletter_name);
-			            //$("#newsletter_email_error").html(msg.newsletter_email);
-		                
-		                //$('#message').html(msg);
-		            },
-		        });
-		        return false;
-		    });
-		    
-		    //Fixing placeholder for non HTML5 browsers
-		    if(!Modernizr.input.placeholder){
-
-			    $("input").each(
-			    	//console.log("BROWSER NON HTML5");
-			    	function(){
-				    	var inputField = $(this);
-				    	if(inputField.val()=="" && inputField.attr("placeholder")!=""){
-
-					    	inputField.val(inputField.attr("placeholder"));
-
-					    	inputField.focus(function(){
-						    	if(inputField.val()==inputField.attr("placeholder")){ inputField.val(""); }
-						    });
-
-						    inputField.blur(function(){
-							    if(inputField.val()==""){ 
-							    	inputField.val(inputField.attr("placeholder")); 
-							    }
-							});
-						}
-					});
-				}
-		});
-		</script>
 		{{ widgets:area slug="sidebar" }}
-	</menu>
+	</nav>
