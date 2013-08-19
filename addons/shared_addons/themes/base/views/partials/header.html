@@ -76,6 +76,17 @@
   	{{ theme:js file="libs/modernizr.js" }}
   	{{ theme:js file="libs/jquery.js" }}
 	{{ theme:js file="addevent.js" }}
+	
+	<!-- iOS message bubble. -->
+	<script type="text/javascript">
+		var addToHomeConfig = {
+			returningVisitor: true;
+			lifespan:10000,
+			expire:2,
+			touchIcon:true,
+			message:'This is a custom message. Your device is an <strong>%device</strong>. The action icon is `%icon`.'
+		};
+</script>
 	{{ theme:js file="add2home.js" }}
 	
 	<!-- AddThisEvent Settings -->
