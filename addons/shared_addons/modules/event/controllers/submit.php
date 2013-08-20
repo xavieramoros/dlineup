@@ -115,7 +115,7 @@ class Submit extends Public_Controller
 					->set('your_event',$this->your_event)
 					->set_layout('content.html')
 				->set_metadata('description', "Submit your event to Dlineup, our event agenda. We will help you promote your event and bring more visitors to it.")
-				->set_metadata('title', "Submit your event - Dlineup")
+				->set_metadata('title', "Submit your event")
 				->set_metadata('keywords', "barcelona, dlineup.net,event promotion, events, submit")
 					
 					->build('submit-event');

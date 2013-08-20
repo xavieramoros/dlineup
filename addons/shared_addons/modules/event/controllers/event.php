@@ -48,7 +48,7 @@ class Event extends Public_Controller
 			->title("Homepage")
 			->set_breadcrumb(lang('event:event_title'))
 			->set_metadata('description', "Dlineup is an agenda with curated events, related to design, innovation and technology. We carefully select interesting events in Barcelona for you.")
-			->set_metadata('title', "Dlineup")
+			->set_metadata('title', "Design, innovation and technology events in Barcelona")
 			->set_metadata('keywords', "kw1, kw2")
 			->set('pagination', $pagination)
 			->set('event', $_event)
@@ -68,7 +68,7 @@ class Event extends Public_Controller
 			->title("About")
 			->set_breadcrumb(lang('event:event_title'))
 			->set_metadata('description', " Dlineup is an agenda with events related to design, innovation and technology. We carefully select interesting events in Barcelona for you.")
-			->set_metadata('title', "About - Dlineup.net")
+			->set_metadata('title', "About")
 			->set_metadata('keywords', "about, barcelona, dlineup, events")
 			->set_layout('content.html')
 			->build('about');
@@ -87,7 +87,7 @@ class Event extends Public_Controller
 			->title("Terms and Conditions")
 			->set_breadcrumb(lang('event:event_title'))
 			->set_metadata('description', "Terms and conditions of use of Dlineup and it's newsletter. Dlineup is an online agenda with design, innovation and technology events in Barcelona.")
-			->set_metadata('title', "Terms and Conditions - Dlineup.net")
+			->set_metadata('title', "Terms and Conditions")
 			->set_metadata('keywords', "barcelona, conditions, dlineup, events, newsletter, privacy, terms")
 			->set_layout('content.html')
 			->build('terms');
@@ -106,7 +106,7 @@ class Event extends Public_Controller
 			->title("Page not found")
 			->set_breadcrumb(lang('event:event_title'))
 			->set_metadata('description', "Sorry, that page doesnÕt exist! Thanks for noticingÑwe're going to fix it up and have things back to normal soon. ")
-			->set_metadata('title', "Error, page doesn't exist - Dlineup.net")
+			->set_metadata('title', "Error, page doesn't exist")
 			->set_metadata('keywords', "barcelona, error, dlineup, events")
 			->build('error');
 	}
