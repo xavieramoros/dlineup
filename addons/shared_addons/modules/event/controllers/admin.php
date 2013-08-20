@@ -172,8 +172,7 @@ class Admin extends Admin_Controller
 
 		// Date ranges for select boxes
 		
-		$this->template
-			->set('hours', array_combine($hours = range(0, 23), $hours))
+		$this->template->set('hours', array_combine($hours = range(0, 23), $hours))
 			->set('minutes', array_combine($minutes = range(0, 59), $minutes));
 		
 		

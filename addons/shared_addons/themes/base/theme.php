@@ -3,9 +3,9 @@
 class Theme_Base extends Theme
 {
     public $name			= 'Base';
-    public $author			= 'Scott Parry';
-    public $author_website	= 'http://ikreativ.com/';
-    public $website			= 'http://ikreativ.com/';
+    public $author			= 'D Lineup';
+    public $author_website	= 'http://www.dlineup.net/';
+    public $website			= 'http://www.dlineup.net/';
     public $description		= 'An HTML5 base template filled with goodies to get you up and running quickly.';
     public $version			= '1.0';
 	public $options 		= array(

@@ -45,10 +45,11 @@ class Event extends Public_Controller
 		}
 
 		$this->template
-			->title($this->module_details['name'])
+			->title("Homepage")
 			->set_breadcrumb(lang('event:event_title'))
-			->set_metadata('description', $meta['description'])
-			->set_metadata('keywords', $meta['keywords'])
+			->set_metadata('description', "Dlineup is an agenda with curated events, related to design, innovation and technology. We carefully select interesting events in Barcelona for you.")
+			->set_metadata('title', "Dlineup")
+			->set_metadata('keywords', "kw1, kw2")
 			->set('pagination', $pagination)
 			->set('event', $_event)
 			->build('posts');
@@ -64,11 +65,12 @@ class Event extends Public_Controller
 		$meta = $this->_posts_metadata($_event);
 
 		$this->template
-			->title($this->module_details['name'])
+			->title("About")
 			->set_breadcrumb(lang('event:event_title'))
-			->set_metadata('description', $meta['description'])
-			->set_metadata('keywords', $meta['keywords'])
-			->set_layout('submit.html')
+			->set_metadata('description', " Dlineup is an agenda with events related to design, innovation and technology. We carefully select interesting events in Barcelona for you.")
+			->set_metadata('title', "About - Dlineup.net")
+			->set_metadata('keywords', "about, barcelona, dlineup, events")
+			->set_layout('content.html')
 			->build('about');
 	}
 
@@ -82,11 +84,12 @@ class Event extends Public_Controller
 		$meta = $this->_posts_metadata($_event);
 
 		$this->template
-			->title($this->module_details['name'])
+			->title("Terms and Conditions")
 			->set_breadcrumb(lang('event:event_title'))
-			->set_metadata('description', $meta['description'])
-			->set_metadata('keywords', $meta['keywords'])
-			->set_layout('submit.html')
+			->set_metadata('description', "Terms and conditions of use of Dlineup and it's newsletter. Dlineup is an online agenda with design, innovation and technology events in Barcelona.")
+			->set_metadata('title', "Terms and Conditions - Dlineup.net")
+			->set_metadata('keywords', "barcelona, conditions, dlineup, events, newsletter, privacy, terms")
+			->set_layout('content.html')
 			->build('terms');
 	}
 
@@ -100,10 +103,11 @@ class Event extends Public_Controller
 		$meta = $this->_posts_metadata($_event);
 
 		$this->template
-			->title($this->module_details['name'])
+			->title("Page not found")
 			->set_breadcrumb(lang('event:event_title'))
-			->set_metadata('description', $meta['description'])
-			->set_metadata('keywords', $meta['keywords'])
+			->set_metadata('description', "Sorry, that page doesnÕt exist! Thanks for noticingÑwe're going to fix it up and have things back to normal soon. ")
+			->set_metadata('title', "Error, page doesn't exist - Dlineup.net")
+			->set_metadata('keywords', "barcelona, error, dlineup, events")
 			->build('error');
 	}
 

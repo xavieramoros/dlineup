@@ -110,11 +110,17 @@ class Submit extends Public_Controller
 		        }
 	
 				$this->template
-					->title($this->module_details['name'])
+					->title("Submit your event")
 					->set_breadcrumb(lang('event:event_title'))
 					->set('your_event',$this->your_event)
-					->set_layout('submit.html')
+					->set_layout('content.html')
+				->set_metadata('description', "Submit your event to Dlineup, our event agenda. We will help you promote your event and bring more visitors to it.")
+				->set_metadata('title', "Submit your event - Dlineup")
+				->set_metadata('keywords', "barcelona, dlineup.net,event promotion, events, submit")
+					
 					->build('submit-event');
+					
+					
 			}
 	}
 

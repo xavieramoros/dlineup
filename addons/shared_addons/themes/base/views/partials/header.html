@@ -11,12 +11,12 @@
   	<!-- You can use .htaccess and remove these lines to avoid edge case issues. -->
   	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  	<title>{{ settings:site_name }} &raquo; {{ template:title }}</title>
+<!--   	<title>{{ settings:site_name }} &raquo; {{ template:title }}</title> -->
+  	<title>{{ template:title }} - {{ settings:site_name }}</title>
 
-  	<meta name="author" content="Scott Parry - iKreativ">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	
+  	{{ template:metadata }}
+  	
+  	<meta name="author" content="Dlineup.net">
   	<!-- Mobile viewport optimized -->
   	<meta name="viewport" content="width=device-width,initial-scale=1">
 	

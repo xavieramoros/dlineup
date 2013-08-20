@@ -63,7 +63,7 @@ $route['edit-profile']	                    = 'users/edit';
 
 $route['sitemap.xml']                       = 'sitemap/xml';
 
-
+$route['test']                       		= 'pages/test';
 $route['about']                       		= 'event/about';
 $route['terms']                       		= 'event/terms';
 /* $route['submit/success']					= 'event/submit/success'; */
