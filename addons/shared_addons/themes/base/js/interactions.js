@@ -229,4 +229,5 @@ $(document).ready(function() {
 	//load addthis:
 	initAddThis();
 
+	addthisevent.refresh();
 });

@@ -39,7 +39,7 @@
 			
 			<div class="event_title">
 				<!--<h3><?php echo  anchor('event/'.date('Y/m/', $post->created_on).$post->slug, $post->title); ?></h3>-->
-				<h3><a href="<?php echo($post->event_link)?>" target="_blank"><?php echo($post->title);?></a>
+				<h3><a href="<?php echo($post->event_link)?>" rel="no_follow" target="_blank"><?php echo($post->title);?></a>
 			</div>
 		</div>
 		<div class="event_meta">
@@ -98,7 +98,14 @@
 						echo '<li class="info-tag" id="info-tag-organizer">';
 						echo lang('event:organizer_post')." ";
 						echo '<span style="font-weight:bold;">';										
-						echo $post->organizer;
+						if($post->organizer_link){
+							echo '<a href='.$post->organizer_link.' rel="no_follow" target="_blank">';							
+							echo $post->organizer;	
+							echo '</a>';
+						}
+						else{
+							echo $post->organizer;								
+						}
 						echo '</span>';										
 						echo '</li>';
 					} ?>
@@ -120,40 +127,29 @@
 				</ul>
 			</div>
 			<div class='event_content'>
-<!-- 			<?php echo"<div class='event_content content_index".$key."'>"?> -->
 				<?php echo $post->body; ?>
 			</div>
-			<?php 
-				if (strlen($post->body)>200){
-					//echo "<input type='button' class='btn_show_content' value='+'>";
-					//echo "<button type='submit' class='btn_show_content'><img src=''></button>";
-			?> 
-			
-			
+			<?php if (strlen($post->body)>200){	?> 
 				{{ theme:image class="btn_show_content tooltip-e" id="expand_button" file="expand.png" alt="Show more" title="Show more"}}
-
-			<?php 	}
-			?>
+			<?php }?>
 			<div class="event_buttons_box">
 				<ul class="ul_horizontal">
-					<li><a href="" title="Add to Calendar" class="addthisevent" style="border-style: none">{{ theme:image file='./share_icons/calendar_share_icon.png' alt="Facebook Share" width="20" height="20" border="0"}}
-					    <span class="_start"><?php echo date("d-m-Y H:i:s",$post->start_date);?></span>
-					    <span class="_end"><?php echo date("d-m-Y H:i:s",$post->end_date);?></span>
-					    <span class="_zonecode">40</span>
-					    <span class="_summary"><?php echo $post->title;?></span>
-					    <span class="_description"><?php echo $post->body;?></span>
-					    <span class="_location"><?php echo $post->location." ".$post->address;?></span>
-					    <span class="_organizer"><?php echo $post->organizer;?></span>
-					   <!--  <span class="_organizer_email">Organizer e-mail</span> -->
-					   <!--  <span class="_facebook_event">http://www.facebook.com/events/160427380695693</span> -->
-					    <span class="_all_day_event">false</span>
-					    <span class="_date_format">DD/MM/YYYY</span>				    
-					    </a> 					
-					</li>					
+					<li><a href="http://example.com/link-to-your-event" title="Add to Calendar" class="addthisevent" style="border-style: none">{{ theme:image file='./share_icons/calendar_share_icon.png' alt="Facebook Share" width="20" height="20" border="0"}}
+						    <span class="_start"><?php echo date("d-m-Y H:i:s",$post->start_date);?></span>
+						    <span class="_end"><?php echo date("d-m-Y H:i:s",$post->end_date);?></span>
+						    <span class="_zonecode">40</span>
+						    <span class="_summary"><?php echo $post->title;?></span>
+						    <span class="_description"><?php echo substr(htmlspecialchars($post->body,ENT_HTML5),0,1000);?></span>
+						    <span class="_location"><?php echo $post->location." ".$post->address;?></span>
+						    <span class="_organizer"><?php echo $post->organizer;?></span>
+						    <span class="_all_day_event">false</span>
+						    <span class="_date_format">DD/MM/YYYY</span>				    
+						    </a> 
+						    </li>
 					<!--  "ADD THIS" SOCIAL BUTTONS				 -->
 					<li><a class="addthis_button_facebook social_button" addthis:description="" addthis:url=<?php echo $post->event_link;?> addthis:title=<?php echo $post->title."via Dlineup.net";?> >{{ theme:image file='./share_icons/facebook_share_icon.png' alt="Facebook Share" width="21px" height="21px"}}
 					</a>
-					</li>
+					</li>					
 					<li><a class="addthis_button_twitter social_button" addthis:description="" addthis:url=<?php echo $post->event_link;?> addthis:title=<?php echo $post->title."via @dlineup";?> >{{ theme:image file='./share_icons/twitter_share_icon.png' alt="Twitter Share" width="21px" height="21px"}}
 					</a>
 					</li>
@@ -162,10 +158,9 @@
 					</li>
 					<li><a class="addthis_button_email social_button" addthis:url=<?php echo $post->event_link;?> addthis:title=<?php echo $post->title;?>  addthis:description="via Dlineup.net">{{ theme:image file='./share_icons/email_share_icon.png' alt="Email Share" width="21px" height="21px" border="0"}}
 					</a>
-					</li>					
+					</li>										
 				</ul>
 			</div>			
-					
 		</div>
 		
 		<div class="add_to_cal">	
@@ -177,8 +172,8 @@
 
 <?php else: ?>
 	<div class="event_post">
-		<div class="event_title">
-			<h3><a>HERE FIXME!<?php echo lang('event:currently_no_posts');?></a></h3>
+		<div class="event_title no_posts_message">
+			<h3><a><?php echo lang('event:currently_no_posts');?></a></h3>
 		</div>
 	</div>
 <?php endif; ?>

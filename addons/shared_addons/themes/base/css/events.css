@@ -496,6 +496,7 @@ input:-moz-placeholder {
 
 
 .event_content{
+	display: block;
 	max-height: 70px;
 	width:80%;
 	overflow: hidden;
@@ -598,6 +599,9 @@ input:-moz-placeholder {
 	position:relative;	
 }
 
+.no_posts_message{
+	padding: 2%;
+}
 /***********************Terms page*/
 .terms_ul li{
 	margin-bottom: 2%;
