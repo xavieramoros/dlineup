@@ -435,17 +435,27 @@ class Admin extends Admin_Controller
 					
 				}	
 				*/
-				
+
+				//get maximum sizes of fields to check if user input is correct.
+				$max_size_location=$this->event_m->check_max_size("location");
+				$max_size_title=$this->event_m->check_max_size("title");
+				$max_size_address=$this->event_m->check_max_size("address");				
+				$max_size_body=$this->event_m->check_max_size("body");				
+				$max_size_event_link=$this->event_m->check_max_size("event_link	");
 				//save event with the data received from Google Calendar.
-				//print_r($eventData);				
 				
+				//start
+//				2013-10-11T08:30:00+02:00
+				
+				//end
+//				2013-10-11T18:15:00+02:00
 				if ($gid = $this->event_m->insert(array(
 					'id'                => $eventData["id"],
-					'title'				=> $eventData["title"],
+					'title'				=> strlen($eventData["title"]?$eventData["title"]:'')>$max_size_title?substr($eventData["title"],0,$max_size_title):$eventData["title"],
 					'slug'				=> "",
 					'category_id'		=> 0,
 					//'keywords'			=> Keywords::process($this->input->post('keywords')),
-					'body'				=> $eventData["body"],
+					'body'				=> strlen($eventData["body"]?$eventData["body"]:'')>$max_size_body?substr($eventData["body"],0,$max_size_body):$eventData["body"],
 					'status'			=> "draft", //events imported from GCal are created as draft
 					'created_on'		=> strtotime($eventData["created_on"]),  //convert time from 2013-07-06T13:30:37.000Z to unix timestamp					
 					//'comments_enabled'	=> $this->input->post('comments_enabled'),
@@ -456,9 +466,10 @@ class Admin extends Admin_Controller
 					
 					//added by xavi
 					//'price'				=> $this->input->post('price'),
-					'location'			=> $eventData["location"],
-					'address'			=> $eventData["address"]?$eventData["address"]:'', 
-	
+					'location'			=> strlen($eventData["location"]?$eventData["location"]:'')>$max_size_location?substr($eventData["location"],0,$max_size_location):$eventData["location"],
+					
+					
+					'address'			=> strlen($eventData["address"]?$eventData["address"]:'')>$max_size_address?substr($eventData["address"],0,$max_size_address):$eventData["address"],
 	                //already added before, need to convert to right format
 	                
 	                'start_date'		=> strtotime($eventData["start_date"]),  //save date in timestamp format
@@ -468,8 +479,8 @@ class Admin extends Admin_Controller
 					//'organizer'			=> $this->input->post('organizer'),
 					//'organizer_link'	=> $this->input->post('organizer_link'),
 					//'price'				=> $this->input->post('price'),
-					'event_link'		=> $eventData["event_link"]?$eventData["event_link"]:"",
-	 				//'language'			=> $this->input->post('language'),
+					'event_link'		=>strlen($eventData["event_link"]?$eventData["event_link"]:'')>$max_size_event_link?substr($eventData["event_link"],0,$max_size_event_link):$eventData["event_link"],
+					//'language'			=> $this->input->post('language'),
 	 				))){
 		 				$this->pyrocache->delete_all('event_m');
 		 				$this->session->set_flashdata('success', sprintf($this->lang->line('event:post_add_success'), $this->input->post('title')));
@@ -801,6 +812,7 @@ class Admin extends Admin_Controller
 		//same for $post->start_date
 		$start_date_stored = $post->start_date; //we save the start data, which also includes time.
 		$post->starts_on_hour = date('H', (int)$start_date_stored);
+		echo "START HOUR STORED!!:".$post->starts_on_hour;
 		$post->starts_on_minute = date('i', (int)$start_date_stored);
 		$post->start_date = date('d-m-Y', (int)$start_date_stored); //strtotime(sprintf('%s', (int)$post->start_date));
 

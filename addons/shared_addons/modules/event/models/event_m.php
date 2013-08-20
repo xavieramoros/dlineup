@@ -47,6 +47,16 @@ class Event_m extends MY_Model
 		}
 
 	}
+	
+	public function check_max_size($column){
+		//function that checks the max size of a specific column in the database
+		$sql="SELECT ".$this->db->escape($column).",CHARACTER_MAXIMUM_LENGTH FROM information_schema.columns WHERE table_name='default_event' AND COLUMN_NAME=".$this->db->escape($column);
+		$query=$this->db->query($sql);
+		
+		$result = $query->result_array();
+		return $result[0]["CHARACTER_MAXIMUM_LENGTH"];
+	}
+	
 	public function eventExists($gid){
 		//function that returns 1 if event already in database, 0 if not. Using the unique gcalid.
 		$this->db->where('event.id',$gid)
