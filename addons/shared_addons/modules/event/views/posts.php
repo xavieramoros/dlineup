@@ -61,6 +61,7 @@
 		<div class="event_body">
 			<div class="event_info">
 				<ul class="event_info_list">
+					<?php date_default_timezone_set('Europe/Madrid');?>
 					<?php if (date('H:i',$post->start_date)!="11:11"){
 						echo '<li class="info-tag" id="info-tag-time">';
 						echo '<span style="font-weight:bold;">';					
