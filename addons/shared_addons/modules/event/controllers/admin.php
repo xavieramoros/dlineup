@@ -809,10 +809,10 @@ class Admin extends Admin_Controller
 		
 		//strtotime(sprintf('%s %s:%s', $post->created_on , $this->input->post('created_on_hour'), $this->input->post('created_on_minute')));
 
-		//same for $post->start_date
+		//set right timezone
+		date_default_timezone_set('Europe/Madrid');
 		$start_date_stored = $post->start_date; //we save the start data, which also includes time.
 		$post->starts_on_hour = date('H', (int)$start_date_stored);
-		echo "START HOUR STORED!!:".$post->starts_on_hour;
 		$post->starts_on_minute = date('i', (int)$start_date_stored);
 		$post->start_date = date('d-m-Y', (int)$start_date_stored); //strtotime(sprintf('%s', (int)$post->start_date));
 
