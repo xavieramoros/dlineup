@@ -77,9 +77,11 @@ $(document).ready(function() {
     });
     
 	$('.btn_show_content').toggle(function () {  
+    		$(".event_info").show();
+	
     		var current_content = $(this).parent().children('.event_content');
     		var currentHeight=$(current_content)[0].scrollHeight;
-    		    	
+    		    	   	
 	    	$(this).parent().children('.event_content').animate({height:currentHeight,maxHeight:currentHeight},500);
 	    	/*
 	    	.animate({
@@ -113,6 +115,8 @@ $(document).ready(function() {
 	    
 	    },
 	    function () { 
+    		$(".event_info").hide();
+	    
         	var current_content = $(this).parent().children('.event_content');
         	$(this).parent().children('.event_content').animate({
 		    	height:'70px',

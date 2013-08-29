@@ -111,6 +111,10 @@ ul{
 	margin:0;
 }
 
+p{
+	margin: 0;
+}
+
 .container {
 /* 	background-color:#E5E4E3; */
 	background-color:none;
@@ -246,7 +250,7 @@ h2#event_site_slogan{
 */
 .event_right_menu  { 
     display: none; 
-    z-index:1;
+    z-index:2;
     position:absolute;
 /*     float:right; */
 	padding-bottom: 2%;
@@ -480,7 +484,7 @@ input:-moz-placeholder {
 .event_body{
 /* 	display: inline-block; */
 	display: block;
-	font-size:100%;
+	font-size:80%;
     color: #666578;
 	font-family: Georgia;
 	padding: 2% 0 0 2%;
@@ -489,11 +493,11 @@ input:-moz-placeholder {
 }
 
 .event_info{
+	display: none;
 	line-height: 1.3em;
 	font-style: italic;
 	padding:0 0 1% 2%;
 }
-
 
 .event_content{
 	display: block;
@@ -590,12 +594,12 @@ input:-moz-placeholder {
 	margin-left: 10%;	
 }
 .social_button{
-	z-index: 1000000;
+	z-index: 1;
 	position:relative;
 }
 
 .social_button img{
-	z-index: 1000000;
+	z-index: 1;
 	position:relative;	
 }
 
@@ -706,6 +710,9 @@ Small browser / iPad landscape
 	}
 	.event_title a{
 		font-size:1.5em; /*1.4em*/
+	}
+	.event_info{ /*Show again event info*/
+		display: inherit;
 	}
 	
 	#newsletter_menu_box{/*Show again by default the box*/

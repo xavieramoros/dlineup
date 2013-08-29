@@ -38,7 +38,16 @@
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif:regular,bold" type="text/css" />
 
 	<!-- Add This plugin -->
-	<script type="text/javascript">var addthis_config = {"data_track_addressbar":false};</script>
+	<script type="text/javascript">var addthis_config = {
+										"data_track_addressbar":false,
+										"data_track_clickback": false,
+									};
+									var addthis_share = { 
+										templates: {
+											//twitter: "{{title}}{{url}}",
+										}
+									};		
+	</script>
 <!-- 	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-520fe7db163d3a1a"></script> -->
 	{{ theme:js file="addthis_widget.js"}}
 
@@ -70,7 +79,7 @@
 
 
 	<!-- Load up some favicons -->
-  	{{ theme:favicon }}
+  	{{ theme:favicon file="favicon_dlineup.ico"}}
 
   	<!-- All JavaScript at the bottom, except for Modernizr. -->
   	{{ theme:js file="libs/modernizr.js" }}

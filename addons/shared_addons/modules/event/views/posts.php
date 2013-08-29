@@ -148,16 +148,16 @@
 						    </a> 
 						    </li>
 					<!--  "ADD THIS" SOCIAL BUTTONS				 -->
-					<li><a class="addthis_button_facebook social_button" addthis:description="" addthis:url=<?php echo $post->event_link;?> addthis:title=<?php echo $post->title."via Dlineup.net";?> >{{ theme:image file='./share_icons/facebook_share_icon.png' alt="Facebook Share" width="21px" height="21px"}}
+					<li><a class="addthis_button_facebook social_button" addthis:description="" addthis:url="<?php echo $post->event_link;?>" addthis:title="<?php echo $post->title."via Dlineup";?>" >{{ theme:image file='./share_icons/facebook_share_icon.png' alt="Facebook Share" width="21px" height="21px"}}
 					</a>
 					</li>					
-					<li><a class="addthis_button_twitter social_button" addthis:description="" addthis:url=<?php echo $post->event_link;?> addthis:title=<?php echo $post->title."via @dlineup";?> >{{ theme:image file='./share_icons/twitter_share_icon.png' alt="Twitter Share" width="21px" height="21px"}}
+					<li><a class="addthis_button_twitter social_button" addthis:description="" addthis:url="<?php echo $post->event_link."&nbsp;via&nbsp;&#64;dlineup";?>" addthis:title="<?php echo $post->title;?>" >{{ theme:image file='./share_icons/twitter_share_icon.png' alt="Twitter Share" width="21px" height="21px"}}
 					</a>
 					</li>
 					<li><a class="addthis_button_google_plusone_share social_button" addthis:description="via Dlineup.net" addthis:url=<?php echo $post->event_link;?> addthis:title=<?php echo $post->title."via Dlineup.net";?>>{{ theme:image file='./share_icons/gplus_share_icon.png' alt="G+ Share" width="21px" height="21px"}}
 					</a>
 					</li>
-					<li><a class="addthis_button_email social_button" addthis:url=<?php echo $post->event_link;?> addthis:title=<?php echo $post->title;?>  addthis:description="via Dlineup.net">{{ theme:image file='./share_icons/email_share_icon.png' alt="Email Share" width="21px" height="21px" border="0"}}
+					<li><a class="addthis_button_email social_button" addthis:url="<?php echo $post->event_link;?>" addthis:title="<?php echo $post->title;?>"  addthis:description="via Dlineup.net">{{ theme:image file='./share_icons/email_share_icon.png' alt="Email Share" width="21px" height="21px" border="0"}}
 					</a>
 					</li>										
 				</ul>
