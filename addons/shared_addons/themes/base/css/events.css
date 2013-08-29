@@ -488,7 +488,7 @@ input:-moz-placeholder {
     color: #666578;
 	font-family: Georgia;
 	padding: 2% 0 0 2%;
-	margin-right: 2%;
+/* 	margin-right: 2%; */
 	
 }
 
@@ -496,16 +496,17 @@ input:-moz-placeholder {
 	display: none;
 	line-height: 1.3em;
 	font-style: italic;
-	padding:0 0 1% 2%;
+/* 	padding:0 0 1% 2%; */
 }
 
 .event_content{
 	display: block;
 	max-height: 70px;
-	width:80%;
+/* 	width:90%; */
 	overflow: hidden;
 	padding:0;
 	margin:0 auto;
+	padding: 1% 40px 0 0;
 /* 	margin:0 6% 0 6%; */
 }
 
@@ -688,6 +689,11 @@ Small browser / iPad landscape
 		padding:0 0 0 0;
 		
 	}
+	.event_body{	
+		font-size:90%;
+		display:block;
+	}
+
 	.event_right_menu ul{
 		padding: 0;
 		margin:0 auto;	
@@ -772,9 +778,6 @@ Small browser / iPad landscape
 		font-size: 1.4em;
 	}
 	
-	.event_body{	
-		display:block;
-	}
 	.event_date{
 		font-size:3.6em;
 	}
@@ -832,7 +835,7 @@ Small browser / iPad landscape
 	
 	/*Event post*/
 	.event_body{	
-		display:block;
+		font-size:100%;
 	}
 	.event_title{  /*Avoid third line in Event Title*/
 		min-height:85px;
