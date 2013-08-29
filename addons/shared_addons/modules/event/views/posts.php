@@ -135,7 +135,7 @@
 			<?php }?>
 			<div class="event_buttons_box">
 				<ul class="ul_horizontal">
-					<li><a href="http://example.com/link-to-your-event" title="Add to Calendar" class="addthisevent" style="border-style: none">{{ theme:image file='./share_icons/calendar_share_icon.png' alt="Facebook Share" width="20" height="20" border="0"}}
+					<li><a class="addthisevent" href="http://example.com/link-to-your-event" title="Add to Calendar"  style="border-style: none">{{ theme:image file='./share_icons/calendar_share_icon.png' alt="Add to Calendar" width="20" height="20" border="0"}}
 						    <span class="_start"><?php echo date("d-m-Y H:i:s",$post->start_date);?></span>
 						    <span class="_end"><?php echo date("d-m-Y H:i:s",$post->end_date);?></span>
 						    <span class="_zonecode">40</span>

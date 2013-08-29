@@ -598,6 +598,9 @@ input:-moz-placeholder {
 	z-index: 1;
 	position:relative;
 }
+.addthisevent-drop img{
+	z-index: 1!important;
+}
 
 .social_button img{
 	z-index: 1;

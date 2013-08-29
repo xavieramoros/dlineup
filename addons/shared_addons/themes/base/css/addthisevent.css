@@ -1,8 +1,8 @@
 ﻿
 .addthisevent-drop {
 	display:inline-block;
-/* 	position:relative; */
-	z-index:1000000;
+	position:relative;
+	z-index:1;
 /* 	font-family:arial; */
 /* 	color:#333!important; */
 /* 	background: url("../img/share_icons/calendar_share_icon.png") no-repeat; */
