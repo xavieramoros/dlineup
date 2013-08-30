@@ -36,6 +36,7 @@ body {
 /* 	color: #666578; */
 	height:auto;
 	margin:0;
+	font-weight: lighter;
 	
 background-image: linear-gradient(bottom, rgb(184,180,184) 9%, rgb(229,229,227) 90%);
 background-image: -o-linear-gradient(bottom, rgb(184,180,184) 9%, rgb(229,229,227) 90%);
@@ -194,8 +195,11 @@ h2#event_site_slogan{
 	margin:0;
 	color: #676679;
 	font-family: Georgia;
-	font-size: 0.9em;
+	font-size: 1em;
 	line-height: 1.2em;
+	font-style: italic;
+	width: 80%;
+	margin: 0 0 0 10%;
 }
 
 /* Submit event*/
@@ -438,8 +442,9 @@ input:-moz-placeholder {
 /************************/
 .month_separator{
 	background: none repeat scroll 0 0 #FFFFFF;
-	padding: 1%;
-	font-size: 2em;
+	padding: 1% 0 0 2% ;
+	font-size: 1.1em;
+	
 }
 .event_post_container{
 	border-top-right-radius:30px;
@@ -514,13 +519,13 @@ input:-moz-placeholder {
 
 /*event_header*/
 .event_date{
-	padding:1% 0 0 2%;
+	padding:1.5% 0 0 2%;
 	float:left;
 	width:20% auto;
 	overflow: hidden;	
 	display: inline-block;
-	font-size:2.4em;
-	font-weight: 500;
+	font-size:2.3em;
+	font-weight: lighter;
 	vertical-align: middle;
 	font-family: Impact;
 	transform : scale(1,1.5);
@@ -539,6 +544,7 @@ input:-moz-placeholder {
 	min-height:55px;
 	max-height:55px;
 	padding-top:0.4em; /*Fix allignement of title with date*/
+	padding-right:1%;
 }
 
 .event_title h3{
@@ -548,8 +554,9 @@ input:-moz-placeholder {
 }
 
 .event_title a{
-	font-size:1.2em; /*1.4em*/
+	font-size:1em; /*1.4em*/
 	font-family: Impact;
+	font-weight:lighter;
 	color: #666578;
 	line-height: 1.2em;
 }
@@ -709,12 +716,14 @@ Small browser / iPad landscape
 
 	}
 	.event_date{
-		font-size:3em;
+		font-size:2.4em;
+		padding:1.3% 0 0 2%;
 	}
 	.event_title{  /*Avoid third line in Event Title*/
 		min-height:70px;
 		max-height:70px;
 		padding-top:0.55em; /*Fix allignement of title with date*/
+		font-size: 0.8em;
 		
 	}
 	.event_title a{
@@ -782,7 +791,7 @@ Small browser / iPad landscape
 	}
 	
 	.event_date{
-		font-size:3.6em;
+		font-size:2.7em;
 	}
 	.event_title{  /*Avoid third line in Event Title*/
 		min-height:85px;
@@ -790,7 +799,7 @@ Small browser / iPad landscape
 		padding-top: 0.7em;
 	}
 	.event_title a{
-		font-size:1.8em; /*1.4em*/
+		font-size:1.7em; /*1.4em*/
 	}
 
 }
@@ -803,13 +812,20 @@ Small browser / iPad landscape
 	h1#event_site_logo{
 		font-size: 7em; /*5*/
 	}
+	h2#event_site_slogan{
+		font-size: 1.2em;
+	}
 	.event_post_container{
 		width:68%;	
 		margin:0 auto;	
 	}
 	
+	.month_separator{
+		font-size:1.4em;
+	}
 	.event_date{
-		font-size:4em;/* 2.7em; */
+/* 		font-size:2.7em; Not needed*/
+		padding:1.2% 0 0 2%;
 	}
 	.event_right_menu{
 		width:15%;
@@ -864,13 +880,17 @@ Small browser / iPad landscape
 		min-height:110px;
 		max-height:110px;
 	}
-	
+	.month_separator{
+		font-size:1.5em;
+	}
+
 	.event_title h3 a{
 		font-size: 2.4em;
 	}
 	
 	.event_date{
-		font-size:4.7em;
+		font-size:3.6em;
+		padding: 1% 0 0 2%;
 	}
 	
 	.event_header{

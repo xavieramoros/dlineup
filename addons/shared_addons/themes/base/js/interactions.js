@@ -29,7 +29,9 @@ function initAddThis()
 
 
 $(document).ready(function() { 
-	
+	width_retrieved=$(window).width();
+	width_threshold = 641;
+
 	//uncomment to disable temporarily html5 form validation
 /*
 	$( "input" ).each(
@@ -69,9 +71,8 @@ $(document).ready(function() {
 	//when clicking newsletter open box:
     $('#newsletter_label').click(function() {
     	//when clicking newsletter button, toggle newsletter box 
-    	width_retrieved=$(window).width();
-		if(width_retrieved<641){
-		 	//if New width<641 : if we are in mobile layout toogle box
+		if(width_retrieved<width_threshold){
+		 	//if New width<width_threshold : if we are in mobile layout toogle box
 		 	$('#newsletter_menu_box').toggle();
 		}; 	
     });
@@ -115,7 +116,9 @@ $(document).ready(function() {
 	    
 	    },
 	    function () { 
-    		$(".event_info").hide();
+		    if(width_retrieved<width_threshold){
+			    $(".event_info").hide();
+		    }    		
 	    
         	var current_content = $(this).parent().children('.event_content');
         	$(this).parent().children('.event_content').animate({
