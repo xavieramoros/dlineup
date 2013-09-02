@@ -188,7 +188,8 @@ class Plugin_Event extends Plugin
 	    
 	    $end = new DateTime();
 	    $end->setTimestamp($last_event_timestamp);
-	    $end->modify('+1 month'); //add one month to see last one correctly
+	    
+	    //$end->modify('+1 month'); //add one month to see last one correctly
 	    
 	    $interval = new DateInterval('P1M'); // 1 month interval
 	
@@ -202,8 +203,9 @@ class Plugin_Event extends Plugin
 	    	$arra_years[]=$dt->format( "Y" ); 						//array of years
 	        $array_full[$dt->format( "Y" )][] = $dt->format( "F" ); //array compelte: array(2013 => array("May","June","July","August"), 2014=> ....)
 
-	    }
-	    	    /*
+	    }	    
+	    
+	    /*
 	    $arra_years = Array ( [0] => 2013 
 	    		[1] => 2013 
 	    		[2] => 2013 

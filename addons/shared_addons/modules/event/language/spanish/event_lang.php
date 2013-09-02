@@ -66,6 +66,11 @@ $lang['event:make_draft'] 						="Hacer draft";
 //labels for frontpage:
 $lang['event:location_post']        	    = 'En';
 $lang['event:organizer_post']        	    = 'Organizado por';
+$lang['event:this_month']        	    	= 'Este mes';
+$lang['event:next_month']        	    	= 'Próximo mes';
+$lang['event:this_week']        	    	= 'Esta semana';
+$lang['event:next_week']        	    	= 'Próxima semana';
+
 
 //your event page
 

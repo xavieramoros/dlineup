@@ -10,22 +10,61 @@
 <?php if ( ! empty($event)): ?>
 
 <?php foreach ($event as $key=>$post): ?>
-	<?php if($key==0){
-		$initial_month=date("n",$post->start_date);//month of first post
 
+	<?php 
+		$event_month=date("n",$post->start_date);//month of event post
+		$event_week=date("W",$post->start_date);//month of event post
+
+		if($key==0){
+			$previous_month=$event_month-1;
+			$previous_week=$event_week-1;	
+		}		
 		echo "<div class='month_separator month_separator_0'>";
-		echo "<a id=".date("F",$post->start_date)."_".date("Y",$post->start_date)."></a>";
-		echo "<span class='red_text'>".date("F",$post->start_date)."</span>"	;
-		echo "</div>";
-		$previous_month=$initial_month;
-	}else if(date("n",$post->start_date)!=$previous_month){
-		echo "<div class='month_separator'>";
-		echo "<a id=".date("F",$post->start_date)."_".date("Y",$post->start_date)."></a>";
-		echo "<span class='red_text'>".date("F",$post->start_date)."</span>"	;
+		echo '<a id="'.date("F",$post->start_date).'_'.date("Y",$post->start_date).'"></a>';
+		
+		if($event_month!= date('n')){ //if the date of the event is not the current month
+			if($event_month==date('n')+1 && $previous_month!=$event_month){//if event is next month and we didn't use it already
+				echo "<span class='red_text'>".lang('event:next_month')."</span>"	;									
+			}else if($event_month != $previous_month){ //only add current month if different from previous
+				echo "<span class='red_text'>".date("F",$post->start_date)."</span>"	;									
+			}
+		}else{ //event is this month
+			if($event_week!=$previous_week){ //if same week show nothing
+				if ($event_week==date('W')){ //if current week and different from previous one
+					echo "<span class='red_text'>".lang('event:this_week')."</span>"	;				
+				}else{ //if the event is in the current month but not this week
+					if($event_week==date('W')+1){ //if event week is next week
+						echo "<span class='red_text'>".lang('event:next_week')."</span>"	;
+					}else{
+						if($event_week!=date('W')+3){
+							echo "<span class='red_text'>".lang('event:this_month')."</span>"	;
+						}					
+					}
+				}
+			}
+		}
 		echo "</div>";
 		
-		$previous_month=date("n",$post->start_date);
+		$previous_month=$event_month;
+		$previous_week=$event_week;
+		
+/*
+	}else{ 
+		if{date("n",$post->start_date)
+		
+		}else{
+			if(date("n",$post->start_date)!=$previous_month){
+				echo "<div class='month_separator'>";
+				echo "<a id=".date("F",$post->start_date)."_".date("Y",$post->start_date)."></a>";
+				
+				echo "<span class='red_text'>".date("F",$post->start_date)."</span>"	;
+				echo "</div>";
+				
+				$previous_month=date("n",$post->start_date);
+			}
+		}
 	}
+*/
 	?>
 	
 		
